@@ -11,3 +11,31 @@ async function fetchYoutubeData() {
 $(document).ready(function () {
   fetchYoutubeData();
 });
+
+fetch("https://genius.p.rapidapi.com/search?q=Kendrick%20Lamar", {
+  method: "GET",
+  headers: {
+    "x-rapidapi-key": "03ecbc5b6bmsh6aa275f6ae95670p130bf3jsn42648f37f353",
+    "x-rapidapi-host": "genius.p.rapidapi.com",
+  },
+})
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+fetch("https://genius.p.rapidapi.com/songs/730771", {
+  method: "GET",
+  headers: {
+    "x-rapidapi-key": "03ecbc5b6bmsh6aa275f6ae95670p130bf3jsn42648f37f353",
+    "x-rapidapi-host": "genius.p.rapidapi.com",
+  },
+})
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
