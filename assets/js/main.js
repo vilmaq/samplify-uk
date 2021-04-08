@@ -5,4 +5,5 @@ async function fetchYoutubeData() {
   const response = await fetch(youtubeUrl);
   const data = await response.json();
   console.log(data);
+  console.log("test");
 }
