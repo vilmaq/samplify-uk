@@ -1,4 +1,4 @@
-const api_key = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
+const youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
 const geniusHeaderObject = {
   method: "GET",
   headers: {
@@ -7,11 +7,21 @@ const geniusHeaderObject = {
   },
 };
 let geniusRequestedData;
+let youtubeRequestedData;
 
 async function fetchYoutubeData() {
-  const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=the%20weeknd&key=${api_key}`;
+  const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=the%20weeknd&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
   const data = await response.json();
+  const youtubeResultPath = data.items[0].snippet;
+  youtubeRequestedData = {
+    title: youtubeResultPath.title,
+    channelTitle: youtubeResultPath.channelTitle,
+    uploadTime: youtubeResultPath.publishTime,
+    thumbnail: youtubeResultPath.thumbnails.high.url,
+    videoId: data.items[0].id.videoId,
+  };
+  console.log(youtubeRequestedData);
   // console.log(data.items[0]);
   // console.log("test");
 }
