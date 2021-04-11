@@ -42,6 +42,8 @@ async function fetchGeniusData() {
     idSong: geniusResultPath.id,
     titleSong: geniusResultPath.full_title,
     artImage: geniusResultPath.song_art_image_url,
+
+    //needs to return artwork, then song name, then artist, then release year/date(optional)
   };
   console.log(geniusRequestedData);
 }
