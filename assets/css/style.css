@@ -19,6 +19,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
 }
 
 #samplify-logo {
@@ -29,8 +30,49 @@ body {
   padding-top: 0.2rem;
 }
 
-input {
-  position: relative;
+#search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#search {
+  height: 80px;
+  width: 80px;
+  border: solid 5px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  transition: 0.3s;
+}
+
+#search-input {
+  height: 100%;
+  width: 0px;
+  font-size: 28px;
+  font-weight: 600;
+  background: none;
+  color: #fffff;
+  border: none;
+  outline: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+#search.active {
+  width: 350px;
+}
+
+#search-input.active {
+  width: 260px;
+  margin-left: 16px;
+  visibility: visible;
+}
+
+/* input {
+  position: absolute;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   width: 600px;
@@ -79,7 +121,7 @@ input:focus {
   top: 40px;
   width: 50px;
   height: 5px;
-}
+} */
 
 .swiper-container {
   display: flex;
