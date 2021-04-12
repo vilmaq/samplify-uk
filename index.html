@@ -14,6 +14,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
     />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Samplify UK | Home</title>
   </head>
@@ -21,30 +22,34 @@
   <body>
 
     <header>
-      <nav class="navbar-item is-dark">
+      <nav id="navbar" class="navbar-item is-light
+ ">
         <a
-          ><img
-            src="https://bulma.io/images/bulma-logo.png"
-            width="112"
-            height="28"
-            alt="Bulma"
+          >
+          <img id="samplify-logo"
+            src="./assets/images/logo_Samplify.png"
+            alt="samplify-logo"
           />
         </a>
       </nav>
-      <p>Test</p>
 
       <div class="tabs is-right">
         <ul>
-          <li class="is-active"><a>Pictures</a></li>
-          <li><a>Music</a></li>
-          <li><a>Videos</a></li>
-          <li><a>Documents</a></li>
+          <li class="is-active"><a>Home</a></li>
+          <li><a>Favourites</a></li>
         </ul>
       </div>
     </header>
 
-
-    <form><input><div class="div1"></div></input></form>
+<div id="search-container">
+    <div id="search">
+      <i class="fas fa-search" id="search-icon"></i>
+      <form>
+        <input type="text" id="search-input" name="search" autocomplete="off">
+      </form>
+    </div>
+  </div>
+    <!-- <form><input><div class="div1"></div></input></form> -->
 
     <!-- search bar here -->
 
@@ -68,7 +73,7 @@
           </a>
         </p> -->
 
-    <!-- <div
+     <!-- <div
         id="column-container"
         class="columns is-12 is-three-quarters-mobile is-two-thirds-tablet"
       >
@@ -86,70 +91,77 @@
             </a>
           </div>
         </div>
-      </div> -->
+      </div>  -->
     <!-- </div> -->
-    <!-- <div
+        <!-- <div
           id="column-container"
-          class=" columns is-10 column is-three-quarters-mobile is-two-thirds-tablet is-flex-wrap-wrap"
-        >
+          class=" columns is-10 column is-three-quarters-mobile is-two-thirds-tablet is-flex-wrap-wrap">
+      
           <input
             id="searchbar"
             class="ml-6 is-centered input is-primary is-large is-rounded"
             type="text"
-            placeholder="Info input"
-          />
+            placeholder="Info input">
+        </input>
       
          <button
             class="mr-6 button is-primary is-mobile is-large is-rounded is-focused"
           >
             <i class="fas fa-search"></i>
           </button>
-        </div> -->
-    <!-- </div>
-    </div>   -->
+        </div> 
+       </div>
+    </div>    -->
 
-    <!-- (homepage) cards here  -->
-
-
-
-
-
-
-
-
-    <!-- render search card result -->
-    
-  
-      <div class="card">
-        <div class="card-content">
-          <p class="title">
-            “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
-          </p>
-          <p class="subtitle">
-            Jeff Atwood
-          </p>
+    <!-- cards here  -->
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
         </div>
-        <footer class="card-footer">
-          <p class="card-footer-item">
-            <span>
-              View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
-            </span>
-          </p>
-          <p class="card-footer-item">
-            <span>
-              Share on <a href="#">Facebook</a>
-            </span>
-          </p>
-        </footer>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
       </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
 
+    <div class="card">
+      <div class="card-content">
+        <p class="title">
+          “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
+        </p>
+        <p class="subtitle">
+          Jeff Atwood
+        </p>
+      </div>
+      <footer class="card-footer">
+        <p class="card-footer-item">
+          <span>
+            View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+          </span>
+        </p>
+        <p class="card-footer-item">
+          <span>
+            Share on <a href="#">Facebook</a>
+          </span>
+        </p>
+      </footer>
+    </div>
 
-  
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="./assets/js/homepageSliders.js"></script>
     <script src="./assets/js/main.js"></script>
     <div>
   </body>
