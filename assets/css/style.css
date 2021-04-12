@@ -1,6 +1,9 @@
 header {
   padding: 1.25rem;
 }
+* {
+  box-sizing: border-box;
+}
 
 #navbar {
   border: none;
@@ -138,17 +141,41 @@ input:focus {
   height: 300px;
 }
 
-/* .cards_container {
+.searchCardContainer {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  /* display: block; */
-
-
+}
 .card {
-  height: 20%;
-  width: 20%;
-  position: relative;
-  display: block;
+  display: grid;
+  grid-template-columns: 500px;
+  grid-template-rows: 210px 210px;
+  grid-template-areas: "image" "text";
+  box-shadow:5px 5px 15px rgba(0,0,0,0.9);
+  text-align: center;
+  border-radius: 12px;
+  background-color:aliceblue;
+  padding: 10px;
+  border: 2px solid rgb(66, 66, 66);
+  padding: 0;
+}
+
+.card-image {
+  grid-area:image;
+  background: url(https://images.unsplash.com/photo-1530051315435-58046fbc2649?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
+  background-size: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.card-text {
+  grid-area:text;
+  margin: 10px;
+  
+}
+
+
+.delete {
+  margin-top: 5px;
+  margin-left: 470px;
 }
 

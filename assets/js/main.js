@@ -69,12 +69,12 @@ async function fetchGeniusIDData() {
   const onSubmit = async (event) => {
   event.preventDefault();
 
-  // id for input bar
-  const formInput = $("#").val().trim();
+  // // id for input bar
+  // const formInput = $("#").val().trim();
   
-  const formInputString = JSON.stringify(formInput)
+  // const formInputString = JSON.stringify(formInput)
   
-  localStorage.setItem("userInput", formInputString)
+  // localStorage.setItem("userInput", formInputString)
   
 
   fetchYoutubeData() 
