@@ -83,7 +83,7 @@ async function fetchGeniusIDData() {
 };
 
 const displaySearchCards = async (searchInput) => {
-const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=the%20weeknd&key=${youtubeApiKey}`
+const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${userInput}=${youtubeApiKey}`
 
 }
 
