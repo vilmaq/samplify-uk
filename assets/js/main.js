@@ -1,3 +1,4 @@
+const userInput = "the%20weeknd"
 const youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
 const geniusHeaderObject = {
   method: "GET",
@@ -10,7 +11,7 @@ let geniusRequestedData;
 let youtubeRequestedData;
 
 async function fetchYoutubeData() {
-  const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=the%20weeknd&key=${youtubeApiKey}`;
+  const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${userInput}&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
   const data = await response.json();
   const youtubeResultPath = data.items[0].snippet;
@@ -26,9 +27,7 @@ async function fetchYoutubeData() {
   // console.log("test");
 }
 
-$(document).ready(function () {
-  fetchYoutubeData();
-});
+
 
 async function fetchGeniusData() {
   const geniusSearchURL = `https://genius.p.rapidapi.com/search?q=Kendrick%20Lamar`;
@@ -57,4 +56,40 @@ async function fetchGeniusIDData() {
   // console.log(geniusIDData);
 }
 
+  // target the input id 
+  const getLocalStorageData = () => {
+    const localStorageData = JSON.parse(localStorage.getItem("userInput"))
+    if (localStorageData === null) {
+      return []
+    } else 
+      return localStorageData
+  }
+  
+  
+  const onSubmit = async (event) => {
+  event.preventDefault();
+
+  // id for input bar
+  const formInput = $("#").val().trim();
+  
+  const formInputString = JSON.stringify(formInput)
+  
+  localStorage.setItem("userInput", formInputString)
+  
+
+  fetchYoutubeData() 
+  fetchGeniusIDData()
+  displaySearchCards()
+};
+
+const displaySearchCards = async (searchInput) => {
+const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${userInput}=${youtubeApiKey}`
+
+}
+
+
 fetchGeniusIDData();
+
+$(document).ready(function () {
+  fetchYoutubeData();
+});
