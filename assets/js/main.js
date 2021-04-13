@@ -76,6 +76,7 @@ const onDelete = () => {
   </div>`;
 
   container.append(swipeCard);
+  homePageSliders()
 };
 
 const renderMainCard = (geniusData) => {
@@ -122,4 +123,5 @@ $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
   // fetchYoutubeData();
+  homePageSliders ()
 });
