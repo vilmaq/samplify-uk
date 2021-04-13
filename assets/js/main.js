@@ -1,4 +1,4 @@
-const userInput = "the%20weeknd"
+// const userInput = "the%20weeknd";
 const youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
 const geniusHeaderObject = {
   method: "GET",
@@ -54,20 +54,19 @@ async function fetchGeniusIDData() {
   // console.log(geniusIDData);
 }
 
-  // target the input id 
-  const getLocalStorageData = () => {
-    const localStorageData = JSON.parse(localStorage.getItem("userInput"))
-    if (localStorageData === null) {
-      return []
-    } else 
-      return localStorageData
-  }
-  
-  
-  const onDelete = () => {
-    const container = $(".swiper-container")
-    container.empty()
-    const swipeCard = `<div class="swiper-wrapper">
+// target the input id
+const getLocalStorageData = () => {
+  const localStorageData = JSON.parse(localStorage.getItem("userInput"));
+  if (localStorageData === null) {
+    return [];
+  } else return localStorageData;
+};
+
+const onDelete = () => {
+  const container = $(".cards-container");
+  container.empty();
+  const swipeCard = `<div class="swiper-container">
+    <div class="swiper-wrapper">
     <div class="swiper-slide">
     </div>
     <div class="swiper-slide"></div>
@@ -81,15 +80,20 @@ async function fetchGeniusIDData() {
   </div>
   <div class="swiper-pagination"></div>
   <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>`
-    container.append(swipeCard)
-  }
+  <div class="swiper-button-next"></div>
+  </div>`;
 
-  const onSubmit = async (event) => {
+  container.append(swipeCard);
+};
+
+const onSubmit = async (event) => {
+  let userInput = $("#search-input").val();
+  console.log(userInput);
+  console.log($(".search-bar"));
   event.preventDefault();
-  const container = $(".swiper-container")
-  container.empty()
-  
+  const container = $(".cards-container");
+  container.empty();
+
   const card = `<div class="searchCardContainer is-mobile"> 
   <div class="card">
     <div class="card-image"><button class="delete is-large"></button></div>
@@ -111,21 +115,17 @@ async function fetchGeniusIDData() {
         </p>
       </div>
   </div>
-</div>`
-  container.append(card)
+</div>`;
+  container.append(card);
 
-  $(".delete").on("click",onDelete)
+  $(".delete").on("click", onDelete);
 
-  // fetchYoutubeData() 
+  // fetchYoutubeData()
   // fetchGeniusIDData()
   // displaySearchCards()
 };
 
-
-
-
-
-$("#search").on("submit",onSubmit)
+$("#search").on("submit", onSubmit);
 fetchGeniusIDData();
 
 $(document).ready(function () {
