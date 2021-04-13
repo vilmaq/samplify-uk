@@ -147,6 +147,7 @@ input:focus {
 .searchCardContainer {
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .card {
