@@ -133,6 +133,7 @@ input:focus {
   width: 100%;
   padding-top: 50px;
   padding-bottom: 50px;
+  justify-content: center;
 }
 
 .swiper-slide {

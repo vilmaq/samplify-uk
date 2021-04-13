@@ -69,8 +69,28 @@ async function fetchGeniusIDData() {
   const container = $(".swiper-container")
   container.empty()
   
-  const card = ""
-
+  const card = `<div class="searchCardContainer is-mobile"> 
+  <div class="card">
+    <div class="card-image"><button class="delete is-large"></button></div>
+    <div class="card-text content is-normal">
+      <h1>Song Title:</h1>
+      <div class="subtitle">Artist:</div>
+      <div class="subtitle">Release Date:</div>
+    </div>
+      <div class="card-footer">
+        <p class="card-footer-item">
+          <span>
+            View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+          </span>
+        </p>
+        <p class="card-footer-item">
+          <span>
+            Share on <a href="#">Facebook</a>
+          </span>
+        </p>
+      </div>
+  </div>
+</div>`
   container.append(card)
 
   // fetchYoutubeData() 
@@ -79,7 +99,7 @@ async function fetchGeniusIDData() {
 };
 
 
-$("#search-input").on("submit",onSubmit)
+$("#search").on("submit",onSubmit)
 fetchGeniusIDData();
 
 $(document).ready(function () {
