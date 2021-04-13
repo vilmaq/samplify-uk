@@ -86,8 +86,8 @@ const renderMainCard = (geniusData) => {
     <div class="card-image" style="background-image: url('${geniusData.artImage}');"><button class="delete is-large"></button></div>
     <div class="card-text content is-normal">
       <h1>${geniusData.titleSong}</h1>
-      <div class="subtitle">Artist: ${geniusData.artist}</div>
-      <div class="subtitle">Release Date:</div>
+      <h3 class="subtitle">Artist: ${geniusData.artist}</h3>
+      <h3 class="subtitle">Release Date: WIP</h3>
     </div>
       <div class="card-footer">
         <p class="card-footer-item">
