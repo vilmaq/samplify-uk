@@ -27,8 +27,6 @@ async function fetchYoutubeData() {
   // console.log("test");
 }
 
-
-
 async function fetchGeniusData() {
   const geniusSearchURL = `https://genius.p.rapidapi.com/search?q=Kendrick%20Lamar`;
   const geniusSearchResponse = await fetch(geniusSearchURL, geniusHeaderObject);
@@ -67,27 +65,18 @@ async function fetchGeniusIDData() {
   
   
   const onSubmit = async (event) => {
+    const container = $(".swiper-container")
   event.preventDefault();
-
-  // // id for input bar
-  // const formInput = $("#").val().trim();
-  
-  // const formInputString = JSON.stringify(formInput)
-  
-  // localStorage.setItem("userInput", formInputString)
+  container.empty()
   
 
-  fetchYoutubeData() 
-  fetchGeniusIDData()
-  displaySearchCards()
+  // fetchYoutubeData() 
+  // fetchGeniusIDData()
+  // displaySearchCards()
 };
 
-const displaySearchCards = async (searchInput) => {
-const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${userInput}=${youtubeApiKey}`
 
-}
-
-
+$("#search-input").on("submit",onSubmit)
 fetchGeniusIDData();
 
 $(document).ready(function () {
