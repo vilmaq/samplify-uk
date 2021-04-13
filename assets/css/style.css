@@ -2,6 +2,23 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+#h1-span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 6rem;
+  letter-spacing: 0.05em;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #15c0e0;
+  text-shadow: 3px 3px #f51d76;
+}
+
 header {
   padding: 1.25rem;
 }
