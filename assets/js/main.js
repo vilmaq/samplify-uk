@@ -1,4 +1,3 @@
-// const userInput = "the%20weeknd";
 const youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
 const geniusHeaderObject = {
   method: "GET",
@@ -11,6 +10,7 @@ let geniusRequestedData;
 let youtubeRequestedData;
 
 async function fetchYoutubeData() {
+  let userInput = $("#search-input").val();
   const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${userInput}&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
   const data = await response.json();
@@ -22,36 +22,28 @@ async function fetchYoutubeData() {
     thumbnail: youtubeResultPath.thumbnails.high.url,
     videoId: data.items[0].id.videoId,
   };
-  console.log(youtubeRequestedData);
-  // console.log(data.items[0]);
-  // console.log("test");
 }
 
-async function fetchGeniusData() {
-  const geniusSearchURL = `https://genius.p.rapidapi.com/search?q=Kendrick%20Lamar`;
+async function fetchGeniusData(userInput) {
+  const geniusSearchURL = `https://genius.p.rapidapi.com/search?q=${userInput}`;
   const geniusSearchResponse = await fetch(geniusSearchURL, geniusHeaderObject);
   const geniusSearchData = await geniusSearchResponse.json();
-  // console.log(geniusSearchData);
-
-  const geniusResultPath = geniusSearchData.response.hits[0].result;
-
-  geniusRequestedData = {
+  let geniusResultPath = geniusSearchData.response.hits[0].result;
+  return (geniusRequestedData = {
     idSong: geniusResultPath.id,
     titleSong: geniusResultPath.full_title,
     artImage: geniusResultPath.song_art_image_url,
+    artist: geniusResultPath.primary_artist.name,
 
     //needs to return artwork, then song name, then artist, then release year/date(optional)
-  };
+  });
   console.log(geniusRequestedData);
 }
-
-fetchGeniusData();
 
 async function fetchGeniusIDData() {
   const geniusIDURL = `https://genius.p.rapidapi.com/songs/730771`;
   const geniusIDResponse = await fetch(geniusIDURL, geniusHeaderObject);
   const geniusIDData = await geniusIDResponse.json();
-  // console.log(geniusIDData);
 }
 
 // target the input id
@@ -86,21 +78,16 @@ const onDelete = () => {
   container.append(swipeCard);
 };
 
-const onSubmit = async (event) => {
-  let userInput = $("#search-input").val();
-  console.log(userInput);
-  console.log($(".search-bar"));
-  event.preventDefault();
+const renderMainCard = (geniusData) => {
   const container = $(".cards-container");
   container.empty();
-
   const card = `<div class="searchCardContainer is-mobile"> 
   <div class="card">
-    <div class="card-image"><button class="delete is-large"></button></div>
+    <div class="card-image" style="background-image: url('${geniusData.artImage}');"><button class="delete is-large"></button></div>
     <div class="card-text content is-normal">
-      <h1>Song Title:</h1>
-      <div class="subtitle">Artist:</div>
-      <div class="subtitle">Release Date:</div>
+      <h1>${geniusData.titleSong}</h1>
+      <h3 class="subtitle">Artist: ${geniusData.artist}</h3>
+      <h3 class="subtitle">Release Date: WIP</h3>
     </div>
       <div class="card-footer">
         <p class="card-footer-item">
@@ -117,17 +104,22 @@ const onSubmit = async (event) => {
   </div>
 </div>`;
   container.append(card);
+};
 
+const onSubmit = async (event) => {
+  event.preventDefault();
+  let userInput = $("#search-input").val();
+  const geniusDataObject = await fetchGeniusData(userInput);
+  console.log(geniusDataObject);
+  renderMainCard(geniusDataObject);
   $(".delete").on("click", onDelete);
-
   // fetchYoutubeData()
   // fetchGeniusIDData()
-  // displaySearchCards()
 };
 
 $("#search").on("submit", onSubmit);
-fetchGeniusIDData();
+// fetchGeniusIDData();
 
 $(document).ready(function () {
-  fetchYoutubeData();
+  // fetchYoutubeData();
 });

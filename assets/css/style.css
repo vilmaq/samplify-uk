@@ -206,6 +206,7 @@ input:focus {
   background-size: cover;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  background-position: center;
 }
 
 .card-text {
