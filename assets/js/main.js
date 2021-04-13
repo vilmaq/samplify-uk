@@ -90,16 +90,16 @@ const renderMainCard = (geniusData) => {
       <h3 class="subtitle">Release Date: WIP</h3>
     </div>
       <div class="card-footer">
-        <p class="card-footer-item">
+        <div class="card-footer-item">
           <span>
             Add to <a>Favorites</a>
           </span>
-        </p>
-        <p class="card-footer-item">
+        </div>
+        <div class="card-footer-item">
           <span>
             Share on <a href="#">Facebook</a>
           </span>
-        </p>
+        </div>
       </div>
   </div>
 </div>`;

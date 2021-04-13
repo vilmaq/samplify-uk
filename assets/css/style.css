@@ -65,7 +65,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10rem;
+  margin: 5rem;
 }
 
 #search {
@@ -183,7 +183,7 @@ input:focus {
 .searchCardContainer {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .card {
