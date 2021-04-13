@@ -65,10 +65,13 @@ async function fetchGeniusIDData() {
   
   
   const onSubmit = async (event) => {
-    const container = $(".swiper-container")
   event.preventDefault();
+  const container = $(".swiper-container")
   container.empty()
   
+  const card = ""
+
+  container.append(card)
 
   // fetchYoutubeData() 
   // fetchGeniusIDData()
