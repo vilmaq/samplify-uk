@@ -1,4 +1,3 @@
-// const userInput = "the%20weeknd";
 const youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
 const geniusHeaderObject = {
   method: "GET",
@@ -11,6 +10,7 @@ let geniusRequestedData;
 let youtubeRequestedData;
 
 async function fetchYoutubeData() {
+  let userInput = $("#search-input").val();
   const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${userInput}&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
   const data = await response.json();
@@ -22,19 +22,17 @@ async function fetchYoutubeData() {
     thumbnail: youtubeResultPath.thumbnails.high.url,
     videoId: data.items[0].id.videoId,
   };
-  console.log(youtubeRequestedData);
+  // console.log(youtubeRequestedData);
   // console.log(data.items[0]);
   // console.log("test");
 }
 
-async function fetchGeniusData() {
-  const geniusSearchURL = `https://genius.p.rapidapi.com/search?q=Kendrick%20Lamar`;
+async function fetchGeniusData(userInput) {
+  const geniusSearchURL = `https://genius.p.rapidapi.com/search?q=${userInput}`;
   const geniusSearchResponse = await fetch(geniusSearchURL, geniusHeaderObject);
   const geniusSearchData = await geniusSearchResponse.json();
   // console.log(geniusSearchData);
-
-  const geniusResultPath = geniusSearchData.response.hits[0].result;
-
+  let geniusResultPath = geniusSearchData.response.hits[0].result;
   geniusRequestedData = {
     idSong: geniusResultPath.id,
     titleSong: geniusResultPath.full_title,
@@ -44,8 +42,6 @@ async function fetchGeniusData() {
   };
   console.log(geniusRequestedData);
 }
-
-fetchGeniusData();
 
 async function fetchGeniusIDData() {
   const geniusIDURL = `https://genius.p.rapidapi.com/songs/730771`;
@@ -89,11 +85,10 @@ const onDelete = () => {
 const onSubmit = async (event) => {
   let userInput = $("#search-input").val();
   console.log(userInput);
-  console.log($(".search-bar"));
+  fetchGeniusData(userInput);
   event.preventDefault();
   const container = $(".cards-container");
   container.empty();
-
   const card = `<div class="searchCardContainer is-mobile"> 
   <div class="card">
     <div class="card-image"><button class="delete is-large"></button></div>
@@ -126,8 +121,8 @@ const onSubmit = async (event) => {
 };
 
 $("#search").on("submit", onSubmit);
-fetchGeniusIDData();
+// fetchGeniusIDData();
 
 $(document).ready(function () {
-  fetchYoutubeData();
+  // fetchYoutubeData();
 });
