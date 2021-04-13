@@ -64,6 +64,27 @@ async function fetchGeniusIDData() {
   }
   
   
+  const onDelete = () => {
+    const container = $(".swiper-container")
+    container.empty()
+    const swipeCard = `<div class="swiper-wrapper">
+    <div class="swiper-slide">
+    </div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>`
+    container.append(swipeCard)
+  }
+
   const onSubmit = async (event) => {
   event.preventDefault();
   const container = $(".swiper-container")
@@ -80,7 +101,7 @@ async function fetchGeniusIDData() {
       <div class="card-footer">
         <p class="card-footer-item">
           <span>
-            View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+            Add to <a>Favorites</a>
           </span>
         </p>
         <p class="card-footer-item">
@@ -93,10 +114,15 @@ async function fetchGeniusIDData() {
 </div>`
   container.append(card)
 
+  $(".delete").on("click",onDelete)
+
   // fetchYoutubeData() 
   // fetchGeniusIDData()
   // displaySearchCards()
 };
+
+
+
 
 
 $("#search").on("submit",onSubmit)
