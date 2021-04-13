@@ -1,18 +1,26 @@
-header {
-  padding: 1.25rem;
-}
 * {
   box-sizing: border-box;
 }
 
-#navbar {
-  border: none;
+header {
+  padding: 1.25rem;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 h1 {
-  font-size: larger;
+  text-align: center;
+  font-size: 2rem;
   font-weight: bolder;
   color: #f0f8ff;
+}
+
+.navbar {
+  background-color: transparent;
 }
 
 body {
@@ -26,9 +34,7 @@ body {
 }
 
 #samplify-logo {
-  position: absolute;
-
-  max-height: 4rem;
+  max-height: 7rem;
   padding-left: 0.2rem;
   padding-top: 0.2rem;
 }
@@ -37,6 +43,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10rem;
 }
 
 #search {
@@ -126,7 +133,6 @@ input:focus {
   height: 5px;
 } */
 
-
 /* search card css */
 .swiper-container {
   display: flex;
@@ -155,22 +161,22 @@ input:focus {
   grid-template-columns: 500px;
   grid-template-rows: 250px 230px 60px;
   grid-template-areas: "image" "text" "footer";
-  box-shadow:5px 5px 15px rgba(0,0,0,0.9);
-  text-align:start;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  text-align: start;
   border-radius: 12px;
   padding: 0;
-  background-color:azure;
+  background-color: azure;
   transition: 0.4s ease;
   cursor: pointer;
 }
 
 .card:hover {
   transform: scale(1.03);
-  box-shadow: 5px 5px 15px  rgba(0,0,0,0.6);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
 }
 
 .card-image {
-  grid-area:image;
+  grid-area: image;
   background: url(https://images.unsplash.com/photo-1530051315435-58046fbc2649?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
   background-size: cover;
   border-top-left-radius: 12px;
@@ -178,7 +184,7 @@ input:focus {
 }
 
 .card-text {
-  grid-area:text;
+  grid-area: text;
   margin-top: 25px;
   margin-left: 15px;
 }
@@ -191,5 +197,3 @@ input:focus {
   margin-top: 10px;
   margin-left: 460px;
 }
-
-
