@@ -145,18 +145,18 @@ input:focus {
   display: flex;
   justify-content: center;
 }
+
 .card {
   display: grid;
   grid-template-columns: 500px;
-  grid-template-rows: 210px 210px;
-  grid-template-areas: "image" "text";
+  grid-template-rows: 250px 250px 60px;
+  grid-template-areas: "image" "text" "footer";
   box-shadow:5px 5px 15px rgba(0,0,0,0.9);
-  text-align: center;
+  text-align:start;
   border-radius: 12px;
-  background-color:aliceblue;
-  padding: 10px;
   border: 2px solid rgb(66, 66, 66);
   padding: 0;
+  background-color:azure
 }
 
 .card-image {
@@ -169,13 +169,17 @@ input:focus {
 
 .card-text {
   grid-area:text;
-  margin: 10px;
-  
+  margin-top: 25px;
+  margin-left: 15px;
 }
 
+.card-footer {
+  grid-area: footer;
+}
 
 .delete {
   margin-top: 5px;
   margin-left: 470px;
 }
+
 
