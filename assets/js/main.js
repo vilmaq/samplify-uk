@@ -82,7 +82,7 @@ const onDelete = () => {
 const renderMainCard = (geniusData) => {
   const container = $(".cards-container");
   container.empty();
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     const card = `<div class="searchCardContainer is-mobile"> 
     <div class="card">
       <div class="card-image" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');"><button class="delete is-large"></button></div>
