@@ -1,3 +1,5 @@
+// genreCards.forEach(console.log(id));
+
 const youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
 const geniusHeaderObject = {
   method: "GET",
@@ -29,6 +31,7 @@ async function fetchGeniusData(userInput) {
   const geniusSearchResponse = await fetch(geniusSearchURL, geniusHeaderObject);
   const geniusSearchData = await geniusSearchResponse.json();
   let geniusResultPath = geniusSearchData.response;
+  console.log(geniusSearchData);
   return (geniusRequestedData = {
     // idSong: geniusResultPath.result.id,
     // titleSong: geniusResultPath.result.full_title,
@@ -54,12 +57,12 @@ const getLocalStorageData = () => {
   } else return localStorageData;
 };
 
-const onDelete = () => {
+const onDelete = (eachGenre) => {
   const container = $(".cards-container");
   container.empty();
   const swipeCard = `<div class="swiper-container">
     <div class="swiper-wrapper">
-    <div class="swiper-slide">
+    <div class="swiper-slide" style= "background-image:url("${eachGenre.albumArtwork}")" >
     </div>
     <div class="swiper-slide"></div>
     <div class="swiper-slide"></div>
