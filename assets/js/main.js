@@ -28,16 +28,16 @@ async function fetchGeniusData(userInput) {
   const geniusSearchURL = `https://genius.p.rapidapi.com/search?q=${userInput}`;
   const geniusSearchResponse = await fetch(geniusSearchURL, geniusHeaderObject);
   const geniusSearchData = await geniusSearchResponse.json();
-  let geniusResultPath = geniusSearchData.response.hits[0].result;
+  let geniusResultPath = geniusSearchData.response;
   return (geniusRequestedData = {
-    idSong: geniusResultPath.id,
-    titleSong: geniusResultPath.full_title,
-    artImage: geniusResultPath.song_art_image_url,
-    artist: geniusResultPath.primary_artist.name,
+    // idSong: geniusResultPath.result.id,
+    // titleSong: geniusResultPath.result.full_title,
+    // artImage: geniusResultPath.result.song_art_image_url,
+    // artist: geniusResultPath.result.primary_artist.name,
+    hits: geniusResultPath.hits,
 
     //needs to return artwork, then song name, then artist, then release year/date(optional)
   });
-  console.log(geniusRequestedData);
 }
 
 async function fetchGeniusIDData() {
@@ -76,35 +76,38 @@ const onDelete = () => {
   </div>`;
 
   container.append(swipeCard);
-  homePageSliders()
+  homePageSliders();
 };
 
 const renderMainCard = (geniusData) => {
   const container = $(".cards-container");
   container.empty();
-  const card = `<div class="searchCardContainer is-mobile"> 
-  <div class="card">
-    <div class="card-image" style="background-image: url('${geniusData.artImage}');"><button class="delete is-large"></button></div>
-    <div class="card-text content is-normal">
-      <h1>${geniusData.titleSong}</h1>
-      <h3 class="subtitle">Artist: ${geniusData.artist}</h3>
-      <h3 class="subtitle">Release Date: WIP</h3>
-    </div>
-      <div class="card-footer">
-        <div class="card-footer-item">
-          <span>
-            Add to <a>Favorites</a>
-          </span>
-        </div>
-        <div class="card-footer-item">
-          <span>
-            Share on <a href="#">Facebook</a>
-          </span>
-        </div>
+  for (let i = 0; i < 5; i++) {
+    const card = `<div class="searchCardContainer is-mobile"> 
+    <div class="card">
+      <div class="card-image" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');"><button class="delete is-large"></button></div>
+      <div class="card-text content is-normal">
+        <h1>${geniusData.hits[i].result.full_title}</h1>
+        <h3 class="subtitle">Artist: ${geniusData.hits[i].result.primary_artist.name}</h3>
+        <h3 class="subtitle">Release Date: WIP</h3>
       </div>
-  </div>
-</div>`;
-  container.append(card);
+        <div class="card-footer">
+          <div class="card-footer-item">
+            <span>
+              Add to <a>Favorites</a>
+            </span>
+          </div>
+          <div class="card-footer-item">
+            <span>
+              Share on <a href="#">Facebook</a>
+            </span>
+          </div>
+        </div>
+    </div>
+  </div>`;
+    container.append(card);
+    console.log(geniusData.hits[i].result.full_title);
+  }
 };
 
 const onSubmit = async (event) => {
@@ -123,5 +126,5 @@ $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
   // fetchYoutubeData();
-  homePageSliders ()
+  homePageSliders();
 });
