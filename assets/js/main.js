@@ -51,21 +51,15 @@ async function fetchGeniusIDData() {
 
 // add clicked item to local storage
 const addToFavoritesLocalStorage = () => {
-  let cardData = {
+  let cardData = {};
 
-  }
-
-  let serializedData = JSON.Stringify(cardData)
-  localStorage.setItem("key",serializedData)
-}
+  let serializedData = JSON.Stringify(cardData);
+  localStorage.setItem("key", serializedData);
+};
 
 const renderFavoritesCards = () => {
-  for (let i=0; i < localStorage.length; i++) {
-
-    
-  }
-}
-
+  for (let i = 0; i < localStorage.length; i++) {}
+};
 
 const getLocalStorageData = () => {
   const localStorageData = JSON.parse(localStorage.getItem("key"));
@@ -101,7 +95,7 @@ const onDelete = (eachGenre) => {
 
 const renderMainCard = (geniusData) => {
   const container = $(".cards-container");
-  container.empty();
+  // container.empty();
   for (let i = 0; i < 6; i++) {
     const card = `<div class="searchCardContainer is-mobile"> 
     <div class="card">
@@ -135,15 +129,15 @@ const onSubmit = async (event) => {
   let userInput = $("#search-input").val();
   const geniusDataObject = await fetchGeniusData(userInput);
   console.log(geniusDataObject);
+  const swiperContainer = $(".swiper-container").hide();
+  console.log(swiperContainer);
   renderMainCard(geniusDataObject);
   $(".delete").on("click", onDelete);
-  $("#addFavorite").on("click",addToFavoritesLocalStorage)
-  
+  $("#addFavorite").on("click", addToFavoritesLocalStorage);
 };
 
 $("#search").on("submit", onSubmit);
 // fetchGeniusIDData();
-
 
 $(document).ready(function () {
   // fetchYoutubeData();

@@ -1,10 +1,9 @@
-
-function homePageSliders () {
+function homePageSliders() {
   const body = document.querySelector("body");
   const searchBtn = document.querySelector("#search");
   const searchInput = document.querySelector("#search-input");
   let active = false;
-  
+
   body.addEventListener("click", (e) => {
     if (
       e.target.id === "search" ||
@@ -30,11 +29,11 @@ function homePageSliders () {
     slidesPerView: 1,
     loop: true,
     speed: 900,
-  
+
     autoplay: {
       delay: 3000,
     },
-  
+
     coverflowEffect: {
       rotate: 50,
       stretch: 0,
@@ -42,7 +41,7 @@ function homePageSliders () {
       modifier: 1,
       slideShadows: true,
     },
-  
+
     breakpoints: {
       320: {
         slidesPerView: 2,
@@ -54,17 +53,15 @@ function homePageSliders () {
         slidesPerView: 4,
       },
     },
-  
+
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
     },
-  
+
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
   });
-  
 }
-
