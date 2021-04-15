@@ -59,6 +59,14 @@ const addToFavoritesLocalStorage = () => {
   localStorage.setItem("key",serializedData)
 }
 
+const renderFavoritesCards = () => {
+  for (let i=0; i < localStorage.length; i++) {
+
+    
+  }
+}
+
+
 const getLocalStorageData = () => {
   const localStorageData = JSON.parse(localStorage.getItem("key"));
   if (localStorageData === null) {
