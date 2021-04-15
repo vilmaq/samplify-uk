@@ -99,7 +99,7 @@ const renderMainCard = (geniusData) => {
   for (let i = 0; i < 6; i++) {
     const card = `<div class="searchCardContainer is-mobile"> 
     <div class="card">
-      <div class="card-image" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');"><button class="delete is-large"></button></div>
+      <div class="card-image artworkClick" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');"><button class="delete is-large"></button></div>
       <div class="card-text content is-normal">
         <h1>${geniusData.hits[i].result.full_title}</h1>
         <h3 class="subtitle">Artist: ${geniusData.hits[i].result.primary_artist.name}</h3>
@@ -121,7 +121,24 @@ const renderMainCard = (geniusData) => {
   </div>`;
     container.append(card);
     console.log(geniusData.hits[i].result.full_title);
+    //   const artworkOnClick = (geniusData) => {
+    //     $(".artworkClick").click(function () {
+    //       console.log(geniusData.hits[i].result.id);
+    //     });
+    //   };
+    // }
   }
+};
+
+const artworkOnClick = (geniusData) => {
+  for (let i = 0; i < 6; i++) {
+    $(".artworkClick").click(function () {
+      console.log(geniusData.hits[i].result.id);
+    });
+  }
+  // $(".artworkClick").click(function () {
+  //   console.log(geniusData.hits[].result.id);
+  // });
 };
 
 const onSubmit = async (event) => {
@@ -134,9 +151,11 @@ const onSubmit = async (event) => {
   renderMainCard(geniusDataObject);
   $(".delete").on("click", onDelete);
   $("#addFavorite").on("click", addToFavoritesLocalStorage);
+  artworkOnClick(geniusDataObject);
 };
 
 $("#search").on("submit", onSubmit);
+
 // fetchGeniusIDData();
 
 $(document).ready(function () {
