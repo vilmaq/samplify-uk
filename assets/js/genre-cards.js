@@ -1,7 +1,8 @@
 const genreCards = [
   {
     id: 525,
-    albumArtwork: "https://genius.com/album_cover_arts/1733",
+    albumArtwork:
+      "https://t2.genius.com/unsafe/600x0/https%3A%2F%2Fimages.genius.com%2Fb9d6cf24ceb76fa5d8ebf02569e16e2f.1000x1000x1.png",
   },
   {
     id: 32167,
