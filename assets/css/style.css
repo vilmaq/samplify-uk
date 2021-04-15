@@ -1,6 +1,14 @@
 * {
   box-sizing: border-box;
 }
+html {
+  background: url("https://source.unsplash.com/7LNatQYMzm4/1600x900") no-repeat
+    center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 body {
   font-family: "Josefin Sans", sans-serif;
@@ -45,15 +53,15 @@ header {
   background-color: transparent;
 }
 
-body {
+/* body {
   margin: 0;
-  height: 100vh;
-  background-image: url("https://source.unsplash.com/7LNatQYMzm4/1600x900");
-  background-position: center;
-  background-repeat: no-repeat;
+  /* height: 100vh;
+  background-image: url("https://source.unsplash.com/7LNatQYMzm4/1600x900"); */
+/* background-position: center;
+  background-repeat: repeat;
   background-size: cover;
-  height: 100vh;
-}
+  height: 100vh; */
+/* } */
 
 p {
   font-size: 1.5rem;
