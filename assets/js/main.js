@@ -139,6 +139,7 @@ const artworkOnClick = (geniusData) => {
   // $(".artworkClick").click(function () {
   //   console.log(geniusData.hits[].result.id);
   // });
+  //
 };
 
 const onSubmit = async (event) => {
