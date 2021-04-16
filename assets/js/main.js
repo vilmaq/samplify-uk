@@ -12,11 +12,15 @@ let geniusRequestedData;
 let geniusIDSampleData;
 let youtubeRequestedData;
 
-async function fetchYoutubeData() {
+async function fetchYoutubeData(sampleSongFullTitle) {
   let userInput = $("#search-input").val();
-  const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${userInput}&key=${youtubeApiKey}`;
+  const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sampleSongFullTitle}&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
   const data = await response.json();
+  console.log(data);
+  const videoID = data.items[0].id.videoId;
+  console.log(videoID);
+  const sampleYoutubeURL = `https://www.youtube.com/watch?v=${videoID}`;
   const youtubeResultPath = data.items[0].snippet;
   youtubeRequestedData = {
     title: youtubeResultPath.title,
@@ -33,6 +37,7 @@ async function fetchGeniusData(userInput) {
   const geniusSearchData = await geniusSearchResponse.json();
   let geniusResultPath = geniusSearchData.response;
   console.log(geniusSearchData);
+  // geniusSearchData.0.
   return (geniusRequestedData = {
     // idSong: geniusResultPath.result.id,
     // titleSong: geniusResultPath.result.full_title,
@@ -54,7 +59,7 @@ async function fetchGeniusIDData(geniusSongID) {
     sample: idPath.song_relationships[0].songs[0].full_title,
     sampleCheck: idPath.song_relationships[0].songs[0],
   };
-
+i
   try {
     const container = $(".cards-container");
     container.empty();
@@ -64,6 +69,13 @@ async function fetchGeniusIDData(geniusSongID) {
   } catch (err) {
     console.log(err);
   }
+  
+  const sampleSongFullTitle = geniusIDSampleData.sample.full_title;
+  console.log(sampleSongFullTitle);
+
+  fetchYoutubeData(sampleSongFullTitle);
+
+  console.log(geniusIDSampleData);
 }
 
 // add clicked item to local storage
