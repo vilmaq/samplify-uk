@@ -56,13 +56,28 @@ const addToFavoritesLocalStorage = (element) => {
   // const favCard = JSON.parse(localStorage.getItem("card"));
   // const target = $(event.target).parentsUntil(".searchCardContainer").
   // const target = $(event.target).closest(".card")
+  const localStorageData = getLocalStorageData();
+  console.log(localStorageData);
 
   const target = element.closest(".card");
-  console.log(target);
-  const image = target.querySelector(".card-image");
-  console.log(image);
-  const imageUrl = image.getAttribute("style");
-  console.log(imageUrl);
+
+  const favTitle = target.dataset.title;
+
+  const favArtist = target.dataset.artist;
+  const favImage = target.dataset.bimage;
+
+  const favObject = {
+    favTitle,
+    favArtist,
+    favImage,
+  };
+
+  // console.log(favObject);
+
+  localStorageData.push(favObject);
+  console.log(localStorageData);
+
+  localStorage.setItem("localStorageData", JSON.stringify(localStorageData));
 };
 
 const renderFavoritesCards = () => {
@@ -70,7 +85,7 @@ const renderFavoritesCards = () => {
 };
 
 const getLocalStorageData = () => {
-  const localStorageData = JSON.parse(localStorage.getItem("key"));
+  const localStorageData = JSON.parse(localStorage.getItem("localStorageData"));
   if (localStorageData === null) {
     return [];
   } else return localStorageData;
@@ -106,7 +121,7 @@ const renderMainCard = (geniusData) => {
   container.empty();
   for (let i = 0; i < 6; i++) {
     const card = `<div class="searchCardContainer is-mobile"> 
-    <div class="card">
+    <div class="card" data-title= "${geniusData.hits[i].result.title}" data-artist="${geniusData.hits[i].result.primary_artist.name}" data-releasdate =""  data-bimage="${geniusData.hits[i].result.song_art_image_url}">
       <div class="card-image artworkClick" data-geniusid="${geniusData.hits[i].result.id}" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');" ><button class="delete is-large"></button></div>
       <div class="card-text content is-normal">
         <h1 id="songTitle">${geniusData.hits[i].result.title}</h1>
