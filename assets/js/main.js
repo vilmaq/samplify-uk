@@ -54,10 +54,14 @@ async function fetchGeniusIDData(geniusSongID) {
     sample: idPath.song_relationships[0].songs[0].full_title,
   };
 
-  if (typeof geniusIDSampleData === undefined) {
-    console.log("no samples");
-  } else {
-    console.log(geniusIDSampleData);
+  try {
+    const container = $(".cards-container");
+    container.empty();
+    const sampleString = JSON.stringify(geniusIDSampleData.sample);
+    console.log(sampleString);
+    container.append(`<h3 class="subtitle">Sample: ${sampleString}</h3>`);
+  } catch (err) {
+    console.log(err instanceof TypeError);
   }
 }
 
