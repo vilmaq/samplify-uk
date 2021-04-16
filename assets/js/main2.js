@@ -112,7 +112,7 @@ const addToFavoritesLocalStorage = (element) => {
   localStorageData.push(favObject);
   console.log(localStorageData);
 
-  localStorage.setItem("localStorageFavData", JSON.stringify(localStorageData));
+  localStorage.setItem("localStorageData", JSON.stringify(localStorageData));
 };
 
 const renderFavoritesCards = () => {
@@ -120,9 +120,7 @@ const renderFavoritesCards = () => {
 };
 
 const getLocalStorageData = () => {
-  const localStorageData = JSON.parse(
-    localStorage.getItem("localStorageFavData")
-  );
+  const localStorageData = JSON.parse(localStorage.getItem("localStorageData"));
   if (localStorageData === null) {
     return [];
   } else return localStorageData;

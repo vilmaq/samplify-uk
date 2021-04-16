@@ -1,20 +1,30 @@
-const renderFavoriteCards = (geniusData) => {
+//get data from the local storage
+
+const getDataFromLS = () => {
+  const favCards =
+    JSON.parse(localStorage.getItem("localStorageFavData")) || [];
+
+  // console.log(favCards);
+
+  // favCards.slice(1, 6).
+  favCards.forEach(renderFavoriteCards);
+};
+const renderFavoriteCards = (favCard) => {
+  console.log(favCard);
   const container = $(".cards-container");
-  container.empty();
-  for (let i = 0; i < 6; i++) {
-    const card = `<div class="searchCardContainer is-mobile"> 
+  // container.empty();
+
+  const card = `<div class="searchCardContainer is-mobile">
     <div class="card">
-      <div class="card-image" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');"><button class="delete is-large"></button></div>
+      <div class="card-image" style="background-image: url('${favCard.favImage}');"><button class="delete is-large"></button></div>
       <div class="card-text content is-normal">
-        <h1>${geniusData.hits[i].result.full_title}</h1>
-        <h3 class="subtitle">Artist: ${geniusData.hits[i].result.primary_artist.name}</h3>
+        <h1>${favCard.favTitle}</h1>
+        <h3 class="subtitle">Artist: ${favCard.favArtist}</h3>
         <h3 class="subtitle">Release Date: WIP</h3>
       </div>
         <div class="card-footer">
           <div class="card-footer-item">
-            <span>
-              Add to <a>Favorites</a>
-            </span>
+
           </div>
           <div class="card-footer-item">
             <span>
@@ -24,7 +34,8 @@ const renderFavoriteCards = (geniusData) => {
         </div>
     </div>
   </div>`;
-    container.append(card);
-    console.log(geniusData.hits[i].result.full_title);
-  }
+  container.append(card);
+  console.log(container);
 };
+
+$(document).ready(getDataFromLS);
