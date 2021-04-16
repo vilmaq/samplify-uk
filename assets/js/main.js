@@ -52,6 +52,7 @@ async function fetchGeniusIDData(geniusSongID) {
 
   const geniusIDSampleData = {
     sample: idPath.song_relationships[0].songs[0].full_title,
+    sampleCheck: idPath.song_relationships[0].songs[0],
   };
 
   try {
@@ -61,7 +62,7 @@ async function fetchGeniusIDData(geniusSongID) {
     console.log(sampleString);
     container.append(`<h3 class="subtitle">Sample: ${sampleString}</h3>`);
   } catch (err) {
-    console.log(err instanceof TypeError);
+    console.log(err);
   }
 }
 
