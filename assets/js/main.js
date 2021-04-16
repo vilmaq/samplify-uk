@@ -9,6 +9,7 @@ const geniusHeaderObject = {
   },
 };
 let geniusRequestedData;
+let geniusIDSampleData;
 let youtubeRequestedData;
 
 async function fetchYoutubeData() {
@@ -43,10 +44,17 @@ async function fetchGeniusData(userInput) {
   });
 }
 
-async function fetchGeniusIDData() {
-  const geniusIDURL = `https://genius.p.rapidapi.com/songs/730771`;
+async function fetchGeniusIDData(geniusSongID) {
+  const geniusIDURL = `https://genius.p.rapidapi.com/songs/${geniusSongID}`;
   const geniusIDResponse = await fetch(geniusIDURL, geniusHeaderObject);
   const geniusIDData = await geniusIDResponse.json();
+  const idPath = geniusIDData.response.song;
+
+  const geniusIDSampleData = {
+    sample: idPath.song_relationships[0].songs[0],
+  };
+
+  console.log(geniusIDSampleData);
 }
 
 // add clicked item to local storage
@@ -162,6 +170,8 @@ const onSubmit = async (event) => {
   $(".delete").on("click", onDelete);
   $(".artworkClick").click(function () {
     console.log($(this).data("geniusid"));
+    const geniusSongID = $(this).data("geniusid");
+    fetchGeniusIDData(geniusSongID);
   });
 };
 
