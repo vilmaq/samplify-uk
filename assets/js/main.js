@@ -56,9 +56,20 @@ async function fetchGeniusIDData(geniusSongID) {
   const idPath = geniusIDData.response.song;
 
   const geniusIDSampleData = {
-    sample: idPath.song_relationships[0].songs[0],
+    sample: idPath.song_relationships[0].songs[0].full_title,
+    sampleCheck: idPath.song_relationships[0].songs[0],
   };
-
+i
+  try {
+    const container = $(".cards-container");
+    container.empty();
+    const sampleString = JSON.stringify(geniusIDSampleData.sample);
+    console.log(sampleString);
+    container.append(`<h3 class="subtitle">Sample: ${sampleString}</h3>`);
+  } catch (err) {
+    console.log(err);
+  }
+  
   const sampleSongFullTitle = geniusIDSampleData.sample.full_title;
   console.log(sampleSongFullTitle);
 
