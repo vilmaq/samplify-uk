@@ -52,25 +52,22 @@ async function fetchGeniusIDData() {
 // add clicked item to local storage
 const addToFavoritesLocalStorage = (element) => {
   // const favoritesData = getLocalStorageData()
-   
+
   // const favCard = JSON.parse(localStorage.getItem("card"));
   // const target = $(event.target).parentsUntil(".searchCardContainer").
   // const target = $(event.target).closest(".card")
 
-  const target = element.closest(".card")
-  console.log(target)
-  const image = target.querySelector(".card-image")
-  console.log(image)
-  const imageUrl = image.getAttribute("style")
-  console.log(imageUrl)
+  const target = element.closest(".card");
+  console.log(target);
+  const image = target.querySelector(".card-image");
+  console.log(image);
+  const imageUrl = image.getAttribute("style");
+  console.log(imageUrl);
 };
 
 const renderFavoritesCards = () => {
-  for (let i=0; i < localStorage.length; i++) {
-
-    
-  }
-}
+  for (let i = 0; i < localStorage.length; i++) {}
+};
 
 const getLocalStorageData = () => {
   const localStorageData = JSON.parse(localStorage.getItem("key"));
@@ -110,7 +107,7 @@ const renderMainCard = (geniusData) => {
   for (let i = 0; i < 6; i++) {
     const card = `<div class="searchCardContainer is-mobile"> 
     <div class="card">
-      <div class="card-image" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');"><button class="delete is-large"></button></div>
+      <div class="card-image artworkClick" data-geniusid="${geniusData.hits[i].result.id}" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');" ><button class="delete is-large"></button></div>
       <div class="card-text content is-normal">
         <h1 id="songTitle">${geniusData.hits[i].result.title}</h1>
         <h3 id="getArtist" class="subtitle">Artist: ${geniusData.hits[i].result.primary_artist.name}</h3>
@@ -130,22 +127,14 @@ const renderMainCard = (geniusData) => {
         </div>
     </div>
   </div>`;
-  // $(".favorites").off("click").on("click",addToFavoritesLocalStorage)
+    // $(".favorites").off("click").on("click",addToFavoritesLocalStorage)
     container.append(card);
   }
 };
 
-const artworkOnClick = (geniusData) => {
-  for (let i = 0; i < 6; i++) {
-    $(".artworkClick").click(function () {
-      console.log(geniusData.hits[i].result.id);
-    });
-  }
-  // $(".artworkClick").click(function () {
-  //   console.log(geniusData.hits[].result.id);
-  // });
-  //
-};
+// const artworkOnClick = () => {
+//   console.log($(this).data("geniusid"));
+// };
 
 const onSubmit = async (event) => {
   event.preventDefault();
@@ -156,7 +145,9 @@ const onSubmit = async (event) => {
   console.log(swiperContainer);
   renderMainCard(geniusDataObject);
   $(".delete").on("click", onDelete);
-  artworkOnClick(geniusDataObject);
+  $(".artworkClick").click(function () {
+    console.log($(this).data("geniusid"));
+  });
 };
 
 $("#search").on("submit", onSubmit);
@@ -165,5 +156,6 @@ $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
   // fetchYoutubeData();
+
   homePageSliders();
 });
