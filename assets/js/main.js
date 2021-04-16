@@ -21,6 +21,11 @@ async function fetchYoutubeData(sampleSongFullTitle) {
   const videoID = data.items[0].id.videoId;
   console.log(videoID);
   const sampleYoutubeURL = `https://www.youtube.com/watch?v=${videoID}`;
+  const container = $(".cards-container");
+  container.empty();
+  container.append(
+    `<video controls width="400"><source src="${sampleYoutubeURL}"</video>`
+  );
   const youtubeResultPath = data.items[0].snippet;
   youtubeRequestedData = {
     title: youtubeResultPath.title,
