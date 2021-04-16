@@ -51,10 +51,14 @@ async function fetchGeniusIDData(geniusSongID) {
   const idPath = geniusIDData.response.song;
 
   const geniusIDSampleData = {
-    sample: idPath.song_relationships[0].songs[0],
+    sample: idPath.song_relationships[0].songs[0].full_title,
   };
 
-  console.log(geniusIDSampleData);
+  if (typeof geniusIDSampleData === undefined) {
+    console.log("no samples");
+  } else {
+    console.log(geniusIDSampleData);
+  }
 }
 
 // add clicked item to local storage
