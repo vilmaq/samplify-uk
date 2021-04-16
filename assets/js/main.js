@@ -12,6 +12,7 @@ let geniusRequestedData;
 let geniusIDSampleData;
 let youtubeRequestedData;
 
+// Fetch Youtube Data Async Function
 async function fetchYoutubeData(sampleSongFullTitle) {
   let userInput = $("#search-input").val();
   const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sampleSongFullTitle}&key=${youtubeApiKey}`;
