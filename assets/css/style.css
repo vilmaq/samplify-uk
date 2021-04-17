@@ -247,7 +247,6 @@ input:focus {
 }
 
 .deleteCard {
-  z-index: 999;
   margin-top: 10px;
   margin-left: 460px;
 }
