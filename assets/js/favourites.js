@@ -40,34 +40,26 @@ const renderFavoriteCards = (favCard) => {
 };
 
 const onDelete = (click) => {
-const clickEvent = click.target
+const clickedTarget = click.target
+const cardContainer = clickedTarget.closest(".searchCardContainer");
+
 console.log(click)
 
 const favCards = JSON.parse(localStorage.getItem("localStorageFavData")) || [];
 
 console.log(favCards)
-let songTitle = $(clickEvent).attr("data-fTitle");
+let songTitle = $(clickedTarget).attr("data-fTitle");
 console.log(songTitle)
-// const indexOfTitle = favCards.findIndex(x => x.favTitle === songTitle)
-// console.log(indexOfTitle)
-// localStorage.removeItem(indexOfTitle);
-// const indexCard = favCards.indexOf(clickEvent)
 
-// const newFavCard = favCards.splice(indexOfTitle, 1);
-// console.log(newFavCard)
 let newFavCards = favCards.filter(song => song.favTitle != songTitle);
 console.log(newFavCards)
-// localStorage.removeItem("localStorageFavData")
-localStorage.setItem( "localStorageFavData", JSON.stringify(newFavCards))
 
-function removeCard () {
-  const card = $(".card")
-  const cardToBeRemoved = card.classlist.add("hide")
-}
+localStorage.setItem("localStorageFavData", JSON.stringify(newFavCards))
+
+cardContainer.remove()
 
 
 }
-
 
 
 $(document).ready( function () {
