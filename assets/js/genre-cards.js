@@ -10,6 +10,11 @@ const genreCards = [
       "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.rapgenius.com%2Fe09e829807ee4c2d198736a4d89f0d34.1000x1000x1.jpg",
   },
   {
+    id: 71255,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/1344x0/https%3A%2F%2Fimages.genius.com%2Fc89a94b56463722c378a5f00df97ea6b.1000x1000x1.jpg",
+  },
+  {
     id: 2916544,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F7aa3bebecdfc0a7f9140c479bcb52182.1000x1000x1.png",
