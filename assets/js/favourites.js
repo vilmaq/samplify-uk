@@ -13,7 +13,6 @@ const getDataFromLS = () => {
 
 
 const renderFavoriteCards = (favCard) => {
-  console.log(favCard);
   const container = $(".cards-container");
   // container.empty();
 
@@ -38,7 +37,6 @@ const renderFavoriteCards = (favCard) => {
     </div>
   </div>`;
   container.append(card);
-  console.log(container);
 };
 
 const onDelete = (click) => {
@@ -62,8 +60,10 @@ console.log(newFavCards)
 // localStorage.removeItem("localStorageFavData")
 localStorage.setItem( "localStorageFavData", JSON.stringify(newFavCards))
 
-
-
+function removeCard () {
+  const card = $(".card")
+  const cardToBeRemoved = card.classlist.add("hide")
+}
 
 
 }
