@@ -1,4 +1,5 @@
 //get data from the local storage
+const favCards = JSON.parse(localStorage.getItem("localStorageFavData")) || [];
 
 const getDataFromLS = () => {
   const favCards =
@@ -9,6 +10,8 @@ const getDataFromLS = () => {
   // favCards.slice(1, 6).
   favCards.forEach(renderFavoriteCards);
 };
+
+
 const renderFavoriteCards = (favCard) => {
   console.log(favCard);
   const container = $(".cards-container");
@@ -38,4 +41,22 @@ const renderFavoriteCards = (favCard) => {
   console.log(container);
 };
 
-$(document).ready(getDataFromLS);
+const onDelete = (click) => {
+const clickEvent = click.target
+window.localStorage.removeItem('localStorageFavData');
+const indexCard = favCards.indexOf(clickEvent)
+
+}
+
+
+
+$(document).ready( function () {
+  getDataFromLS()
+  $(".delete").on("click", onDelete);
+}
+);
+
+// delete button that deletes the card
+
+
+//limit clicks by assigning  odd/ even clicks
