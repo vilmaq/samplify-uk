@@ -13,14 +13,6 @@ let geniusRequestedData;
 let geniusIDSampleData;
 let youtubeRequestedData;
 
-// const createSamplePage = (sampleYoutubeURL) => {
-//   const container = $(".cards-container");
-//   container.empty();
-//   container.append(
-//     `<video controls width="400"><source src="${sampleYoutubeURL}"</video>`
-//   );
-// };
-
 // Fetch Youtube Data Async Function
 async function fetchYoutubeData(sampleSongFullTitle, songImage, songTitle) {
   let userInput = $("#search-input").val();
@@ -30,9 +22,9 @@ async function fetchYoutubeData(sampleSongFullTitle, songImage, songTitle) {
   console.log(data);
   const videoID = data.items[0].id.videoId;
   console.log(videoID);
-  const embedYoutubeURL = `https://www.youtube.com/embed/${videoID}`;
   const sampleYoutubeURL = `https://www.youtube.com/watch?v=${videoID}`;
   container.empty();
+
   try {
     container.append(
       `<div id="titleAndArtwork"><h1>${songTitle}</h1>
@@ -106,6 +98,8 @@ async function fetchGeniusIDData(geniusSongID) {
     const geniusIDResponse = await fetch(geniusIDURL, geniusHeaderObject);
     const geniusIDData = await geniusIDResponse.json();
     const idPath = geniusIDData.response.song;
+
+
 
     const geniusIDSampleData = {
       originalSongTitle: idPath.full_title,
