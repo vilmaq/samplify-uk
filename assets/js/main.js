@@ -234,7 +234,6 @@ const renderMainCard = (geniusData) => {
     </div>
   </div>`;
 
-    // $(".favorites").off("click").on("click",addToFavoritesLocalStorage)
     container.append(card);
   }
 };
