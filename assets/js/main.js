@@ -175,6 +175,13 @@ const onDelete = (eachGenre) => {
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
   </div>`;
+  const target = $(container.target);
+  const currentTarget = $(card.currentTarget);
+  if (target.is(".deleteCard")) {
+    const closestCard = element.closest(".card");
+    console.log(closestCard);
+    container.remove(closestCard);
+  }
 
   container.append(swipeCard);
   homePageSliders();
@@ -205,6 +212,7 @@ const renderMainCard = (geniusData) => {
         </div>
     </div>
   </div>`;
+
     // $(".favorites").off("click").on("click",addToFavoritesLocalStorage)
     container.append(card);
   }
