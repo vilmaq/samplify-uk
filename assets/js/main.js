@@ -12,14 +12,6 @@ let geniusRequestedData;
 let geniusIDSampleData;
 let youtubeRequestedData;
 
-// const createSamplePage = (sampleYoutubeURL) => {
-//   const container = $(".cards-container");
-//   container.empty();
-//   container.append(
-//     `<video controls width="400"><source src="${sampleYoutubeURL}"</video>`
-//   );
-// };
-
 // Fetch Youtube Data Async Function
 async function fetchYoutubeData(sampleSongFullTitle) {
   let userInput = $("#search-input").val();
@@ -29,14 +21,12 @@ async function fetchYoutubeData(sampleSongFullTitle) {
   console.log(data);
   const videoID = data.items[0].id.videoId;
   console.log(videoID);
-  const embedYoutubeURL = `https://www.youtube.com/embed/${videoID}`;
   const sampleYoutubeURL = `https://www.youtube.com/watch?v=${videoID}`;
   const container = $(".cards-container");
   container.empty();
   container.append(
-    `<iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+    `<video controls width="400"><source src="${sampleYoutubeURL}"</video>`
   );
-  // createSamplePage(sampleYoutubeURL);
   const youtubeResultPath = data.items[0].snippet;
   youtubeRequestedData = {
     title: youtubeResultPath.title,
@@ -75,17 +65,18 @@ async function fetchGeniusIDData(geniusSongID) {
     sample: idPath.song_relationships[0].songs[0].full_title,
     sampleCheck: idPath.song_relationships[0].songs[0],
   };
-  // try {
-  //   const container = $(".cards-container");
-  //   container.empty();
-  //   const sampleString = JSON.stringify(geniusIDSampleData.sample);
-  //   console.log(sampleString);
-  //   container.append(`<h3 class="subtitle">Sample: ${sampleString}</h3>`);
-  // } catch (err) {
-  //   console.log(err);
-  // }
+  i;
+  try {
+    const container = $(".cards-container");
+    container.empty();
+    const sampleString = JSON.stringify(geniusIDSampleData.sample);
+    console.log(sampleString);
+    container.append(`<h3 class="subtitle">Sample: ${sampleString}</h3>`);
+  } catch (err) {
+    console.log(err);
+  }
 
-  const sampleSongFullTitle = geniusIDSampleData.sample;
+  const sampleSongFullTitle = geniusIDSampleData.sample.full_title;
   console.log(sampleSongFullTitle);
 
   fetchYoutubeData(sampleSongFullTitle);

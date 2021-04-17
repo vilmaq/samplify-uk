@@ -1,5 +1,5 @@
 //get data from the local storage
-const favCards = JSON.parse(localStorage.getItem("localStorageFavData")) || [];
+
 
 const getDataFromLS = () => {
   const favCards =
@@ -19,7 +19,7 @@ const renderFavoriteCards = (favCard) => {
 
   const card = `<div class="searchCardContainer is-mobile">
     <div class="card">
-      <div class="card-image" style="background-image: url('${favCard.favImage}');"><button class="delete is-large"></button></div>
+      <div class="card-image" style="background-image: url('${favCard.favImage}');"><button class="delete is-large" data-fTitle="${favCard.favTitle}"></button></div>
       <div class="card-text content is-normal">
         <h1>${favCard.favTitle}</h1>
         <h3 class="subtitle">Artist: ${favCard.favArtist}</h3>
@@ -43,8 +43,28 @@ const renderFavoriteCards = (favCard) => {
 
 const onDelete = (click) => {
 const clickEvent = click.target
-window.localStorage.removeItem('localStorageFavData');
-const indexCard = favCards.indexOf(clickEvent)
+console.log(click)
+
+const favCards = JSON.parse(localStorage.getItem("localStorageFavData")) || [];
+
+console.log(favCards)
+let songTitle = $(clickEvent).attr("data-fTitle");
+console.log(songTitle)
+// const indexOfTitle = favCards.findIndex(x => x.favTitle === songTitle)
+// console.log(indexOfTitle)
+// localStorage.removeItem(indexOfTitle);
+// const indexCard = favCards.indexOf(clickEvent)
+
+// const newFavCard = favCards.splice(indexOfTitle, 1);
+// console.log(newFavCard)
+let newFavCards = favCards.filter(song => song.favTitle != songTitle);
+console.log(newFavCards)
+// localStorage.removeItem("localStorageFavData")
+localStorage.setItem( "localStorageFavData", JSON.stringify(newFavCards))
+
+
+
+
 
 }
 
