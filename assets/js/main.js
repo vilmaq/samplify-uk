@@ -168,7 +168,8 @@ const getLocalStorageData = () => {
 };
 
 const onDelete = (eachGenre) => {
-  container.empty();
+  // container.empty();
+  event.stopPropagation();
   const swipeCard = `<div class="swiper-container">
     <div class="swiper-wrapper">
     <div class="swiper-slide" style= "background-image:url("${eachGenre.albumArtwork}")" >
@@ -186,16 +187,18 @@ const onDelete = (eachGenre) => {
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
   </div>`;
-  const target = $(container.target);
-  const currentTarget = $(card.currentTarget);
-  if (target.is(".deleteCard")) {
-    const closestCard = element.closest(".card");
-    console.log(closestCard);
-    container.remove(closestCard);
-  }
+  const target = event.currentTarget;
 
-  container.append(swipeCard);
-  homePageSliders();
+  const cardsContainer = target.closest(".searchCardContainer");
+
+  cardsContainer.remove();
+
+  const numberOfCards = container.find(".searchCardContainer").length;
+
+  // container.remove(closestCard);
+
+  // container.show(swipeCard);
+  // homePageSliders();
 };
 
 const renderMainCard = (geniusData) => {

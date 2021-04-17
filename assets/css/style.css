@@ -20,7 +20,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 600px;
-  letter-spacing: 0.05em;
+  letter-spacing: 5px;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #15c0e0;
@@ -246,7 +246,8 @@ input:focus {
   grid-area: footer;
 }
 
-.delete {
+.deleteCard {
+  z-index: 999;
   margin-top: 10px;
   margin-left: 460px;
 }
