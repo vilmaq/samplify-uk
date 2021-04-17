@@ -8,12 +8,13 @@ const geniusHeaderObject = {
     "x-rapidapi-host": "genius.p.rapidapi.com",
   },
 };
+const container = $(".cards-container");
 let geniusRequestedData;
 let geniusIDSampleData;
 let youtubeRequestedData;
 
 // Fetch Youtube Data Async Function
-async function fetchYoutubeData(sampleSongFullTitle) {
+async function fetchYoutubeData(sampleSongFullTitle, songImage, songTitle) {
   let userInput = $("#search-input").val();
   const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sampleSongFullTitle}&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
@@ -22,11 +23,25 @@ async function fetchYoutubeData(sampleSongFullTitle) {
   const videoID = data.items[0].id.videoId;
   console.log(videoID);
   const sampleYoutubeURL = `https://www.youtube.com/watch?v=${videoID}`;
-  const container = $(".cards-container");
   container.empty();
-  container.append(
-    `<video controls width="400"><source src="${sampleYoutubeURL}"</video>`
-  );
+
+  try {
+    container.append(
+      `<div id="titleAndArtwork"><h1>${songTitle}</h1>
+      <img src="${songImage}" width="350" height="350"/></div>
+      <div class="break"></div>
+      <div id="sampleContainer">
+      <h1 class="sampleHeading">Samples:</h1>
+      <h2>${sampleSongFullTitle}</h2>
+      <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>`
+    );
+  } catch (e) {
+    // container.append(`<h1>No samples found ${e}</h1>`);
+    console.error(e, "///");
+  }
+
+  // createSamplePage(sampleYoutubeURL);
   const youtubeResultPath = data.items[0].snippet;
   youtubeRequestedData = {
     title: youtubeResultPath.title,
@@ -36,6 +51,28 @@ async function fetchYoutubeData(sampleSongFullTitle) {
     videoId: data.items[0].id.videoId,
   };
 }
+
+const noSampleModal = () => {
+  container.append(`<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Error</p>
+      <button class="delete deleteModal" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      Sorry, there were no samples found for this song!
+    </section>
+    <footer class="modal-card-foot">
+    </footer>
+  </div>
+</div>`);
+  const deleteTest = () => {
+    $(".modal").remove();
+  };
+  $(".deleteModal").on("click", deleteTest);
+  console.log("hi");
+};
 
 async function fetchGeniusData(userInput) {
   const geniusSearchURL = `https://genius.p.rapidapi.com/search?q=${userInput}`;
@@ -57,31 +94,27 @@ async function fetchGeniusData(userInput) {
 
 async function fetchGeniusIDData(geniusSongID) {
   const geniusIDURL = `https://genius.p.rapidapi.com/songs/${geniusSongID}`;
-  const geniusIDResponse = await fetch(geniusIDURL, geniusHeaderObject);
-  const geniusIDData = await geniusIDResponse.json();
-  const idPath = geniusIDData.response.song;
-
-  const geniusIDSampleData = {
-    sample: idPath.song_relationships[0].songs[0].full_title,
-    sampleCheck: idPath.song_relationships[0].songs[0],
-  };
-  i;
   try {
-    const container = $(".cards-container");
-    container.empty();
-    const sampleString = JSON.stringify(geniusIDSampleData.sample);
-    console.log(sampleString);
-    container.append(`<h3 class="subtitle">Sample: ${sampleString}</h3>`);
+    const geniusIDResponse = await fetch(geniusIDURL, geniusHeaderObject);
+    const geniusIDData = await geniusIDResponse.json();
+    const idPath = geniusIDData.response.song;
+
+
+
+    const geniusIDSampleData = {
+      originalSongTitle: idPath.full_title,
+      originalSongArt: idPath.song_art_image_url,
+      sample: idPath.song_relationships[0].songs[0].full_title,
+      sampleCheck: idPath.song_relationships[0].songs[0],
+    };
+    const originalSongTitle = geniusIDSampleData.originalSongTitle;
+    const originalSongArt = geniusIDSampleData.originalSongArt;
+    const sampleSongFullTitle = geniusIDSampleData.sample;
+    fetchYoutubeData(sampleSongFullTitle, originalSongArt, originalSongTitle);
+    console.log(geniusIDSampleData.sample);
   } catch (err) {
-    console.log(err);
+    noSampleModal();
   }
-
-  const sampleSongFullTitle = geniusIDSampleData.sample.full_title;
-  console.log(sampleSongFullTitle);
-
-  fetchYoutubeData(sampleSongFullTitle);
-
-  console.log(geniusIDSampleData);
 }
 
 // add clicked item to local storage
@@ -129,8 +162,8 @@ const getLocalStorageData = () => {
 };
 
 const onDelete = (eachGenre) => {
-  const container = $(".cards-container");
-  container.empty();
+  // container.empty();
+  event.stopPropagation();
   const swipeCard = `<div class="swiper-container">
     <div class="swiper-wrapper">
     <div class="swiper-slide" style= "background-image:url("${eachGenre.albumArtwork}")" >
@@ -148,18 +181,33 @@ const onDelete = (eachGenre) => {
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
   </div>`;
+  const target = event.currentTarget;
 
-  container.append(swipeCard);
-  homePageSliders();
+  const cardsContainer = target.closest(".searchCardContainer");
+
+  cardsContainer.remove();
+
+  const numberOfCards = container.find(".searchCardContainer").length;
+
+  if (numberOfCards === 0) {
+    const showSwiperContainer = $(".swiper-container").show();
+    cardsContainer.append(showSwiperContainer);
+    // swiperContainer.append(swipeCard);
+    // homePageSliders();
+    // .show();
+    // container.show(swipeCard);
+    // homePageSliders();
+    return cardsContainer;
+    console.log("empty cards");
+  }
 };
 
 const renderMainCard = (geniusData) => {
-  const container = $(".cards-container");
   container.empty();
   for (let i = 0; i < 6; i++) {
     const card = `<div class="searchCardContainer is-mobile"> 
     <div class="card" data-title= "${geniusData.hits[i].result.title}" data-artist="${geniusData.hits[i].result.primary_artist.name}" data-releasdate =""  data-bimage="${geniusData.hits[i].result.song_art_image_url}">
-      <div class="card-image artworkClick" data-geniusid="${geniusData.hits[i].result.id}" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');" ><button class="delete is-large"></button></div>
+      <div class="card-image artworkClick" data-geniusid="${geniusData.hits[i].result.id}" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');" ><button class="delete is-large deleteCard"></button></div>
       <div class="card-text content is-normal">
         <h1 id="songTitle">${geniusData.hits[i].result.title}</h1>
         <h3 id="getArtist" class="subtitle">Artist: ${geniusData.hits[i].result.primary_artist.name}</h3>
@@ -179,7 +227,7 @@ const renderMainCard = (geniusData) => {
         </div>
     </div>
   </div>`;
-    // $(".favorites").off("click").on("click",addToFavoritesLocalStorage)
+
     container.append(card);
   }
 };
@@ -196,7 +244,7 @@ const onSubmit = async (event) => {
   const swiperContainer = $(".swiper-container").hide();
   console.log(swiperContainer);
   renderMainCard(geniusDataObject);
-  $(".delete").on("click", onDelete);
+  $(".deleteCard").on("click", onDelete);
   $(".artworkClick").click(function () {
     console.log($(this).data("geniusid"));
     const geniusSongID = $(this).data("geniusid");
