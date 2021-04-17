@@ -206,11 +206,6 @@ const onDelete = (eachGenre) => {
     return cardsContainer;
     console.log("empty cards");
   }
-
-  // container.remove(closestCard);
-
-  // container.show(swipeCard);
-  // homePageSliders();
 };
 
 const renderMainCard = (geniusData) => {
