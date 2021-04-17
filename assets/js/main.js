@@ -69,7 +69,7 @@ const noSampleModal = () => {
   </div>
 </div>`);
   const deleteTest = () => {
-    $(".modal").empty();
+    $(".modal").remove();
   };
   $(".deleteModal").on("click", deleteTest);
   console.log("hi");
