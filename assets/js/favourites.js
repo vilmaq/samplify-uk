@@ -58,7 +58,6 @@ localStorage.setItem("localStorageFavData", JSON.stringify(newFavCards))
 
 cardContainer.remove()
 
-
 }
 
 
