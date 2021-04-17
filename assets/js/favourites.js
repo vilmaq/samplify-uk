@@ -16,7 +16,7 @@ const renderFavoriteCards = (favCard) => {
 
   const card = `<div class="searchCardContainer is-mobile">
     <div class="card">
-      <div class="card-image artworkClick" style="background-image: url('${favCard.favImage}');"><button class="delete is-large" data-fTitle="${favCard.favTitle}"></button></div>
+      <div class="card-image artworkClick" style="background-image: url('${favCard.favImage}');"><button class="delete is-large deleteCard" data-fTitle="${favCard.favTitle}"></button></div>
       <div class="card-text content is-normal">
         <h1>${favCard.favTitle}</h1>
         <h3 class="subtitle">Artist: ${favCard.favArtist}</h3>
