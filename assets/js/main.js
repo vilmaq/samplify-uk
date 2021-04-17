@@ -1,6 +1,7 @@
 // genreCards.forEach(console.log(id));
 
 const youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
+const youtubeApiKey2 = "AIzaSyCYuac5jmWm9wfCkzMD7fE2D5YG0mRCznA";
 const geniusHeaderObject = {
   method: "GET",
   headers: {
@@ -10,46 +11,51 @@ const geniusHeaderObject = {
 };
 const container = $(".cards-container");
 let geniusRequestedData;
-let geniusIDSampleData;
 let youtubeRequestedData;
 
 // Fetch Youtube Data Async Function
 async function fetchYoutubeData(sampleSongFullTitle, songImage, songTitle) {
-  let userInput = $("#search-input").val();
-  const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sampleSongFullTitle}&key=${youtubeApiKey}`;
-  const response = await fetch(youtubeUrl);
-  const data = await response.json();
-  console.log(data);
-  const videoID = data.items[0].id.videoId;
-  console.log(videoID);
-  const sampleYoutubeURL = `https://www.youtube.com/watch?v=${videoID}`;
-  container.empty();
+  console.log(sampleSongFullTitle);
+  if (sampleSongFullTitle.length === 0) {
+    noSampleModal();
+  } else {
+    container.empty();
+    container.append(`<div id="titleAndArtwork"><h1>${songTitle}</h1>
+  <img src="${songImage}" width="350" height="350"/></div>
+  <div class="break"></div>
+  <h1 class="sampleHeading">Samples:</h1>`);
+    sampleSongFullTitle.forEach(async (sample) => {
+      let userInput = $("#search-input").val();
+      const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey2}`;
+      const response = await fetch(youtubeUrl);
+      const data = await response.json();
+      console.log(data);
+      const videoID = data.items[0].id.videoId;
+      console.log(videoID);
+      const embedYoutubeURL = `https://www.youtube.com/embed/${videoID}`;
+      try {
+        container.append(
+          `<div id="sampleContainer">
+        <h2>${sample.full_title}</h2>
+        <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>`
+        );
+      } catch (e) {
+        // container.append(`<h1>No samples found ${e}</h1>`);
+        console.error(e, "///");
+      }
 
-  try {
-    container.append(
-      `<div id="titleAndArtwork"><h1>${songTitle}</h1>
-      <img src="${songImage}" width="350" height="350"/></div>
-      <div class="break"></div>
-      <div id="sampleContainer">
-      <h1 class="sampleHeading">Samples:</h1>
-      <h2>${sampleSongFullTitle}</h2>
-      <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>`
-    );
-  } catch (e) {
-    // container.append(`<h1>No samples found ${e}</h1>`);
-    console.error(e, "///");
+      // createSamplePage(sampleYoutubeURL);
+      const youtubeResultPath = data.items[0].snippet;
+      youtubeRequestedData = {
+        title: youtubeResultPath.title,
+        channelTitle: youtubeResultPath.channelTitle,
+        uploadTime: youtubeResultPath.publishTime,
+        thumbnail: youtubeResultPath.thumbnails.high.url,
+        videoId: data.items[0].id.videoId,
+      };
+    });
   }
-
-  // createSamplePage(sampleYoutubeURL);
-  const youtubeResultPath = data.items[0].snippet;
-  youtubeRequestedData = {
-    title: youtubeResultPath.title,
-    channelTitle: youtubeResultPath.channelTitle,
-    uploadTime: youtubeResultPath.publishTime,
-    thumbnail: youtubeResultPath.thumbnails.high.url,
-    videoId: data.items[0].id.videoId,
-  };
 }
 
 const noSampleModal = () => {
@@ -93,24 +99,29 @@ async function fetchGeniusData(userInput) {
 }
 
 async function fetchGeniusIDData(geniusSongID) {
+  let samples = [];
   const geniusIDURL = `https://genius.p.rapidapi.com/songs/${geniusSongID}`;
   try {
     const geniusIDResponse = await fetch(geniusIDURL, geniusHeaderObject);
     const geniusIDData = await geniusIDResponse.json();
     const idPath = geniusIDData.response.song;
+    const samplePath = idPath.song_relationships[0].songs;
 
-
-
+    for (let i = 0; i < samplePath.length; i++) {
+      samples.push(samplePath[i]);
+    }
+    console.log(samples);
     const geniusIDSampleData = {
       originalSongTitle: idPath.full_title,
       originalSongArt: idPath.song_art_image_url,
-      sample: idPath.song_relationships[0].songs[0].full_title,
+      sample: samples,
       sampleCheck: idPath.song_relationships[0].songs[0],
     };
+    console.log(geniusIDSampleData.sampleCheck);
     const originalSongTitle = geniusIDSampleData.originalSongTitle;
     const originalSongArt = geniusIDSampleData.originalSongArt;
-    const sampleSongFullTitle = geniusIDSampleData.sample;
-    fetchYoutubeData(sampleSongFullTitle, originalSongArt, originalSongTitle);
+    const sampleSong = geniusIDSampleData.sample;
+    fetchYoutubeData(sampleSong, originalSongArt, originalSongTitle);
     console.log(geniusIDSampleData.sample);
   } catch (err) {
     noSampleModal();
