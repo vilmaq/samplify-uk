@@ -195,6 +195,18 @@ const onDelete = (eachGenre) => {
 
   const numberOfCards = container.find(".searchCardContainer").length;
 
+  if (numberOfCards === 0) {
+    const showSwiperContainer = $(".swiper-container").show();
+    cardsContainer.append(showSwiperContainer);
+    // swiperContainer.append(swipeCard);
+    // homePageSliders();
+    // .show();
+    // container.show(swipeCard);
+    // homePageSliders();
+    return cardsContainer;
+    console.log("empty cards");
+  }
+
   // container.remove(closestCard);
 
   // container.show(swipeCard);
