@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  padding:0 ;
+  margin: 0;
 }
 html {
   background: url("https://source.unsplash.com/7LNatQYMzm4/1600x900") no-repeat
@@ -272,3 +274,4 @@ input:focus {
   flex-basis: 100%;
   height: 0;
 }
+
