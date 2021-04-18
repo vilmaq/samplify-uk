@@ -31,15 +31,15 @@ function homePageSliders() {
     speed: 900,
 
     autoplay: {
-      delay: 3000,
+      delay: 2000,
     },
 
     coverflowEffect: {
-      rotate: 50,
-      stretch: 0,
-      depth: 100,
+      rotate: 40,
+      // stretch: 0,
+      depth: 90,
       modifier: 1,
-      slideShadows: true,
+      // slideShadows: false,
     },
 
     breakpoints: {

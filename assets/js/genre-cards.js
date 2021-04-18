@@ -49,4 +49,70 @@ const genreCards = [
     albumArtwork:
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F4535b464eefdbf847ffc1da7eff2a255.1000x1000x1.png",
   },
+  {
+    // Beck - Loser
+    id: 4905,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F2616b5713a51eb3db18c625c1542b9e5.500x501x1.jpg",
+  },
+  {
+    // Salt N Pepa - Push it
+    id: 56902,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F4ef12d48c4a618a18e5f8467023ff9ec.600x600x1.jpg",
+  },
+  {
+    // Frank Ocean - Siegfried
+    id: 2842086,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F4ef12d48c4a618a18e5f8467023ff9ec.600x600x1.jpg",
+  },
+  {
+    // James Blake - Can't Believe the Way We Flow
+    id: 4201753,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F4ef12d48c4a618a18e5f8467023ff9ec.600x600x1.jpg",
+  },
+  {
+    // Jay Z & Justin Timberlake - Holy Grail
+    id: 177832,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F2da322648704159878b73c5cfc9c7dc5.1000x1000x1.png",
+  },
+  {
+    // Gorillaz - Clint Eastwood
+    id: 1698,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F454a09a0a3aebd22bc05a6106fb6dfde.1000x1000x1.jpg",
+  },
+  {
+    // Jay Z & Kanye West - No Church In The Wild
+    id: 382113,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2Ff4264b720b7352a2ffac3c36fa1fd5cf.880x880x1.png",
+  },
+  {
+    // Phantogram - Cruel World
+    id: 2831911,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F5c18b25246c2d8b42ed8b8dffab8a2e4.745x745x1.jpg",
+  },
+  {
+    // Frank Ocean & Earl Sweatshirt - Super Rich Kids
+    id: 78960,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F5c8f128494b2bd41a18ebccad7e760cc.1000x1000x1.png",
+  },
+  {
+    // Pet Shop Boys - My October Symphony
+    id: 1183842,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F4aebc17bcd83a7774ad3ae9bd9fce7b6.1000x1000x1.png",
+  },
+  {
+    // Kelis - Trick Me
+    id: 382113,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/600x0/https%3A%2F%2Fimages.genius.com%2F142fe36b4329bf1fd87eece659a58759.1000x1000x1.jpg",
+  },
 ];
