@@ -144,11 +144,13 @@ const addToFavoritesLocalStorage = (element) => {
 
   const favArtist = target.dataset.artist;
   const favImage = target.dataset.bimage;
+  const favId = target.dataset.geniusid;
 
   const favObject = {
     favTitle,
     favArtist,
     favImage,
+    favId,
   };
 
   // console.log(favObject);
@@ -217,7 +219,7 @@ const renderMainCard = (geniusData) => {
   container.empty();
   for (let i = 0; i < 6; i++) {
     const card = `<div class="searchCardContainer is-mobile"> 
-    <div class="card" data-title= "${geniusData.hits[i].result.title}" data-artist="${geniusData.hits[i].result.primary_artist.name}" data-releasdate =""  data-bimage="${geniusData.hits[i].result.song_art_image_url}">
+    <div class="card" data-title= "${geniusData.hits[i].result.title}" data-geniusid="${geniusData.hits[i].result.id}" data-artist="${geniusData.hits[i].result.primary_artist.name}" data-releasdate =""  data-bimage="${geniusData.hits[i].result.song_art_image_url}">
       <div class="card-image artworkClick" data-geniusid="${geniusData.hits[i].result.id}" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');" ><button class="delete is-large deleteCard"></button></div>
       <div class="card-text content is-normal">
         <h1 id="songTitle">${geniusData.hits[i].result.title}</h1>
