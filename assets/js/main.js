@@ -33,11 +33,10 @@ async function fetchYoutubeData(
   <h1 id="songArtist">${songArtist}</h1>
   </div>
   </div>
-  <div class="break"></div>
-  <div id="sampleHeading"><h1 class="sampleHeading">Samples:</h1></div>`);
+  <div class="break"></div>`);
     sampleSongFullTitle.forEach(async (sample) => {
       let userInput = $("#search-input").val();
-      const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey2}`;
+      const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey}`;
       const response = await fetch(youtubeUrl);
       const data = await response.json();
       console.log(data);
@@ -78,7 +77,7 @@ const noSampleModal = () => {
       <button class="delete deleteModal" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
-      Sorry, there were no samples found for this song!
+      Sorry, there were no samples found for this song! However, here is some additional info:
     </section>
     <footer class="modal-card-foot">
     </footer>
