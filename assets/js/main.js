@@ -14,16 +14,27 @@ let geniusRequestedData;
 let youtubeRequestedData;
 
 // Fetch Youtube Data Async Function
-async function fetchYoutubeData(sampleSongFullTitle, songImage, songTitle) {
+async function fetchYoutubeData(
+  sampleSongFullTitle,
+  songImage,
+  songTitle,
+  songArtist,
+  originalSongRD
+) {
   console.log(sampleSongFullTitle);
   if (sampleSongFullTitle.length === 0) {
     noSampleModal();
   } else {
     container.empty();
-    container.append(`<div id="titleAndArtwork"><h1>${songTitle}</h1>
-  <img src="${songImage}" width="350" height="350"/></div>
+    container.append(`<div id="titleAndArtwork">
+  <img src="${songImage}" width="500" height="500"/>
+  <div class="songDetails"><h2>${originalSongRD}</h2>
+  <h1 id="titleOfSong">${songTitle}</h1><br>
+  <h1 id="songArtist">${songArtist}</h1>
+  </div>
+  </div>
   <div class="break"></div>
-  <h1 class="sampleHeading">Samples:</h1>`);
+  <div id="sampleHeading"><h1 class="sampleHeading">Samples:</h1></div>`);
     sampleSongFullTitle.forEach(async (sample) => {
       let userInput = $("#search-input").val();
       const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey2}`;
@@ -112,16 +123,26 @@ async function fetchGeniusIDData(geniusSongID) {
     }
     console.log(samples);
     const geniusIDSampleData = {
-      originalSongTitle: idPath.full_title,
+      originalSongTitle: idPath.title,
+      originalSongArtist: idPath.primary_artist.name,
+      originalSongRD: idPath.release_date_for_display,
       originalSongArt: idPath.song_art_image_url,
       sample: samples,
       sampleCheck: idPath.song_relationships[0].songs[0],
     };
     console.log(geniusIDSampleData.sampleCheck);
     const originalSongTitle = geniusIDSampleData.originalSongTitle;
+    const originalSongArtist = geniusIDSampleData.originalSongArtist;
+    const originalSongRD = geniusIDSampleData.originalSongRD;
     const originalSongArt = geniusIDSampleData.originalSongArt;
     const sampleSong = geniusIDSampleData.sample;
-    fetchYoutubeData(sampleSong, originalSongArt, originalSongTitle);
+    fetchYoutubeData(
+      sampleSong,
+      originalSongArt,
+      originalSongTitle,
+      originalSongArtist,
+      originalSongRD
+    );
     console.log(geniusIDSampleData.sample);
   } catch (err) {
     noSampleModal();

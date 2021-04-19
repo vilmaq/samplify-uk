@@ -133,8 +133,9 @@ for (let i = 0; i < 10; i++) {
 const renderSliderCards = (finalSliderSongArray) => {
   const sliderWrapper = $(".swiper-wrapper");
 
-const renderSliderCard = (eachSliderSong) => {
-  console.log(sliderWrapper);
+  const renderSliderCard = (eachSliderSong) => {
+    console.log(sliderWrapper);
+  };
 };
 // const renderSliderCardContainer = (eachSong) => {
 //   const sliderCardContainer = `<div class="swiper-container">
