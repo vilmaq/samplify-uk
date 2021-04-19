@@ -116,3 +116,37 @@ const genreCards = [
       "https://t2.genius.com/unsafe/600x0/https%3A%2F%2Fimages.genius.com%2F142fe36b4329bf1fd87eece659a58759.1000x1000x1.jpg",
   },
 ];
+
+const generateRandomSliderArtworks = (event) => {
+  let sliderArtworks = 10;
+  const geniusSongID = genreCards.id;
+  const geniusSongArtwork = genreCards.albumArtwork;
+
+  const randomSliderSongObject = {
+    geniusSongID: geniusSongID,
+
+    geniusSongArtwork: geniusSongArtwork,
+  };
+
+  console.log(geniusSongID);
+  console.log(geniusSongArtwork);
+
+  function randomSliderSongGenerator() {
+    const randomArtworkIndex = Math.floor(
+      Math.random() * sliderArtworks.length
+    );
+    const randomSliderArtworks = randomSliderSongObject[randomIndex];
+
+    return randomSliderArtworks;
+  }
+
+  for (let i = 0; i < sliderArtworks.length; i++) {
+    let randomArtworks = randomSliderSongGenerator();
+    result.push(randomArtworks);
+  }
+
+  return randomArtworks;
+};
+
+genreCards.push(randomSliderSongObject);
+console.log(randomSliderSongObject);
