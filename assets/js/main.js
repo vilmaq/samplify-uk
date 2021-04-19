@@ -271,6 +271,7 @@ $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
   // fetchYoutubeData();
+  randomSliderSongGenerator();
 
   homePageSliders();
 });

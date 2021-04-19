@@ -116,10 +116,19 @@ const genreCards = [
       "https://t2.genius.com/unsafe/600x0/https%3A%2F%2Fimages.genius.com%2F142fe36b4329bf1fd87eece659a58759.1000x1000x1.jpg",
   },
 ];
+function randomSliderSongGenerator() {
+  let randomSongIndex =
+    genreCards[Math.floor(Math.random() * genreCards.length)];
 
-let randomSongIndex = genreCards[Math.floor(Math.random() * genreCards.length)];
-
-console.log(randomSongIndex);
+  console.log(randomSongIndex);
+  return randomSongIndex;
+}
+for (let i = 0; i < 10; i++) {
+  let finalSliderSongArray = [];
+  let randomSliderSongs = randomSliderSongGenerator();
+  finalSliderSongArray.push(randomSliderSongs);
+  console.log(randomSliderSongs);
+}
 
 // for  (let i = 0; i <sliderArtworks.length; i ++) {
 //   genreCards[Math.floor(Math.random() * genreCards.length)];
