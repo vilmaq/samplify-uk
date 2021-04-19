@@ -116,6 +116,10 @@ const genreCards = [
       "https://t2.genius.com/unsafe/600x0/https%3A%2F%2Fimages.genius.com%2F142fe36b4329bf1fd87eece659a58759.1000x1000x1.jpg",
   },
 ];
+
+let finalSliderSongArray = [];
+let data = genreCards[i];
+
 function randomSliderSongGenerator() {
   let randomSongIndex =
     genreCards[Math.floor(Math.random() * genreCards.length)];
@@ -123,20 +127,48 @@ function randomSliderSongGenerator() {
   console.log(randomSongIndex);
   return randomSongIndex;
 }
-for (let i = 0; i < 10; i++) {
-  let finalSliderSongArray = [];
+for (let i = 0; i < 9; i++) {
   let randomSliderSongs = randomSliderSongGenerator();
   finalSliderSongArray.push(randomSliderSongs);
   console.log(randomSliderSongs);
 }
 
-const renderSliderCards = (finalSliderSongArray) => {
-  const sliderWrapper = $(".swiper-wrapper");
+for (let i = 0; i < finalSliderSongArray.length; i++) {
+  let data = genreCards[i];
+  console.log(data.albumArtwork);
+}
+
+const renderSliderCards = () => {
+  const swiperWrapper = $(".swiper-wrapper");
+
+  swiperWrapper.empty();
+
+  const renderSliderCard = () => {
+    for (let i = 0; i < finalSliderSongArray.length; i++) {
+      let data = genreCards[i];
+      console.log(data.albumArtwork);
+    }
 
   const renderSliderCard = (eachSliderSong) => {
     console.log(sliderWrapper);
   };
+    const card = `<div class="swiper-slide" style= "background-image:url("${data.albumArtwork}")" >`;
+    console.log(card);
+    swiperWrapper.append(card);
+  };
+  finalSliderSongArray.forEach(renderSliderCard);
+
+  return swiperWrapper;
 };
+
+// const renderSliderCards = (finalSliderSongArray) => {
+//   const sliderWrapper = $(".swiper-wrapper");
+//   sliderWrapper.empty();
+// };
+
+// const renderSliderCard = (eachSliderSong) => {
+//   console.log(sliderWrapper);
+// };
 // const renderSliderCardContainer = (eachSong) => {
 //   const sliderCardContainer = `<div class="swiper-container">
 //   <div class="swiper-wrapper">

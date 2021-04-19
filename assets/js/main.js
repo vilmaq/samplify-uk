@@ -195,21 +195,21 @@ const getLocalStorageData = () => {
   } else return localStorageData;
 };
 
+/* <div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div> */
+
 const onDelete = (eachGenre) => {
   // container.empty();
   event.stopPropagation();
   const swipeCard = `<div class="swiper-container">
     <div class="swiper-wrapper">
-    <div class="swiper-slide" style= "background-image:url("${eachGenre.albumArtwork}")" >
     </div>
-    <div class="swiper-slide"></div>
-    <div class="swiper-slide"></div>
-    <div class="swiper-slide"></div>
-    <div class="swiper-slide"></div>
-    <div class="swiper-slide"></div>
-    <div class="swiper-slide"></div>
-    <div class="swiper-slide"></div>
-    <div class="swiper-slide"></div>
   </div>
   <div class="swiper-pagination"></div>
   <div class="swiper-button-prev"></div>
@@ -292,7 +292,6 @@ $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
   // fetchYoutubeData();
-  randomSliderSongGenerator();
-
+  renderSliderCards();
   homePageSliders();
 });
