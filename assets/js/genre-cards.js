@@ -118,7 +118,6 @@ const genreCards = [
 ];
 
 let finalSliderSongArray = [];
-let data = genreCards[i];
 
 function randomSliderSongGenerator() {
   let randomSongIndex =
@@ -138,28 +137,28 @@ for (let i = 0; i < finalSliderSongArray.length; i++) {
   console.log(data.albumArtwork);
 }
 
-const renderSliderCards = () => {
-  const swiperWrapper = $(".swiper-wrapper");
+// const renderSliderCards = () => {
+//   const swiperWrapper = $(".swiper-wrapper");
 
-  swiperWrapper.empty();
+//   swiperWrapper.empty();
 
-  const renderSliderCard = () => {
-    for (let i = 0; i < finalSliderSongArray.length; i++) {
-      let data = genreCards[i];
-      console.log(data.albumArtwork);
-    }
+//   const renderSliderCard = () => {
+//     for (let i = 0; i < finalSliderSongArray.length; i++) {
+//       let data = genreCards[i];
+//       console.log(data.albumArtwork);
+//     }
 
-  const renderSliderCard = (eachSliderSong) => {
-    console.log(sliderWrapper);
-  };
-    const card = `<div class="swiper-slide" style= "background-image:url("${data.albumArtwork}")" >`;
-    console.log(card);
-    swiperWrapper.append(card);
-  };
-  finalSliderSongArray.forEach(renderSliderCard);
+//     const renderSliderCard = (eachSliderSong) => {
+//       console.log(sliderWrapper);
+//     };
+//     const card = `<div class="swiper-slide" style= "background-image:url("${data.albumArtwork}")" >`;
+//     console.log(card);
+//     swiperWrapper.append(card);
+//   };
+//   finalSliderSongArray.forEach(renderSliderCard);
 
-  return swiperWrapper;
-};
+//   return swiperWrapper;
+// };
 
 // const renderSliderCards = (finalSliderSongArray) => {
 //   const sliderWrapper = $(".swiper-wrapper");

@@ -292,6 +292,6 @@ $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
   // fetchYoutubeData();
-  renderSliderCards();
+  // renderSliderCards();
   homePageSliders();
 });
