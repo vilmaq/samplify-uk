@@ -149,6 +149,9 @@ const renderSliderCards = () => {
       console.log(data.albumArtwork);
     }
 
+  const renderSliderCard = (eachSliderSong) => {
+    console.log(sliderWrapper);
+  };
     const card = `<div class="swiper-slide" style= "background-image:url("${data.albumArtwork}")" >`;
     console.log(card);
     swiperWrapper.append(card);

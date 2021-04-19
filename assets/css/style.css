@@ -257,6 +257,41 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 25px;
+}
+
+.songDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: unset;
+  margin: 2rem;
+  font-size: 1.2rem;
+}
+
+#titleOfSong {
+  color: black;
+  padding: 0rem;
+  text-align: unset;
+}
+
+#songArtist {
+  font-weight: normal;
+  font-size: 1.7rem;
+  color: black;
+  margin: 0rem;
+  padding: 0rem;
+  text-align: unset;
+}
+
+.sampleHeading {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5rem;
 }
 
 #sampleContainer {
@@ -264,10 +299,6 @@ input:focus {
   flex-direction: column;
   margin: 6rem;
   align-items: center;
-}
-
-.sampleHeading {
-  margin: 1rem;
 }
 
 .break {
