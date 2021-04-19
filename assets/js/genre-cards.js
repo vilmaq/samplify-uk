@@ -117,36 +117,35 @@ const genreCards = [
   },
 ];
 
-const generateRandomSliderArtworks = (event) => {
-  let sliderArtworks = 10;
-  const geniusSongID = genreCards.id;
-  const geniusSongArtwork = genreCards.albumArtwork;
+let randomSongIndex = genreCards[Math.floor(Math.random() * genreCards.length)];
 
-  const randomSliderSongObject = {
-    geniusSongID: geniusSongID,
+console.log(randomSongIndex);
 
-    geniusSongArtwork: geniusSongArtwork,
-  };
+// for  (let i = 0; i <sliderArtworks.length; i ++) {
+//   genreCards[Math.floor(Math.random() * genreCards.length)];
 
-  console.log(geniusSongID);
-  console.log(geniusSongArtwork);
+//   console.log(randomSongIndex);
+// let sliderArtworks = 10;
+// const geniusSongID = genreCards.id;
+// const geniusSongArtwork = genreCards.albumArtwork;
+// const randomSliderSongObject = {
+//   geniusSongID: geniusSongID,
+//   geniusSongArtwork: geniusSongArtwork,
+// };
+// console.log(geniusSongID);
+// console.log(geniusSongArtwork);
+// function randomSliderSongGenerator() {
+//   const randomArtworkIndex = Math.floor(
+//     Math.random() * sliderArtworks.length
+//   );
+//   const randomSliderArtworks = randomSliderSongObject[randomIndex];
+//   return randomSliderArtworks;
+// }
+// for (let i = 0; i < sliderArtworks.length; i++) {
+//   let randomArtworks = randomSliderSongGenerator();
+//   result.push(randomArtworks);
+// }
+// return randomArtworks;
 
-  function randomSliderSongGenerator() {
-    const randomArtworkIndex = Math.floor(
-      Math.random() * sliderArtworks.length
-    );
-    const randomSliderArtworks = randomSliderSongObject[randomIndex];
-
-    return randomSliderArtworks;
-  }
-
-  for (let i = 0; i < sliderArtworks.length; i++) {
-    let randomArtworks = randomSliderSongGenerator();
-    result.push(randomArtworks);
-  }
-
-  return randomArtworks;
-};
-
-genreCards.push(randomSliderSongObject);
-console.log(randomSliderSongObject);
+// genreCards.push(randomSliderSongObject);
+// console.log(randomSliderSongObject);

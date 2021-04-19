@@ -273,6 +273,4 @@ $(document).ready(function () {
   // fetchYoutubeData();
 
   homePageSliders();
-
-  generateRandomSliderArtworks();
 });
