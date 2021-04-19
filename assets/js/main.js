@@ -236,34 +236,38 @@ const onDelete = (eachGenre) => {
   }
 };
 
-const renderMainCard = (geniusData) => {
+const renderMainCard = () => {
   container.empty();
-  for (let i = 0; i < 6; i++) {
+  let results = geniusRequestedData.hits
+  console.log(results)
+    const renderEachCard = (each) => {
     const card = `<div class="searchCardContainer is-mobile"> 
-    <div class="card" data-title= "${geniusData.hits[i].result.title}" data-geniusid="${geniusData.hits[i].result.id}" data-artist="${geniusData.hits[i].result.primary_artist.name}" data-releasdate =""  data-bimage="${geniusData.hits[i].result.song_art_image_url}">
-      <div class="card-image artworkClick" data-geniusid="${geniusData.hits[i].result.id}" style="background-image: url('${geniusData.hits[i].result.song_art_image_url}');" ><button class="delete is-large deleteCard"></button></div>
-      <div class="card-text content is-normal">
-        <h1 id="songTitle">${geniusData.hits[i].result.title}</h1>
-        <h3 id="getArtist" class="subtitle">Artist: ${geniusData.hits[i].result.primary_artist.name}</h3>
-        <h3 id="getReleaseDate" class="subtitle">Release Date: WIP</h3>
-      </div>
-        <div class="card-footer">
-          <div class="card-footer-item">
-            <span>
-              Add to <a id="addFavorite" class="favorites" onclick="addToFavoritesLocalStorage(this)">Favorites</a>
-            </span>
-          </div>
-          <div class="card-footer-item">
-            <span>
-              Share on <a href="#">Facebook</a>
-            </span>
-          </div>
+      <div class="card" data-title= "${each.result.title}" data-geniusid="${each.result.id}" data-artist="${each.result.primary_artist.name}" data-releasdate =""  data-bimage="${each.result.song_art_image_url}">
+        <div class="card-image artworkClick" data-geniusid="${each.result.id}" style="background-image: url('${each.result.song_art_image_url}');" ><button class="delete is-large deleteCard"></button></div>
+        <div class="card-text content is-normal">
+          <h1 id="songTitle">${each.result.title}</h1>
+          <h3 id="getArtist" class="subtitle">Artist: ${each.result.primary_artist.name}</h3>
+          <h3 id="getReleaseDate" class="subtitle">Release Date: WIP</h3>
         </div>
-    </div>
-  </div>`;
-
-    container.append(card);
-  }
+          <div class="card-footer">
+            <div class="card-footer-item">
+              <span>
+                Add to <a id="addFavorite" class="favorites" onclick="addToFavoritesLocalStorage(this)">Favorites</a>
+              </span>
+            </div>
+            <div class="card-footer-item">
+              <span>
+                Share on <a href="#">Facebook</a>
+              </span>
+            </div>
+          </div>
+      </div>
+    </div>`;
+    return card
+    }
+    
+  const cards = results.map(renderEachCard)
+  container.append(cards)
 };
 
 // const artworkOnClick = () => {
