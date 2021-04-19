@@ -240,9 +240,9 @@ const onDelete = (eachGenre) => {
 
 const renderMainCard = () => {
   container.empty();
-  let results = geniusRequestedData.hits
-  console.log(results)
-    const renderEachCard = (each) => {
+  let results = geniusRequestedData.hits;
+  console.log(results);
+  const renderEachCard = (each) => {
     const card = `<div class="searchCardContainer is-mobile"> 
       <div class="card" data-title= "${each.result.title}" data-geniusid="${each.result.id}" data-artist="${each.result.primary_artist.name}" data-releasdate =""  data-bimage="${each.result.song_art_image_url}">
         <div class="card-image artworkClick" data-geniusid="${each.result.id}" style="background-image: url('${each.result.song_art_image_url}');" ><button class="delete is-large deleteCard"></button></div>
@@ -265,11 +265,12 @@ const renderMainCard = () => {
           </div>
       </div>
     </div>`;
-    return card
-    }
-    
-  const cards = results.map(renderEachCard)
-  container.append(cards)
+    return card;
+  };
+
+  let cards = results.map(renderEachCard);
+  cards = cards.slice(0, 6);
+  container.append(cards);
 };
 
 // const artworkOnClick = () => {
