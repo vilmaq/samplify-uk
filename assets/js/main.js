@@ -34,10 +34,11 @@ async function fetchYoutubeData(
   </div>
   </div>
   <div class="break"></div>
-  <div id="sampleHeading"><h1 class="sampleHeading">Samples:</h1></div>`);
+  <div id="sampleHeading"><h1 class="sampleHeading">Samples:</h1></div>
+  `);
     sampleSongFullTitle.forEach(async (sample) => {
       let userInput = $("#search-input").val();
-      const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey2}`;
+      const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey}`;
       const response = await fetch(youtubeUrl);
       const data = await response.json();
       console.log(data);
@@ -47,8 +48,12 @@ async function fetchYoutubeData(
       try {
         container.append(
           `<div id="sampleContainer">
+          <div id="sampleH2">
         <h2>${sample.full_title}</h2>
+        </div> 
+        <div class ="embedded-video-div">
         <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
         </div>`
         );
       } catch (e) {
@@ -195,21 +200,20 @@ const getLocalStorageData = () => {
   } else return localStorageData;
 };
 
-/* <div class="swiper-slide"></div>
-<div class="swiper-slide"></div>
-<div class="swiper-slide"></div>
-<div class="swiper-slide"></div>
-<div class="swiper-slide"></div>
-<div class="swiper-slide"></div>
-<div class="swiper-slide"></div>
-<div class="swiper-slide"></div> */
-
 const onDelete = (eachGenre) => {
   // container.empty();
   event.stopPropagation();
   const swipeCard = `<div class="swiper-container">
     <div class="swiper-wrapper">
     </div>
+    <div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
+<div class="swiper-slide"></div>
   </div>
   <div class="swiper-pagination"></div>
   <div class="swiper-button-prev"></div>
@@ -292,6 +296,6 @@ $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
   // fetchYoutubeData();
-  // renderSliderCards();
+  renderSliderCards();
   homePageSliders();
 });
