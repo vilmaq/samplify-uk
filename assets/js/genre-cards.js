@@ -130,6 +130,25 @@ for (let i = 0; i < 10; i++) {
   console.log(randomSliderSongs);
 }
 
+const renderSliderCards = (finalSliderSongArray) => {
+  const sliderWrapper = $(".swiper-wrapper");
+
+const renderSliderCard = (eachSliderSong) => {
+  console.log(sliderWrapper);
+};
+// const renderSliderCardContainer = (eachSong) => {
+//   const sliderCardContainer = `<div class="swiper-container">
+//   <div class="swiper-wrapper">
+//   <div class="swiper-slide" style= "background-image:url("${eachGenre.albumArtwork}")" >
+//   </div>
+// <div class="swiper-pagination"></div>
+// <div class="swiper-button-prev"></div>
+// <div class="swiper-button-next"></div>
+// </div>`;
+//   console.log(each);
+//   container.append(card);
+// };
+
 // for  (let i = 0; i <sliderArtworks.length; i ++) {
 //   genreCards[Math.floor(Math.random() * genreCards.length)];
 
