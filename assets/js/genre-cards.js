@@ -149,6 +149,15 @@ const renderSliderCard = (finalSliderSongArray) => {
 
 const renderSliderCards = () => {
   const swiperWrapper = $(".swiper-wrapper");
+  $(document).ready(function () {
+    $(".swiper-slide").click(function () {
+      $(".swiper-container").hide();
+      console.log(youtubeApiKey);
+      console.log($(this).data("geniusid"));
+      const geniusSongID = $(this).data("geniusid");
+      fetchGeniusIDData(geniusSongID);
+    });
+  });
   console.log(swiperWrapper);
 
   swiperWrapper.empty();
