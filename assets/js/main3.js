@@ -1,25 +1,7 @@
 // genreCards.forEach(console.log(id));
-var youtubeApiKeyNew;
-var youtubeApiKey;
 
-function swapApiKey() {
-  youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
-  const youtubeApiKey2 = "AIzaSyCYuac5jmWm9wfCkzMD7fE2D5YG0mRCznA";
-
-  async function fetchKey() {
-    const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
-    const response = await fetch(youtubeUrl);
-    const data = await response.json();
-    console.log(data);
-    if (data.hasOwnProperty("error")) {
-      youtubeApiKey = youtubeApiKey2;
-    }
-    console.log(youtubeApiKey);
-  }
-
-  fetchKey();
-}
-
+const youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
+const youtubeApiKey2 = "AIzaSyCYuac5jmWm9wfCkzMD7fE2D5YG0mRCznA";
 const geniusHeaderObject = {
   method: "GET",
   headers: {
@@ -37,24 +19,21 @@ async function fetchYoutubeData(
   songImage,
   songTitle,
   songArtist,
-  originalSongRD,
-  originalSongID
+  originalSongRD
 ) {
   console.log(sampleSongFullTitle);
   if (sampleSongFullTitle.length === 0) {
-    noSampleModal(originalSongID);
+    noSampleModal();
   } else {
     container.empty();
     container.append(`<div id="titleAndArtwork">
   <img src="${songImage}" width="500" height="500"/>
   <div class="songDetails"><h2>${originalSongRD}</h2>
-  <h1 id="titleOfSong">${songTitle}</h1>
+  <h1 id="titleOfSong">${songTitle}</h1><br>
   <h1 id="songArtist">${songArtist}</h1>
-  <iframe class="appleMusic" allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="60" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://genius.com/songs/${originalSongID}/apple_music_player"></iframe>
   </div>
   </div>
-  <div class="break"></div>
-`);
+  <div class="break"></div>`);
     sampleSongFullTitle.forEach(async (sample) => {
       let userInput = $("#search-input").val();
       const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey}`;
@@ -66,14 +45,13 @@ async function fetchYoutubeData(
       const embedYoutubeURL = `https://www.youtube.com/embed/${videoID}`;
       try {
         container.append(
-          `<div class="tile is-parent">
-          <article class="tile is-child notification is-info sampleBox">
-          <p class="subtitle">Sampled:</p>
-            <p class="title">${sample.full_title}</p>
-            
-            <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-           
-          </article>
+          `<div id="sampleContainer">
+          <div id="sampleH2">
+        <h2>${sample.full_title}</h2>
+        </div> 
+        <div class ="embedded-video-div">
+        <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
         </div>`
         );
       } catch (e) {
@@ -94,7 +72,7 @@ async function fetchYoutubeData(
   }
 }
 
-const noSampleModal = (originalSongID) => {
+const noSampleModal = () => {
   container.append(`<div class="modal is-active">
   <div class="modal-background"></div>
   <div class="modal-card">
@@ -103,10 +81,7 @@ const noSampleModal = (originalSongID) => {
       <button class="delete deleteModal" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
-      Sorry, there were no samples found for this song! However, here is a snippet of your selected song:
-    </section>
-    <section class="modal-card-body">
-    <iframe class="appleMusic" allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="70" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://genius.com/songs/${originalSongID}/apple_music_player"></iframe>
+      Sorry, there were no samples found for this song! However, here is some additional info:
     </section>
     <footer class="modal-card-foot">
     </footer>
@@ -155,7 +130,6 @@ async function fetchGeniusIDData(geniusSongID) {
       originalSongArtist: idPath.primary_artist.name,
       originalSongRD: idPath.release_date_for_display,
       originalSongArt: idPath.song_art_image_url,
-      originalSongID: idPath.id,
       sample: samples,
       sampleCheck: idPath.song_relationships[0].songs[0],
     };
@@ -164,58 +138,29 @@ async function fetchGeniusIDData(geniusSongID) {
     const originalSongArtist = geniusIDSampleData.originalSongArtist;
     const originalSongRD = geniusIDSampleData.originalSongRD;
     const originalSongArt = geniusIDSampleData.originalSongArt;
-    const originalSongID = geniusIDSampleData.originalSongID;
     const sampleSong = geniusIDSampleData.sample;
     fetchYoutubeData(
       sampleSong,
       originalSongArt,
       originalSongTitle,
       originalSongArtist,
-      originalSongRD,
-      originalSongID
+      originalSongRD
     );
     console.log(geniusIDSampleData.sample);
   } catch (err) {
-    console.log("hiid");
     noSampleModal();
   }
 }
 
 // add clicked item to local storage
-// const addToFavoritesLocalStorage = (element) => {
-//   // const favoritesData = getLocalStorageData()
-
-//   // const favCard = JSON.parse(localStorage.getItem("card"));
-//   // const target = $(event.target).parentsUntil(".searchCardContainer").
-//   // const target = $(event.target).closest(".card")
-//   const localStorageData = getLocalStorageData();
-//   console.log(localStorageData);
-
-//   const target = element.closest(".card");
-
-//   const favTitle = target.dataset.title;
-
-//   const favArtist = target.dataset.artist;
-//   const favImage = target.dataset.bimage;
-//   const favId = target.dataset.geniusid;
-
-//   const favObject = {
-//     favTitle,
-//     favArtist,
-//     favImage,
-//     favId,
-//   };
-
-//   // console.log(favObject);
-
-//   localStorageData.push(favObject);
-//   console.log(localStorageData);
-
-//   localStorage.setItem("localStorageFavData", JSON.stringify(localStorageData));
-// };
-
 const addToFavoritesLocalStorage = (element) => {
+  // const favoritesData = getLocalStorageData()
+
+  // const favCard = JSON.parse(localStorage.getItem("card"));
+  // const target = $(event.target).parentsUntil(".searchCardContainer").
+  // const target = $(event.target).closest(".card")
   const localStorageData = getLocalStorageData();
+  console.log(localStorageData);
 
   const target = element.closest(".card");
 
@@ -225,73 +170,58 @@ const addToFavoritesLocalStorage = (element) => {
   const favImage = target.dataset.bimage;
   const favId = target.dataset.geniusid;
 
-  const favObject = {
-    favTitle,
-    favArtist,
-    favImage,
-    favId,
-  };
-  // const favAdded = element.dataset.addedToFav;
+  // const favCards =
+  //   JSON.parse(localStorage.getItem("localStorageFavData")) || [];
+  if (localStorageData) {
+    // Code for localStorage
 
-  if (localStorageData.length === 0) {
-    element.textContent = "Remove from Favourites";
+    let checkForDoubles = localStorageData.filter(
+      (song) => song.favTitle == favTitle
+    );
+    console.log(checkForDoubles);
+    console.log(checkForDoubles.length);
+
+    if (checkForDoubles.length != 0) {
+      let checkForDoubles = localStorageData.filter(
+        (song) => song.favTitle != favTitle
+      );
+      // localStorage.setItem("localStorageFavData", JSON.stringify(newFavCards));
+
+      // const favObject = {
+      //   favTitle,
+      //   favArtist,
+      //   favImage,
+      //   favId,
+      // };
+
+      // console.log(favObject);
+
+      // localStorageData.push(favObject);
+      // console.log(localStorageData);
+
+      // localStorage.setItem(
+      //   "localStorageFavData",
+      //   JSON.stringify(localStorageData)
+      // );
+    }
+  } else {
+    const favObject = {
+      favTitle,
+      favArtist,
+      favImage,
+      favId,
+    };
+
+    console.log(favObject);
+
     localStorageData.push(favObject);
+    console.log(localStorageData);
 
     localStorage.setItem(
       "localStorageFavData",
       JSON.stringify(localStorageData)
     );
-  } else {
-    let addedToFavArray = localStorageData.filter(
-      (song) => song.favTitle === favTitle
-    );
-
-    if (addedToFavArray.length === 0) {
-      element.textContent = "Remove from Favourites";
-
-      localStorageData.push(favObject);
-
-      localStorage.setItem(
-        "localStorageFavData",
-        JSON.stringify(localStorageData)
-      );
-    } else {
-      element.textContent = "Add to Favourites";
-      let newLocalStorageArray = localStorageData.filter(
-        (song) => song.favTitle != favTitle
-      );
-
-      localStorage.setItem(
-        "localStorageFavData",
-        JSON.stringify(newLocalStorageArray)
-      );
-    }
   }
-  // if (favAdded === "false") {
-  //   console.log("Not yet added");
-  //   element.setAttribute("data-added-to-fav", "true");
-
-  //   console.log(favObject);
-
-  //   localStorageData.push(favObject);
-  //   console.log(localStorageData);
-
-  //   localStorage.setItem(
-  //     "localStorageFavData",
-  //     JSON.stringify(localStorageData)
-  //   );
-  // } else {
-  //   console.log("Already Added");
-  //   element.setAttribute("data-added-to-fav", "false");
-  //   console.log(favAdded);
-
-  //   let newFavCards = localStorageData.filter(
-  //     (song) => song.favTitle != favTitle
-  //   );
-  //   console.log(newFavCards);
-
-  //   localStorage.setItem("localStorageFavData", JSON.stringify(newFavCards));
-  // }
 };
 
 const renderFavoritesCards = () => {
@@ -363,7 +293,7 @@ const renderMainCard = () => {
           <div class="card-footer">
             <div class="card-footer-item">
               <span>
-                 <a id="addFavorite" class="favorites" data-added-to-fav="false"  onclick="addToFavoritesLocalStorage(this)" data-content="Add to Favorites">Add to Favourites</a>
+                Add to <a id="addFavorite" class="favorites" onclick="addToFavoritesLocalStorage(this)">Favorites</a>
               </span>
             </div>
             <div class="card-footer-item">
@@ -396,7 +326,6 @@ const onSubmit = async (event) => {
   renderMainCard(geniusDataObject);
   $(".deleteCard").on("click", onDelete);
   $(".artworkClick").click(function () {
-    console.log(youtubeApiKey);
     console.log($(this).data("geniusid"));
     const geniusSongID = $(this).data("geniusid");
     fetchGeniusIDData(geniusSongID);
@@ -409,7 +338,6 @@ $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
   // fetchYoutubeData();
-  swapApiKey();
   renderSliderCards();
   homePageSliders();
 });
