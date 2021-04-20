@@ -97,6 +97,7 @@ p {
   align-items: center;
   font-size: 35px;
   transition: 0.3s;
+  margin-top: 40px;
 }
 
 #search-input {
