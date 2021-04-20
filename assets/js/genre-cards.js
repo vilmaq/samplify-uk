@@ -65,13 +65,13 @@ const genreCards = [
     // Frank Ocean - Siegfried
     id: 2842086,
     albumArtwork:
-      "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F4ef12d48c4a618a18e5f8467023ff9ec.600x600x1.jpg",
+      "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F626ddf4c88de200d9487bb42449d1ae3.1000x1000x1.png",
   },
   {
     // James Blake - Can't Believe the Way We Flow
     id: 4201753,
     albumArtwork:
-      "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F4ef12d48c4a618a18e5f8467023ff9ec.600x600x1.jpg",
+      "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F469d08bb4989f5ff4ef6e6d0005443cf.1000x1000x1.png",
   },
   {
     // Jay Z & Justin Timberlake - Holy Grail
@@ -130,7 +130,10 @@ function randomSliderSongGenerator() {
 }
 for (let i = 0; i < 9; i++) {
   let randomSliderSongs = randomSliderSongGenerator();
-  finalSliderSongArray.push(randomSliderSongs);
+  if (!finalSliderSongArray.includes(randomSliderSongs)) {
+    finalSliderSongArray.push(randomSliderSongs);
+  }
+
   console.log(randomSliderSongs);
 }
 
