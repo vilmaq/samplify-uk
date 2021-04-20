@@ -43,21 +43,24 @@ async function fetchYoutubeData(
   songImage,
   songTitle,
   songArtist,
-  originalSongRD
+  originalSongRD,
+  originalSongID
 ) {
   console.log(sampleSongFullTitle);
   if (sampleSongFullTitle.length === 0) {
-    noSampleModal();
+    noSampleModal(originalSongID);
   } else {
     container.empty();
     container.append(`<div id="titleAndArtwork">
-    <img src="${songImage}" width="500" height="500"/>
-    <div class="songDetails"><h2>${originalSongRD}</h2>
-    <h1 id="titleOfSong">${songTitle}</h1><br>
-    <h1 id="songArtist">${songArtist}</h1>
-    </div>
-    </div>
-    <div class="break"></div>`);
+  <img src="${songImage}" width="500" height="500"/>
+  <div class="songDetails"><h2>${originalSongRD}</h2>
+  <h1 id="titleOfSong">${songTitle}</h1>
+  <h1 id="songArtist">${songArtist}</h1>
+  <iframe class="appleMusic" allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="60" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://genius.com/songs/${originalSongID}/apple_music_player"></iframe>
+  </div>
+  </div>
+  <div class="break"></div>
+`);
     sampleSongFullTitle.forEach(async (sample) => {
       let userInput = $("#search-input").val();
       const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey}`;
@@ -69,9 +72,14 @@ async function fetchYoutubeData(
       const embedYoutubeURL = `https://www.youtube.com/embed/${videoID}`;
       try {
         container.append(
-          `<div id="sampleContainer">
-        <h2>${sample.full_title}</h2>
-        <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          `<div class="tile is-parent">
+          <article class="tile is-child notification is-info sampleBox">
+          <p class="subtitle">Sampled:</p>
+            <p class="title">${sample.full_title}</p>
+            
+            <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+           
+          </article>
         </div>`
         );
       } catch (e) {
@@ -92,7 +100,7 @@ async function fetchYoutubeData(
   }
 }
 
-const noSampleModal = () => {
+const noSampleModal = (originalSongID) => {
   container.append(`<div class="modal is-active">
   <div class="modal-background"></div>
   <div class="modal-card">
@@ -101,7 +109,10 @@ const noSampleModal = () => {
       <button class="delete deleteModal" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
-      Sorry, there were no samples found for this song!
+      Sorry, there were no samples found for this song! However, here is a snippet of your selected song:
+    </section>
+    <section class="modal-card-body">
+    <iframe class="appleMusic" allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="70" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://genius.com/songs/${originalSongID}/apple_music_player"></iframe>
     </section>
     <footer class="modal-card-foot">
     </footer>
@@ -120,7 +131,6 @@ async function fetchGeniusIDData(geniusSongID) {
   try {
     const geniusIDResponse = await fetch(geniusIDURL, geniusHeaderObject);
     const geniusIDData = await geniusIDResponse.json();
-    console.log(geniusIDData);
     const idPath = geniusIDData.response.song;
     const samplePath = idPath.song_relationships[0].songs;
 
@@ -129,30 +139,33 @@ async function fetchGeniusIDData(geniusSongID) {
     }
     console.log(samples);
     const geniusIDSampleData = {
-      originalSongTitle: idPath.full_title,
+      originalSongTitle: idPath.title,
       originalSongArtist: idPath.primary_artist.name,
       originalSongRD: idPath.release_date_for_display,
       originalSongArt: idPath.song_art_image_url,
+      originalSongID: idPath.id,
       sample: samples,
       sampleCheck: idPath.song_relationships[0].songs[0],
     };
     console.log(geniusIDSampleData.sampleCheck);
     const originalSongTitle = geniusIDSampleData.originalSongTitle;
-    const originalSongArt = geniusIDSampleData.originalSongArt;
-    const originalSongRD = geniusIDSampleData.originalSongRD;
     const originalSongArtist = geniusIDSampleData.originalSongArtist;
+    const originalSongRD = geniusIDSampleData.originalSongRD;
+    const originalSongArt = geniusIDSampleData.originalSongArt;
+    const originalSongID = geniusIDSampleData.originalSongID;
     const sampleSong = geniusIDSampleData.sample;
     fetchYoutubeData(
       sampleSong,
       originalSongArt,
       originalSongTitle,
       originalSongArtist,
-      originalSongRD
+      originalSongRD,
+      originalSongID
     );
     console.log(geniusIDSampleData.sample);
   } catch (err) {
-    // noSampleModal();
-    console.log(err);
+    console.log("hiid");
+    noSampleModal();
   }
 }
 
