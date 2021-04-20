@@ -142,7 +142,7 @@ for (let i = 0; i < 9; i++) {
 const renderSliderCard = (finalSliderSongArray) => {
   console.log(swiperWrapper);
 
-  const card = `<div class="swiper-slide" style= "background-image:url("${finalSliderSongArray.albumArtwork}")" >`;
+  const card = `<div class="swiper-slide artworkClick" data-geniusid="${finalSliderSongArray.id}" style= "background-image:url('${finalSliderSongArray.albumArtwork}')" >`;
   swiperWrapper.append(card);
   return swiperWrapper;
 };
@@ -154,6 +154,7 @@ const renderSliderCards = () => {
   swiperWrapper.empty();
 
   finalSliderSongArray.forEach(renderSliderCard);
+
   return swiperWrapper;
 
   // return randomArtworks;
