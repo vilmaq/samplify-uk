@@ -19,7 +19,8 @@ async function fetchYoutubeData(
   songImage,
   songTitle,
   songArtist,
-  originalSongRD
+  originalSongRD,
+  originalSongID
 ) {
   console.log(sampleSongFullTitle);
   if (sampleSongFullTitle.length === 0) {
@@ -29,11 +30,13 @@ async function fetchYoutubeData(
     container.append(`<div id="titleAndArtwork">
   <img src="${songImage}" width="500" height="500"/>
   <div class="songDetails"><h2>${originalSongRD}</h2>
-  <h1 id="titleOfSong">${songTitle}</h1><br>
+  <h1 id="titleOfSong">${songTitle}</h1>
   <h1 id="songArtist">${songArtist}</h1>
+  <iframe class="appleMusic" allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="60" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://genius.com/songs/${originalSongID}/apple_music_player"></iframe>
   </div>
   </div>
-  <div class="break"></div>`);
+  <div class="break"></div>
+`);
     sampleSongFullTitle.forEach(async (sample) => {
       let userInput = $("#search-input").val();
       const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey}`;
@@ -131,6 +134,7 @@ async function fetchGeniusIDData(geniusSongID) {
       originalSongArtist: idPath.primary_artist.name,
       originalSongRD: idPath.release_date_for_display,
       originalSongArt: idPath.song_art_image_url,
+      originalSongID: idPath.id,
       sample: samples,
       sampleCheck: idPath.song_relationships[0].songs[0],
     };
@@ -139,13 +143,15 @@ async function fetchGeniusIDData(geniusSongID) {
     const originalSongArtist = geniusIDSampleData.originalSongArtist;
     const originalSongRD = geniusIDSampleData.originalSongRD;
     const originalSongArt = geniusIDSampleData.originalSongArt;
+    const originalSongID = geniusIDSampleData.originalSongID;
     const sampleSong = geniusIDSampleData.sample;
     fetchYoutubeData(
       sampleSong,
       originalSongArt,
       originalSongTitle,
       originalSongArtist,
-      originalSongRD
+      originalSongRD,
+      originalSongID
     );
     console.log(geniusIDSampleData.sample);
   } catch (err) {
