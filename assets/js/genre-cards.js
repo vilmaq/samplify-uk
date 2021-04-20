@@ -122,54 +122,32 @@ let finalSliderSongArray = [];
 const swiperWrapper = $(".swiper-wrapper");
 
 function randomSliderSongGenerator() {
-  let randomSongIndex =
-    genreCards[Math.floor(Math.random() * genreCards.length)];
+  const randomSong = genreCards[Math.floor(Math.random() * genreCards.length)];
 
-  console.log(randomSongIndex);
-  return randomSongIndex;
+  return randomSong;
 }
 for (let i = 0; i < 9; i++) {
-  let randomSliderSongs = randomSliderSongGenerator();
+  const randomSliderSongs = randomSliderSongGenerator();
   if (!finalSliderSongArray.includes(randomSliderSongs)) {
     finalSliderSongArray.push(randomSliderSongs);
   }
-
-  console.log(randomSliderSongs);
 }
 
-// for (let i = 0; i < finalSliderSongArray.length; i++) {
-// let data = finalSliderSongArray[i];
-//   console.log(data.albumArtwork);
-// }
-
 const renderSliderCard = (finalSliderSongArray) => {
-  console.log(swiperWrapper);
-
   const card = `<div class="swiper-slide artworkClick" data-geniusid="${finalSliderSongArray.id}" style= "background-image:url('${finalSliderSongArray.albumArtwork}')" >`;
   swiperWrapper.append(card);
-  return swiperWrapper;
 };
 
 const renderSliderCards = () => {
-  const swiperWrapper = $(".swiper-wrapper");
   $(document).ready(function () {
     $(".swiper-slide").click(function () {
       $(".swiper-container").hide();
-      console.log(youtubeApiKey);
-      console.log($(this).data("geniusid"));
       const geniusSongID = $(this).data("geniusid");
       fetchGeniusIDData(geniusSongID);
     });
   });
-  console.log(swiperWrapper);
 
   swiperWrapper.empty();
 
   finalSliderSongArray.forEach(renderSliderCard);
-
-  return swiperWrapper;
-
-  // return randomArtworks;
-  // genreCards.push(randomSliderSongObject);
-  // console.log(randomSliderSongObject);
 };
