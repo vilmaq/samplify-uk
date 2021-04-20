@@ -198,7 +198,7 @@ const renderFavoriteCards = (favCard) => {
 const onDelete = (click) => {
   const clickedTarget = click.target;
   const cardContainer = clickedTarget.closest(".searchCardContainer");
-  event.stopPropagation();
+  // event.stopPropagation();
 
   console.log(click);
 
