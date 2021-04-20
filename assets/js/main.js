@@ -216,7 +216,6 @@ async function fetchGeniusIDData(geniusSongID) {
 
 const addToFavoritesLocalStorage = (element) => {
   const localStorageData = getLocalStorageData();
-  console.log(localStorageData);
 
   const target = element.closest(".card");
 
@@ -235,6 +234,7 @@ const addToFavoritesLocalStorage = (element) => {
   // const favAdded = element.dataset.addedToFav;
 
   if (localStorageData.length === 0) {
+    element.textContent = "Remove from Favourites";
     localStorageData.push(favObject);
 
     localStorage.setItem(
@@ -247,6 +247,8 @@ const addToFavoritesLocalStorage = (element) => {
     );
 
     if (addedToFavArray.length === 0) {
+      element.textContent = "Remove from Favourites";
+
       localStorageData.push(favObject);
 
       localStorage.setItem(
@@ -254,7 +256,7 @@ const addToFavoritesLocalStorage = (element) => {
         JSON.stringify(localStorageData)
       );
     } else {
-      console.log("already a favorite");
+      element.textContent = "Add to Favourites";
       let newLocalStorageArray = localStorageData.filter(
         (song) => song.favTitle != favTitle
       );
@@ -361,7 +363,7 @@ const renderMainCard = () => {
           <div class="card-footer">
             <div class="card-footer-item">
               <span>
-                Add to <a id="addFavorite" class="favorites" data-added-to-fav="false"  onclick="addToFavoritesLocalStorage(this)">Favorites</a>
+                 <a id="addFavorite" class="favorites" data-added-to-fav="false"  onclick="addToFavoritesLocalStorage(this)" data-content="Add to Favorites">Add to Favourites</a>
               </span>
             </div>
             <div class="card-footer-item">
