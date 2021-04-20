@@ -1,7 +1,37 @@
 // genreCards.forEach(console.log(id));
+var youtubeApiKeyNew;
+var youtubeApiKey;
 
-const youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
-const youtubeApiKey2 = "AIzaSyCYuac5jmWm9wfCkzMD7fE2D5YG0mRCznA";
+function swapApiKey() {
+  youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
+  const youtubeApiKey2 = "AIzaSyCYuac5jmWm9wfCkzMD7fE2D5YG0mRCznA";
+
+  async function fetchKey2() {
+    const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey2}`;
+    const response = await fetch(youtubeUrl);
+    const data = await response.json();
+    console.log(data);
+  }
+
+  async function fetchKey() {
+    const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
+    const response = await fetch(youtubeUrl);
+    const data = await response.json();
+    console.log(data);
+    if (data.hasOwnProperty("error")) {
+      youtubeApiKey = youtubeApiKey2;
+    }
+    console.log(youtubeApiKey);
+  }
+
+  fetchKey();
+  // try {
+  //   fetchKey();
+  // } catch (err) {
+  //   console.log("failed");
+  // }
+}
+
 const geniusHeaderObject = {
   method: "GET",
   headers: {
@@ -298,6 +328,7 @@ const onSubmit = async (event) => {
   renderMainCard(geniusDataObject);
   $(".deleteCard").on("click", onDelete);
   $(".artworkClick").click(function () {
+    console.log(youtubeApiKey);
     console.log($(this).data("geniusid"));
     const geniusSongID = $(this).data("geniusid");
     fetchGeniusIDData(geniusSongID);
@@ -310,6 +341,7 @@ $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
   // fetchYoutubeData();
+  swapApiKey();
   renderSliderCards();
   homePageSliders();
 });
