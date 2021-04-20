@@ -286,6 +286,15 @@ input:focus {
   text-align: unset;
 }
 
+.tile {
+  flex-grow: unset;
+  border: none;
+}
+
+.notification.is-info {
+  background-color: rgb(0, 0, 0, 0.6);
+}
+
 #sampleHeading {
   display: flex;
   flex-direction: row;

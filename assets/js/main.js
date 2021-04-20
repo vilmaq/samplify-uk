@@ -45,13 +45,14 @@ async function fetchYoutubeData(
       const embedYoutubeURL = `https://www.youtube.com/embed/${videoID}`;
       try {
         container.append(
-          `<div id="sampleContainer">
-          <div id="sampleH2">
-        <h2>${sample.full_title}</h2>
-        </div> 
-        <div class ="embedded-video-div">
-        <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+          `<div class="tile is-parent">
+          <article class="tile is-child notification is-info sampleBox">
+          <p class="subtitle">Sampled:</p>
+            <p class="title">${sample.full_title}</p>
+            
+            <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+           
+          </article>
         </div>`
         );
       } catch (e) {
