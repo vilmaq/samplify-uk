@@ -2,7 +2,7 @@
 
 ## Motivation
 
-Have you ever heard one of your favourite songs and noticed a short snippet of a song that you recognised, but couldn't quite put your finger on what it was? This is where Samplify comes in. Samplify allows you to search for any recognised song and find samples of other songs that were used by the producer with playable YouTube links.
+Have you ever been listening to one of your favourite songs and noticed a short snippet of a song that you recognised, but couldn't quite put your finger on what it was? This is where Samplify comes in. Samplify allows you to search for any song and find samples of other songs that were used by the producer (if available/samples were used) with playable YouTube links.
 
 ## How do I use Samplify?
 
