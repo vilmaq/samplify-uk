@@ -24,7 +24,7 @@ async function fetchYoutubeData(
 ) {
   console.log(sampleSongFullTitle);
   if (sampleSongFullTitle.length === 0) {
-    noSampleModal();
+    noSampleModal(originalSongID);
   } else {
     container.empty();
     container.append(`<div id="titleAndArtwork">
@@ -76,7 +76,7 @@ async function fetchYoutubeData(
   }
 }
 
-const noSampleModal = () => {
+const noSampleModal = (originalSongID) => {
   container.append(`<div class="modal is-active">
   <div class="modal-background"></div>
   <div class="modal-card">
@@ -85,7 +85,10 @@ const noSampleModal = () => {
       <button class="delete deleteModal" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
-      Sorry, there were no samples found for this song! However, here is some additional info:
+      Sorry, there were no samples found for this song! However, here is a snippet of your selected song:
+    </section>
+    <section class="modal-card-body">
+    <iframe class="appleMusic" allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="70" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://genius.com/songs/${originalSongID}/apple_music_player"></iframe>
     </section>
     <footer class="modal-card-foot">
     </footer>
@@ -155,6 +158,7 @@ async function fetchGeniusIDData(geniusSongID) {
     );
     console.log(geniusIDSampleData.sample);
   } catch (err) {
+    console.log("hiid");
     noSampleModal();
   }
 }
