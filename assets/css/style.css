@@ -355,9 +355,9 @@ input:focus {
 /*Small Breakpoint*/
 @media screen and (max-width: 576px) {
   #h1-span {
-    padding-top: 19rem;
+    padding-top: 17rem;
   }
-  /* .navbar {
+  .navbar {
     flex-direction: column;
   }
   ul {
@@ -365,15 +365,18 @@ input:focus {
   }
   li {
     flex-direction: column;
-  } */
+  }
+  .swiper-container {
+    padding-top: 0.25px;
+  }
 }
 
 /*IPhone 6/7/8Plus*/
 @media screen and (max-width: 414px) {
   #h1-span {
-    padding-top: 6rem;
+    padding-top: 17rem;
   }
-  /* .navbar {
+  .navbar {
     flex-direction: column;
   }
   ul {
@@ -381,7 +384,10 @@ input:focus {
   }
   li {
     flex-direction: column;
-  } */
+  }
+  .swiper-container {
+    padding-top: 0.25px;
+  }
 }
 
 /*Iphone 5/SE*/
@@ -400,10 +406,6 @@ input:focus {
   }
 
   .swiper-container {
-    display: flex;
-    width: 100%;
     padding-top: 0.1px;
-    padding-bottom: 50px;
-    justify-content: center;
   }
 }
