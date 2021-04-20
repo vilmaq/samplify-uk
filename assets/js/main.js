@@ -2,21 +2,20 @@
 var youtubeApiKeyNew;
 var youtubeApiKey;
 
+async function fetchKey() {
+  const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
+  const response = await fetch(youtubeUrl);
+  const data = await response.json();
+  // console.log(data);
+  if (data.hasOwnProperty("error")) {
+    youtubeApiKey = youtubeApiKey2;
+  }
+  // console.log(youtubeApiKey);
+}
+
 function swapApiKey() {
   youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
   const youtubeApiKey2 = "AIzaSyCYuac5jmWm9wfCkzMD7fE2D5YG0mRCznA";
-
-  async function fetchKey() {
-    const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
-    const response = await fetch(youtubeUrl);
-    const data = await response.json();
-    console.log(data);
-    if (data.hasOwnProperty("error")) {
-      youtubeApiKey = youtubeApiKey2;
-    }
-    console.log(youtubeApiKey);
-  }
-
   fetchKey();
 }
 
