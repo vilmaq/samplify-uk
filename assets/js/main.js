@@ -1,5 +1,5 @@
 // genreCards.forEach(console.log(id));
-let youtubeApiKeyNew;
+var youtubeApiKeyNew;
 let youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
 
 function swapApiKey() {
@@ -19,8 +19,9 @@ function swapApiKey() {
     const data = await response.json();
     console.log(data);
     if (data.hasOwnProperty("error")) {
-      fetchKey2();
+      youtubeApiKeyNew = youtubeApiKey2;
     }
+    console.log(youtubeApiKeyNew);
   }
 
   fetchKey();
