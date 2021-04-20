@@ -180,71 +180,46 @@ async function fetchGeniusIDData(geniusSongID) {
   }
 }
 
-// add clicked item to local storage
-// const addToFavoritesLocalStorage = (element) => {
-//   // const favoritesData = getLocalStorageData()
-
-//   // const favCard = JSON.parse(localStorage.getItem("card"));
-//   // const target = $(event.target).parentsUntil(".searchCardContainer").
-//   // const target = $(event.target).closest(".card")
-//   const localStorageData = getLocalStorageData();
-//   console.log(localStorageData);
-
-//   const target = element.closest(".card");
-
-//   const favTitle = target.dataset.title;
-
-//   const favArtist = target.dataset.artist;
-//   const favImage = target.dataset.bimage;
-//   const favId = target.dataset.geniusid;
-
-//   const favObject = {
-//     favTitle,
-//     favArtist,
-//     favImage,
-//     favId,
-//   };
-
-//   // console.log(favObject);
-
-//   localStorageData.push(favObject);
-//   console.log(localStorageData);
-
-//   localStorage.setItem("localStorageFavData", JSON.stringify(localStorageData));
-// };
-
+// the function that adds a song to Local Storage when "Add to Favourites" is clicked and removes it if the song has been already added before
 const addToFavoritesLocalStorage = (element) => {
   const localStorageData = getLocalStorageData();
 
+  // target the clicked card (song) and store the values in DOM
   const target = element.closest(".card");
-
   const favTitle = target.dataset.title;
-
   const favArtist = target.dataset.artist;
   const favImage = target.dataset.bimage;
   const favId = target.dataset.geniusid;
 
+  //create an Object with teh details of the clicked song
   const favObject = {
     favTitle,
     favArtist,
     favImage,
     favId,
   };
-  // const favAdded = element.dataset.addedToFav;
 
+  // check if the Local Storage is empty and if it is add the new song to LS
   if (localStorageData.length === 0) {
-    element.textContent = "Remove from Favourites";
+    //push the created favObject in line 195 to LS
     localStorageData.push(favObject);
 
     localStorage.setItem(
       "localStorageFavData",
       JSON.stringify(localStorageData)
     );
+
+    //change the context of the button from "Add to Favourites" to "Remove from Favourites"
+    element.textContent = "Remove from Favourites";
+
+    // if the LS is not empty check if the cliked Song Title (favTitle) is present in the LocalStorage/already added to Favourites
   } else {
+    // create a new Array which stores the result from comparing the LS with the Song title clicked
     let addedToFavArray = localStorageData.filter(
       (song) => song.favTitle === favTitle
     );
 
+    // if the new Array is empty, the song has not been previously added into LS so we push it into LS/add to Favourites and change the text content of the button from "Add to Favourites" to "Remove from Favourites"
     if (addedToFavArray.length === 0) {
       element.textContent = "Remove from Favourites";
 
@@ -254,43 +229,22 @@ const addToFavoritesLocalStorage = (element) => {
         "localStorageFavData",
         JSON.stringify(localStorageData)
       );
+
+      // if the Array is not empty, means that the song has been already added to favourites and clicking it again will remove it from LS/favourites
     } else {
-      element.textContent = "Add to Favourites";
+      //filter out the song clicked that is already in LS/favourites and push the new Array in LS
       let newLocalStorageArray = localStorageData.filter(
         (song) => song.favTitle != favTitle
       );
-
+      //push the new created array filtering out the clicked song to LS and change button text Content from "Remove from Favourites "  to "Add to Favourites"
       localStorage.setItem(
         "localStorageFavData",
         JSON.stringify(newLocalStorageArray)
       );
+
+      element.textContent = "Add to Favourites";
     }
   }
-  // if (favAdded === "false") {
-  //   console.log("Not yet added");
-  //   element.setAttribute("data-added-to-fav", "true");
-
-  //   console.log(favObject);
-
-  //   localStorageData.push(favObject);
-  //   console.log(localStorageData);
-
-  //   localStorage.setItem(
-  //     "localStorageFavData",
-  //     JSON.stringify(localStorageData)
-  //   );
-  // } else {
-  //   console.log("Already Added");
-  //   element.setAttribute("data-added-to-fav", "false");
-  //   console.log(favAdded);
-
-  //   let newFavCards = localStorageData.filter(
-  //     (song) => song.favTitle != favTitle
-  //   );
-  //   console.log(newFavCards);
-
-  //   localStorage.setItem("localStorageFavData", JSON.stringify(newFavCards));
-  // }
 };
 
 const renderFavoritesCards = () => {
@@ -349,7 +303,7 @@ const onDelete = (eachGenre) => {
 const renderMainCard = () => {
   container.empty();
   let results = geniusRequestedData.hits;
-  console.log(results);
+
   const renderEachCard = (each) => {
     const card = `<div class="searchCardContainer is-mobile"> 
       <div class="card" data-title= "${each.result.title}" data-geniusid="${each.result.id}" data-artist="${each.result.primary_artist.name}" data-releasdate =""  data-bimage="${each.result.song_art_image_url}">
