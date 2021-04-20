@@ -47,9 +47,14 @@ function homePageSliders() {
         slidesPerView: 1,
       },
 
+      414: {
+        slidesPerView: 2,
+      },
+
       560: {
         slidesPerView: 3,
       },
+
       990: {
         slidesPerView: 4,
       },
