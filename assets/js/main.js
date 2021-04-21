@@ -247,10 +247,6 @@ const addToFavoritesLocalStorage = (element) => {
   }
 };
 
-const renderFavoritesCards = () => {
-  for (let i = 0; i < localStorage.length; i++) {}
-};
-
 const getLocalStorageData = () => {
   const localStorageData = JSON.parse(
     localStorage.getItem("localStorageFavData")
@@ -305,7 +301,7 @@ const renderMainCard = () => {
   let results = geniusRequestedData.hits;
 
   const renderEachCard = (each) => {
-    const card = `<div class="searchCardContainer is-mobile"> 
+    const card = `<div class="searchCardContainer block is-mobile"> 
       <div class="card" data-title= "${each.result.title}" data-geniusid="${each.result.id}" data-artist="${each.result.primary_artist.name}" data-releasdate =""  data-bimage="${each.result.song_art_image_url}">
         <div class="card-image artworkClick" data-geniusid="${each.result.id}" style="background-image: url('${each.result.song_art_image_url}');" ><button class="delete is-large deleteCard"></button></div>
         <div class="card-text content is-normal">
@@ -320,8 +316,7 @@ const renderMainCard = () => {
               </span>
             </div>
             <div class="card-footer-item">
-              <span>
-                Share on <a href="#">Facebook</a>
+              <span>               
               </span>
             </div>
           </div>
