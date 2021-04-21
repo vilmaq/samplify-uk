@@ -327,14 +327,14 @@ input:focus {
 /*Devices over 1200px*/
 @media screen and (min-width: 1201px) {
   #h1-span {
-    padding-top: 0.1rem;
+    padding-top: 6rem;
   }
 }
 
 /*XL Breakpoint*/
 @media screen and (max-width: 1200px) and (min-width: 993px) {
   #h1-span {
-    padding-top: 0.1rem;
+    padding-top: 6rem;
   }
 }
 
@@ -355,7 +355,7 @@ input:focus {
 /*Small Breakpoint*/
 @media screen and (max-width: 576px) {
   #h1-span {
-    padding-top: 17rem;
+    padding-top: 19.5rem;
   }
   .navbar {
     flex-direction: column;
@@ -379,7 +379,7 @@ input:focus {
 /*IPhone 6/7/8Plus*/
 @media screen and (max-width: 414px) {
   #h1-span {
-    padding-top: 17rem;
+    padding-top: 19.5rem;
   }
   .navbar {
     flex-direction: column;
@@ -404,7 +404,7 @@ input:focus {
 /*Iphone 5/SE*/
 @media screen and (max-width: 320px) {
   #h1-span {
-    padding-top: 17rem;
+    padding-top: 19.5rem;
   }
   .navbar {
     flex-direction: column;
