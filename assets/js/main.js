@@ -303,7 +303,7 @@ const renderMainCard = () => {
   const renderEachCard = (each) => {
     const card = `<div class="searchCardContainer block is-mobile"> 
       <div class="card" data-title= "${each.result.title}" data-geniusid="${each.result.id}" data-artist="${each.result.primary_artist.name}" data-releasdate =""  data-bimage="${each.result.song_art_image_url}">
-        <div class="card-image artworkClick" data-geniusid="${each.result.id}" style="background-image: url('${each.result.song_art_image_url}');" ><button class="delete is-large deleteCard"></button></div>
+        <div class="card-image artworkClick" data-geniusid="${each.result.id}" style="background-image: url('${each.result.song_art_image_url}');" ><button class="delete is-large deleteCard is-pulled-right"></button></div>
         <div class="card-text content is-normal">
           <h1 id="songTitle">${each.result.title}</h1>
           <h3 id="getArtist" class="subtitle">Artist: ${each.result.primary_artist.name}</h3>
