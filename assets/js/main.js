@@ -1,9 +1,9 @@
-var youtubeApiKey;
+let youtubeApiKey;
 const container = $(".cards-container");
 let geniusRequestedData;
 let youtubeRequestedData;
 
-async function fetchKey() {
+async function fetchKey(youtubeApiKey2) {
   const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
   const data = await response.json();
@@ -15,7 +15,7 @@ async function fetchKey() {
 function swapApiKey() {
   youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
   const youtubeApiKey2 = "AIzaSyCYuac5jmWm9wfCkzMD7fE2D5YG0mRCznA";
-  fetchKey();
+  fetchKey(youtubeApiKey2);
 }
 
 const geniusHeaderObject = {
@@ -40,7 +40,7 @@ async function fetchYoutubeData(
   } else {
     container.empty();
     container.append(`<div id="titleAndArtwork">
-  <img src="${songImage}" width="500" height="500"/>
+  <img class= "album-artworkmg" src="${songImage}" width="500" height="500"/>
   <div class="songDetails"><h2>${originalSongRD}</h2>
   <h1 id="titleOfSong">${songTitle}</h1>
   <h1 id="songArtist">${songArtist}</h1>
@@ -62,9 +62,18 @@ async function fetchYoutubeData(
           <article class="tile is-child notification is-info sampleBox">
           <p class="subtitle">Sampled:</p>
             <p class="title">${sample.full_title}</p>
-            
+            <div class="iframe-container-L"> 
             <iframe width="560" height="315" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-           
+            </div>
+            <div class="iframe-container-M"> 
+            <iframe width="350" height="185" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="iframe-container-S"> 
+            <iframe width="250" height="115" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="iframe-container-XS"> 
+            <iframe width="250" height="115" src="${embedYoutubeURL}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
           </article>
         </div>`
         );
