@@ -20,14 +20,14 @@ body {
   padding-top: 1rem;
   font-size: 600px;
   letter-spacing: 5px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #15c0e0;
   text-shadow: 3px 3px #f51d76;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 h1 {
@@ -72,7 +72,7 @@ header ul li a:hover {
 /* } */
 
 p {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: grey;
   font-weight: bolder;
 }
@@ -295,6 +295,11 @@ input:focus {
   text-align: unset;
 }
 
+.albumArtworkImg {
+  max-width: 300px;
+  max-height: 300px;
+}
+
 .appleMusic {
   flex-direction: row;
   width: 100%;
@@ -303,6 +308,25 @@ input:focus {
 .tile {
   flex-grow: unset;
   border: none;
+}
+
+/* .iframe-container {
+  position: relative;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+} */
+
+.iframe-container-M {
+  display: none;
+}
+
+.iframe-container-S {
+  display: none;
+}
+
+.iframe-container-XS {
+  display: none;
 }
 
 .notification.is-info {
@@ -339,15 +363,33 @@ input:focus {
 
 /*XL Breakpoint*/
 @media screen and (max-width: 1200px) and (min-width: 993px) {
+  #titleAndArtwork {
+    flex-direction: column;
+  }
+
   #h1-span {
     padding-top: 6rem;
+  }
+
+  .album-artwork-img {
+    max-width: 200px;
+    max-height: 200px;
   }
 }
 
 /*Large Breakpoint*/
 @media screen and (max-width: 992px) {
+  #titleAndArtwork {
+    flex-direction: column;
+  }
+
   #h1-span {
     padding-top: 6rem;
+  }
+
+  .album-artwork-img {
+    max-width: 195px;
+    max-height: 195px;
   }
 }
 
@@ -355,6 +397,22 @@ input:focus {
 @media screen and (max-width: 768px) {
   #h1-span {
     padding-top: 6rem;
+  }
+  .album-artwork-img {
+    max-width: 190px;
+    max-height: 190px;
+  }
+
+  #titleAndArtwork {
+    flex-direction: column;
+  }
+
+  .iframe-container-L {
+    display: none;
+  }
+
+  .iframe-container-M {
+    display: block;
   }
 }
 
@@ -372,8 +430,19 @@ input:focus {
   li {
     flex-direction: column;
   }
+  #titleAndArtwork {
+    flex-direction: column;
+  }
+
+  .cards-container {
+    margin-top: 3rem;
+  }
   .swiper-container {
     padding-top: 0.25px;
+  }
+
+  .title {
+    font-size: 1rem;
   }
 }
 
@@ -382,43 +451,32 @@ input:focus {
     grid-template-columns: 400px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .iframe-container-M {
+    display: none;
+  }
+  .iframe-container-S {
+    display: block;
+  }
+}
+
 /*IPhone 6/7/8Plus*/
 @media screen and (max-width: 414px) {
-  #h1-span {
-    padding-top: 19.5rem;
-  }
-  .navbar {
-    flex-direction: column;
-  }
-  ul {
-    flex-direction: column;
-  }
-  li {
-    flex-direction: column;
-  }
-  .swiper-container {
-    padding-top: 0.25px;
-  }
   .card {
     grid-template-columns: 350px;
+  }
+  .album-artwork-img {
+    max-width: 170px;
+    max-height: 170px;
+  }
+  .iframe-container-XS {
+    display: none;
   }
 }
 
 /*Iphone 5/SE*/
 @media screen and (max-width: 320px) {
-  #h1-span {
-    padding-top: 19.5rem;
-  }
-  .navbar {
-    flex-direction: column;
-  }
-  ul {
-    flex-direction: column;
-  }
-  li {
-    flex-direction: column;
-  }
-
   .swiper-container {
     padding-top: 0.1px;
   }
@@ -429,5 +487,18 @@ input:focus {
   .card-text {
     text-align: center;
     margin-left: 0px;
+  }
+
+  .album-artwork-img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .iframe-container-S {
+    display: none;
+  }
+
+  .iframe-container-XS {
+    display: block;
   }
 }
