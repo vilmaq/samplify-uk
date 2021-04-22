@@ -1,16 +1,12 @@
-// genreCards.forEach(console.log(id));
-var youtubeApiKeyNew;
 var youtubeApiKey;
 
 async function fetchKey() {
   const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
   const data = await response.json();
-  // console.log(data);
   if (data.hasOwnProperty("error")) {
     youtubeApiKey = youtubeApiKey2;
   }
-  // console.log(youtubeApiKey);
 }
 
 function swapApiKey() {
@@ -39,7 +35,6 @@ async function fetchYoutubeData(
   originalSongRD,
   originalSongID
 ) {
-  console.log(sampleSongFullTitle);
   if (sampleSongFullTitle.length === 0) {
     noSampleModal(originalSongID);
   } else {
@@ -59,9 +54,7 @@ async function fetchYoutubeData(
       const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey}`;
       const response = await fetch(youtubeUrl);
       const data = await response.json();
-      console.log(data);
       const videoID = data.items[0].id.videoId;
-      console.log(videoID);
       const embedYoutubeURL = `https://www.youtube.com/embed/${videoID}`;
       try {
         container.append(
@@ -115,7 +108,6 @@ const noSampleModal = (originalSongID) => {
     $(".modal").remove();
   };
   $(".deleteModal").on("click", deleteTest);
-  console.log("hi");
 };
 
 async function fetchGeniusData(userInput) {
@@ -123,7 +115,6 @@ async function fetchGeniusData(userInput) {
   const geniusSearchResponse = await fetch(geniusSearchURL, geniusHeaderObject);
   const geniusSearchData = await geniusSearchResponse.json();
   let geniusResultPath = geniusSearchData.response;
-  console.log(geniusSearchData);
   // geniusSearchData.0.
   return (geniusRequestedData = {
     // idSong: geniusResultPath.result.id,
@@ -148,7 +139,6 @@ async function fetchGeniusIDData(geniusSongID) {
     for (let i = 0; i < samplePath.length; i++) {
       samples.push(samplePath[i]);
     }
-    console.log(samples);
     const geniusIDSampleData = {
       originalSongTitle: idPath.title,
       originalSongArtist: idPath.primary_artist.name,
@@ -158,7 +148,6 @@ async function fetchGeniusIDData(geniusSongID) {
       sample: samples,
       sampleCheck: idPath.song_relationships[0].songs[0],
     };
-    console.log(geniusIDSampleData.sampleCheck);
     const originalSongTitle = geniusIDSampleData.originalSongTitle;
     const originalSongArtist = geniusIDSampleData.originalSongArtist;
     const originalSongRD = geniusIDSampleData.originalSongRD;
@@ -173,9 +162,7 @@ async function fetchGeniusIDData(geniusSongID) {
       originalSongRD,
       originalSongID
     );
-    console.log(geniusIDSampleData.sample);
   } catch (err) {
-    console.log("hiid");
     noSampleModal();
   }
 }
@@ -292,7 +279,6 @@ const onDelete = (eachGenre) => {
     // container.show(swipeCard);
     // homePageSliders();
     return cardsContainer;
-    console.log("empty cards");
   }
 };
 
@@ -307,7 +293,7 @@ const renderMainCard = () => {
         <div class="card-text content is-normal">
           <h1 id="songTitle">${each.result.title}</h1>
           <h3 id="getArtist" class="subtitle">Artist: ${each.result.primary_artist.name}</h3>
-          <h3 id="getReleaseDate" class="subtitle">Release Date: WIP</h3>
+          <img id="artistImage" src="${each.result.primary_artist.image_url}"/>
         </div>
           <div class="card-footer">
             <div class="card-footer-item">
@@ -330,22 +316,14 @@ const renderMainCard = () => {
   container.append(cards);
 };
 
-// const artworkOnClick = () => {
-//   console.log($(this).data("geniusid"));
-// };
-
 const onSubmit = async (event) => {
   event.preventDefault();
   let userInput = $("#search-input").val();
   const geniusDataObject = await fetchGeniusData(userInput);
-  console.log(geniusDataObject);
   const swiperContainer = $(".swiper-container").hide();
-  console.log(swiperContainer);
   renderMainCard(geniusDataObject);
   $(".deleteCard").on("click", onDelete);
   $(".artworkClick").click(function () {
-    console.log(youtubeApiKey);
-    console.log($(this).data("geniusid"));
     const geniusSongID = $(this).data("geniusid");
     fetchGeniusIDData(geniusSongID);
   });
