@@ -109,11 +109,58 @@ const genreCards = [
     albumArtwork:
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F4aebc17bcd83a7774ad3ae9bd9fce7b6.1000x1000x1.png",
   },
+
+  {
+    // Anderson Paak - Might Be
+    id: 558257,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2Fe537fd934967b3e8bbeeec7b9d7f7b19.1000x1000x1.jpg",
+  },
+
   {
     // Kelis - Trick Me
     id: 382113,
     albumArtwork:
       "https://t2.genius.com/unsafe/600x0/https%3A%2F%2Fimages.genius.com%2F142fe36b4329bf1fd87eece659a58759.1000x1000x1.jpg",
+  },
+  {
+    // Kendrick Lamar - Money Trees
+    id: 90475,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2Fc567238c3d5781eed61a93baff46f678.1000x1000x1.jpg",
+  },
+  {
+    // Yeah Yeah Yeahs - Heads Will Roll
+    id: 67024,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/1342x0/https%3A%2F%2Fimages.genius.com%2F8f75b55613f5d0c76adb0fc7ee52dd36.1000x1000x1.jpg",
+  },
+
+  {
+    // Drake & Sampha - Too Much
+    id: 217750,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/690x0/https%3A%2F%2Fimages.genius.com%2F6d70f1e6d38e9af4ddb7b3582a40dab8.1000x1000x1.jpg",
+  },
+
+  {
+    // Ari Lennox & J Cole - Shea Butter Baby
+    id: 4086278,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F4c67972b02240d56b034487551b66ac0.1000x1000x1.jpg",
+  },
+  {
+    // Anderson Paak - Come Down
+    id: 2399072,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F0a8c84572e3dd49ff48fc8cc0c4c1f29.1000x1000x1.png",
+  },
+
+  {
+    // Kendrick Lamar & Rhianna - Loyalty
+    id: 3047135,
+    albumArtwork:
+      "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2Ff3f77222e1b615e0a10354ea6282ff22.1000x1000x1.png",
   },
 ];
 
