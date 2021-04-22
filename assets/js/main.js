@@ -1,4 +1,7 @@
 var youtubeApiKey;
+const container = $(".cards-container");
+let geniusRequestedData;
+let youtubeRequestedData;
 
 async function fetchKey() {
   const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
@@ -22,9 +25,6 @@ const geniusHeaderObject = {
     "x-rapidapi-host": "genius.p.rapidapi.com",
   },
 };
-const container = $(".cards-container");
-let geniusRequestedData;
-let youtubeRequestedData;
 
 // Fetch Youtube Data Async Function
 async function fetchYoutubeData(
