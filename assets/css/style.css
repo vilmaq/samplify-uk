@@ -245,6 +245,12 @@ input:focus {
   margin-left: 15px;
 }
 
+#artistImage {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 60px;
+}
+
 .card-footer {
   grid-area: footer;
 }
@@ -374,7 +380,7 @@ input:focus {
 @media screen and (max-width: 510px) {
   .card {
     grid-template-columns: 400px;
-}
+  }
 }
 /*IPhone 6/7/8Plus*/
 @media screen and (max-width: 414px) {
@@ -395,11 +401,8 @@ input:focus {
   }
   .card {
     grid-template-columns: 350px;
+  }
 }
-}
-
-
-
 
 /*Iphone 5/SE*/
 @media screen and (max-width: 320px) {
@@ -421,14 +424,10 @@ input:focus {
   }
   .card {
     grid-template-columns: 300px;
-   }
+  }
 
   .card-text {
     text-align: center;
-    margin-left:0px;
+    margin-left: 0px;
   }
-
-
 }
- 
-
