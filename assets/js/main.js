@@ -92,10 +92,10 @@ const noSampleModal = (originalSongID) => {
     </footer>
   </div>
 </div>`);
-  const deleteTest = () => {
+  const deleteModal = () => {
     $(".modal").remove();
   };
-  $(".deleteModal").on("click", deleteTest);
+  $(".deleteModal").on("click", deleteModal);
 };
 
 async function fetchGeniusData(userInput) {
@@ -144,7 +144,7 @@ async function fetchGeniusIDData(geniusSongID) {
       originalSongID
     );
   } catch (err) {
-    noSampleModal();
+    console.log(err);
   }
 }
 
@@ -322,8 +322,6 @@ const onSubmit = async (event) => {
 };
 
 $("#search").on("submit", onSubmit);
-
-// fetchGeniusIDData();
 
 $(document).ready(function () {
   // fetchYoutubeData();

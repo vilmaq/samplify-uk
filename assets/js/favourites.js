@@ -1,25 +1,22 @@
-//get data from the local storage
-const container = $(".cards-container");
-var youtubeApiKeyNew;
 var youtubeApiKey;
+const container = $(".cards-container");
+let youtubeRequestedData;
+
+async function fetchKey(youtubeApiKey2) {
+  const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
+  const response = await fetch(youtubeUrl);
+  const data = await response.json();
+  if (data.hasOwnProperty("error")) {
+    youtubeApiKey = youtubeApiKey2;
+  }
+}
 
 function swapApiKey() {
   youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
   const youtubeApiKey2 = "AIzaSyCYuac5jmWm9wfCkzMD7fE2D5YG0mRCznA";
-
-  async function fetchKey() {
-    const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
-    const response = await fetch(youtubeUrl);
-    const data = await response.json();
-    console.log(data);
-    if (data.hasOwnProperty("error")) {
-      youtubeApiKey = youtubeApiKey2;
-    }
-    console.log(youtubeApiKey);
-  }
-
-  fetchKey();
+  fetchKey(youtubeApiKey2);
 }
+
 const geniusHeaderObject = {
   method: "GET",
   headers: {
@@ -62,7 +59,6 @@ async function fetchYoutubeData(
   <div class="break"></div>
 `);
     sampleSongFullTitle.forEach(async (sample) => {
-      let userInput = $("#search-input").val();
       const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey}`;
       const response = await fetch(youtubeUrl);
       const data = await response.json();
@@ -83,17 +79,9 @@ async function fetchYoutubeData(
         </div>`
         );
       } catch (e) {
-        // container.append(`<h1>No samples found ${e}</h1>`);
-        console.error(e, "///");
+        console.error(e);
       }
-
-      // createSamplePage(sampleYoutubeURL);
-      const youtubeResultPath = data.items[0].snippet;
       youtubeRequestedData = {
-        title: youtubeResultPath.title,
-        channelTitle: youtubeResultPath.channelTitle,
-        uploadTime: youtubeResultPath.publishTime,
-        thumbnail: youtubeResultPath.thumbnails.high.url,
         videoId: data.items[0].id.videoId,
       };
     });
@@ -118,11 +106,10 @@ const noSampleModal = (originalSongID) => {
     </footer>
   </div>
 </div>`);
-  const deleteTest = () => {
+  const deleteModal = () => {
     $(".modal").remove();
   };
-  $(".deleteModal").on("click", deleteTest);
-  console.log("hi");
+  $(".deleteModal").on("click", deleteModal);
 };
 
 async function fetchGeniusIDData(geniusSongID) {
@@ -147,7 +134,6 @@ async function fetchGeniusIDData(geniusSongID) {
       sample: samples,
       sampleCheck: idPath.song_relationships[0].songs[0],
     };
-    console.log(geniusIDSampleData.sampleCheck);
     const originalSongTitle = geniusIDSampleData.originalSongTitle;
     const originalSongArtist = geniusIDSampleData.originalSongArtist;
     const originalSongRD = geniusIDSampleData.originalSongRD;
@@ -162,9 +148,7 @@ async function fetchGeniusIDData(geniusSongID) {
       originalSongRD,
       originalSongID
     );
-    console.log(geniusIDSampleData.sample);
   } catch (err) {
-    console.log("hiid");
     noSampleModal();
   }
 }
@@ -200,17 +184,12 @@ const onDelete = (click) => {
   const cardContainer = clickedTarget.closest(".searchCardContainer");
   event.stopPropagation();
 
-  console.log(click);
-
   const favCards =
     JSON.parse(localStorage.getItem("localStorageFavData")) || [];
 
-  console.log(favCards);
   let songTitle = $(clickedTarget).attr("data-fTitle");
-  console.log(songTitle);
 
   let newFavCards = favCards.filter((song) => song.favTitle != songTitle);
-  console.log(newFavCards);
 
   localStorage.setItem("localStorageFavData", JSON.stringify(newFavCards));
 
@@ -221,7 +200,6 @@ $(document).ready(function () {
   swapApiKey();
   getDataFromLS();
   $(".artworkClick").click(function () {
-    console.log($(this).data("geniusid"));
     const geniusSongID = $(this).data("geniusid");
     fetchGeniusIDData(geniusSongID);
   });
