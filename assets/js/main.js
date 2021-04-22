@@ -3,7 +3,7 @@ const container = $(".cards-container");
 let geniusRequestedData;
 let youtubeRequestedData;
 
-async function fetchKey() {
+async function fetchKey(youtubeApiKey2) {
   const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
   const data = await response.json();
@@ -15,7 +15,7 @@ async function fetchKey() {
 function swapApiKey() {
   youtubeApiKey = "AIzaSyDhrIv2axe_DUVDhzFgo9GeFNogHmX3a6w";
   const youtubeApiKey2 = "AIzaSyCYuac5jmWm9wfCkzMD7fE2D5YG0mRCznA";
-  fetchKey();
+  fetchKey(youtubeApiKey2);
 }
 
 const geniusHeaderObject = {
@@ -50,7 +50,6 @@ async function fetchYoutubeData(
   <div class="break"></div>
 `);
     sampleSongFullTitle.forEach(async (sample) => {
-      let userInput = $("#search-input").val();
       const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey}`;
       const response = await fetch(youtubeUrl);
       const data = await response.json();
@@ -69,19 +68,8 @@ async function fetchYoutubeData(
         </div>`
         );
       } catch (e) {
-        // container.append(`<h1>No samples found ${e}</h1>`);
-        console.error(e, "///");
+        console.error(e);
       }
-
-      // createSamplePage(sampleYoutubeURL);
-      const youtubeResultPath = data.items[0].snippet;
-      youtubeRequestedData = {
-        title: youtubeResultPath.title,
-        channelTitle: youtubeResultPath.channelTitle,
-        uploadTime: youtubeResultPath.publishTime,
-        thumbnail: youtubeResultPath.thumbnails.high.url,
-        videoId: data.items[0].id.videoId,
-      };
     });
   }
 }
@@ -115,15 +103,8 @@ async function fetchGeniusData(userInput) {
   const geniusSearchResponse = await fetch(geniusSearchURL, geniusHeaderObject);
   const geniusSearchData = await geniusSearchResponse.json();
   let geniusResultPath = geniusSearchData.response;
-  // geniusSearchData.0.
   return (geniusRequestedData = {
-    // idSong: geniusResultPath.result.id,
-    // titleSong: geniusResultPath.result.full_title,
-    // artImage: geniusResultPath.result.song_art_image_url,
-    // artist: geniusResultPath.result.primary_artist.name,
     hits: geniusResultPath.hits,
-
-    //needs to return artwork, then song name, then artist, then release year/date(optional)
   });
 }
 
@@ -298,7 +279,7 @@ const renderMainCard = () => {
           <div class="card-footer">
             <div class="card-footer-item">
               <span>
-                 <a id="addFavorite" class="favorites" data-added-to-fav="false"  onclick="addToFavoritesLocalStorage(this)" data-content="Add to Favorites">Add to Favourites</a>
+                 <a id="addFavorite" class="favorites" data-added-to-fav="false"  onclick="addToFavoritesLocalStorage(this)">Add to Favourites</a>
               </span>
             </div>
             <div class="card-footer-item">
@@ -316,12 +297,23 @@ const renderMainCard = () => {
   container.append(cards);
 };
 
+// const checkLocalStorage = () => {
+//   const localStorageCheck = localStorage.getItem("localStorageFavData");
+//   if (localStorageCheck == 0) {
+//     const favoriteTextContent = document.getElementById("addFavorite");
+//     favoriteTextContent.textContent = "Remove from Favourites";
+//   } else {
+//     favoriteTextContent.textContent = "Add to Favourites";
+//   }
+// };
+
 const onSubmit = async (event) => {
   event.preventDefault();
   let userInput = $("#search-input").val();
   const geniusDataObject = await fetchGeniusData(userInput);
   const swiperContainer = $(".swiper-container").hide();
   renderMainCard(geniusDataObject);
+  // checkLocalStorage();
   $(".deleteCard").on("click", onDelete);
   $(".artworkClick").click(function () {
     const geniusSongID = $(this).data("geniusid");
