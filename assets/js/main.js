@@ -158,6 +158,7 @@ const addToFavoritesLocalStorage = (element) => {
   const favArtist = target.dataset.artist;
   const favImage = target.dataset.bimage;
   const favId = target.dataset.geniusid;
+  const favArtistImage = target.dataset.artistimage;
 
   //create an Object with teh details of the clicked song
   const favObject = {
@@ -165,6 +166,7 @@ const addToFavoritesLocalStorage = (element) => {
     favArtist,
     favImage,
     favId,
+    favArtistImage,
   };
 
   // check if the Local Storage is empty and if it is add the new song to LS
@@ -269,7 +271,7 @@ const renderMainCard = () => {
 
   const renderEachCard = (each) => {
     const card = `<div class="searchCardContainer block is-mobile"> 
-      <div class="card" data-title= "${each.result.title}" data-geniusid="${each.result.id}" data-artist="${each.result.primary_artist.name}" data-releasdate =""  data-bimage="${each.result.song_art_image_url}">
+      <div class="card" data-title= "${each.result.title}" data-geniusid="${each.result.id}" data-artist="${each.result.primary_artist.name}"  data-bimage="${each.result.song_art_image_url}" data-artistimage="${each.result.primary_artist.image_url}">
         <div class="card-image artworkClick" data-geniusid="${each.result.id}" style="background-image: url('${each.result.song_art_image_url}');" ><button class="delete is-large deleteCard is-pulled-right"></button></div>
         <div class="card-text content is-normal">
           <h1 id="songTitle">${each.result.title}</h1>

@@ -162,7 +162,7 @@ const renderFavoriteCards = (favCard) => {
       <div class="card-text content is-normal">
         <h1>${favCard.favTitle}</h1>
         <h3 class="subtitle">Artist: ${favCard.favArtist}</h3>
-        <h3 class="subtitle">Release Date: WIP</h3>
+        <img id="artistImage" src="${favCard.favArtistImage}"/>
       </div>
         <div class="card-footer">
           <div class="card-footer-item">
