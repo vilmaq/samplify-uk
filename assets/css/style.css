@@ -305,6 +305,11 @@ input:focus {
   width: 100%;
 }
 
+#geniusLogo {
+  height: 3rem;
+  width: 3rem;
+}
+
 .tile {
   flex-grow: unset;
   border: none;
