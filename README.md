@@ -24,7 +24,7 @@ The landing page features a slider on the bottom of the page that allows you to 
 **Search Results:**
 
 When searching for a song, you are presented with the top 6 matches from Genius. Here, you can click on the artwork to view the samples or use the 'Add to favorites' button. You can also click the 'X' to delete the card from the page. If all cards are deleted, you are presented with the original slider.
-![Search Results](./assets/images/results.png "Search Results")
+![Search Results](./assets/images/searchresults.png "Search Result")
 
 **Sample Viewer:**
 
