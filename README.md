@@ -71,4 +71,5 @@ When the artwork is clicked, the next Genius fetch function will be called that 
 ## Mobile View
 
 (screen capture tool distorts the background image)
+
 ![Mobile Example](./assets/images/mobileviewsamples.png "Mobile View")
