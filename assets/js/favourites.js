@@ -2,6 +2,7 @@ var youtubeApiKey;
 const container = $(".cards-container");
 let youtubeRequestedData;
 
+// function to swap the API keys when the quota is reached
 async function fetchKey(youtubeApiKey2) {
   const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
