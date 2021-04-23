@@ -50,143 +50,134 @@ const genreCards = [
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F4535b464eefdbf847ffc1da7eff2a255.1000x1000x1.png",
   },
   {
-    // Beck - Loser
     id: 4905,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F2616b5713a51eb3db18c625c1542b9e5.500x501x1.jpg",
   },
   {
-    // Salt N Pepa - Push it
     id: 56902,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F4ef12d48c4a618a18e5f8467023ff9ec.600x600x1.jpg",
   },
   {
-    // Frank Ocean - Siegfried
     id: 2842086,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F626ddf4c88de200d9487bb42449d1ae3.1000x1000x1.png",
   },
   {
-    // James Blake - Can't Believe the Way We Flow
     id: 4201753,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F469d08bb4989f5ff4ef6e6d0005443cf.1000x1000x1.png",
   },
   {
-    // Jay Z & Justin Timberlake - Holy Grail
     id: 177832,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2F2da322648704159878b73c5cfc9c7dc5.1000x1000x1.png",
   },
   {
-    // Gorillaz - Clint Eastwood
     id: 1698,
     albumArtwork:
       "https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F454a09a0a3aebd22bc05a6106fb6dfde.1000x1000x1.jpg",
   },
   {
-    // Jay Z & Kanye West - No Church In The Wild
     id: 382113,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2Ff4264b720b7352a2ffac3c36fa1fd5cf.880x880x1.png",
   },
   {
-    // Phantogram - Cruel World
     id: 2831911,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F5c18b25246c2d8b42ed8b8dffab8a2e4.745x745x1.jpg",
   },
   {
-    // Frank Ocean & Earl Sweatshirt - Super Rich Kids
     id: 78960,
     albumArtwork:
       "https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F5c8f128494b2bd41a18ebccad7e760cc.1000x1000x1.png",
   },
   {
-    // Pet Shop Boys - My October Symphony
     id: 1183842,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F4aebc17bcd83a7774ad3ae9bd9fce7b6.1000x1000x1.png",
   },
 
   {
-    // Anderson Paak - Might Be
     id: 558257,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2Fe537fd934967b3e8bbeeec7b9d7f7b19.1000x1000x1.jpg",
   },
 
   {
-    // Kelis - Trick Me
     id: 382113,
     albumArtwork:
       "https://t2.genius.com/unsafe/600x0/https%3A%2F%2Fimages.genius.com%2F142fe36b4329bf1fd87eece659a58759.1000x1000x1.jpg",
   },
   {
-    // Kendrick Lamar - Money Trees
     id: 90475,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2Fc567238c3d5781eed61a93baff46f678.1000x1000x1.jpg",
   },
   {
-    // Yeah Yeah Yeahs - Heads Will Roll
     id: 67024,
     albumArtwork:
       "https://t2.genius.com/unsafe/1342x0/https%3A%2F%2Fimages.genius.com%2F8f75b55613f5d0c76adb0fc7ee52dd36.1000x1000x1.jpg",
   },
 
   {
-    // Drake & Sampha - Too Much
     id: 217750,
     albumArtwork:
       "https://t2.genius.com/unsafe/690x0/https%3A%2F%2Fimages.genius.com%2F6d70f1e6d38e9af4ddb7b3582a40dab8.1000x1000x1.jpg",
   },
 
   {
-    // Ari Lennox & J Cole - Shea Butter Baby
     id: 4086278,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F4c67972b02240d56b034487551b66ac0.1000x1000x1.jpg",
   },
   {
-    // Anderson Paak - Come Down
     id: 2399072,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x0/https%3A%2F%2Fimages.genius.com%2F0a8c84572e3dd49ff48fc8cc0c4c1f29.1000x1000x1.png",
   },
 
   {
-    // Kendrick Lamar & Rhianna - Loyalty
     id: 3047135,
     albumArtwork:
       "https://t2.genius.com/unsafe/440x440/https%3A%2F%2Fimages.genius.com%2Ff3f77222e1b615e0a10354ea6282ff22.1000x1000x1.png",
   },
 ];
 
+// Declare array for random selection of songs
 let finalSliderSongArray = [];
 
+// Declaring the swiper-wrapper class as a variable
 const swiperWrapper = $(".swiper-wrapper");
 
+// Function the randomSliderSongGenerator - generates a random song from the genre cards array
 function randomSliderSongGenerator() {
   const randomSong = genreCards[Math.floor(Math.random() * genreCards.length)];
 
   return randomSong;
 }
+// For loop repeats the randomSliderSongGenerator function 10 times
 for (let i = 0; i < 9; i++) {
   const randomSliderSongs = randomSliderSongGenerator();
+  // if the finalSliderSongArray does not include the randomSliderSongs, this is pushed to the array
   if (!finalSliderSongArray.includes(randomSliderSongs)) {
     finalSliderSongArray.push(randomSliderSongs);
   }
 }
 
+// A slider card is rendered for a song in the finalSliderSongArray
 const renderSliderCard = (finalSliderSongArray) => {
   const card = `<div class="swiper-slide artworkClick" data-geniusid="${finalSliderSongArray.id}" style= "background-image:url('${finalSliderSongArray.albumArtwork}')" >`;
+  // This card is then appended to the swiperWrapper
   swiperWrapper.append(card);
 };
 
+// All slider cards are rendered on document ready
 const renderSliderCards = () => {
   $(document).ready(function () {
+    // When the swiper-slide card is clicked on, the swiper-container is hidden and the geniusid data attribute is fetched
     $(".swiper-slide").click(function () {
       $(".swiper-container").hide();
       const geniusSongID = $(this).data("geniusid");
@@ -195,6 +186,6 @@ const renderSliderCards = () => {
   });
 
   swiperWrapper.empty();
-
+  // For each song in the finalSliderSongArray a slider card will be rendered
   finalSliderSongArray.forEach(renderSliderCard);
 };
