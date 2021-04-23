@@ -250,7 +250,6 @@ const getLocalStorageData = () => {
 
 //This function will allow search result cards to be deleted and will bring back the genre slider when all have been removed.
 const onDelete = (eachGenre) => {
-  // container.empty();
   event.stopPropagation();
   const swipeCard = `<div class="swiper-container">
     <div class="swiper-wrapper">
@@ -279,11 +278,6 @@ const onDelete = (eachGenre) => {
   if (numberOfCards === 0) {
     const showSwiperContainer = $(".swiper-container").show();
     cardsContainer.append(showSwiperContainer);
-    // swiperContainer.append(swipeCard);
-    // homePageSliders();
-    // .show();
-    // container.show(swipeCard);
-    // homePageSliders();
     return cardsContainer;
   }
 };
@@ -323,23 +317,12 @@ const renderMainCard = () => {
   container.append(cards);
 };
 
-// const checkLocalStorage = () => {
-//   const localStorageCheck = localStorage.getItem("localStorageFavData");
-//   if (localStorageCheck == 0) {
-//     const favoriteTextContent = document.getElementById("addFavorite");
-//     favoriteTextContent.textContent = "Remove from Favourites";
-//   } else {
-//     favoriteTextContent.textContent = "Add to Favourites";
-//   }
-// };
-
 const onSubmit = async (event) => {
   event.preventDefault();
   let userInput = $("#search-input").val();
   const geniusDataObject = await fetchGeniusData(userInput);
   const swiperContainer = $(".swiper-container").hide();
   renderMainCard(geniusDataObject);
-  // checkLocalStorage();
   $(".deleteCard").on("click", onDelete);
   $(".artworkClick").click(function () {
     const geniusSongID = $(this).data("geniusid");
@@ -350,7 +333,6 @@ const onSubmit = async (event) => {
 $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
-  // fetchYoutubeData();
   swapApiKey();
   renderSliderCards();
   homePageSliders();
