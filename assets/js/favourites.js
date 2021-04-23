@@ -175,7 +175,6 @@ const renderFavoriteCards = (favCard) => {
           </div>
           <div class="card-footer-item">
             <span>
-              Share on <a href="#">Facebook</a>
             </span>
           </div>
         </div>
