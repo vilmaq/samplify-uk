@@ -35,6 +35,7 @@ const getDataFromLS = () => {
   favCards.forEach(renderFavoriteCards);
 };
 
+//fetch Youtube data and render cards if there is a song Sample
 async function fetchYoutubeData(
   sampleSongFullTitle,
   songImage,
