@@ -41,7 +41,8 @@ async function fetchYoutubeData(
   songTitle,
   songArtist,
   originalSongRD,
-  originalSongID
+  originalSongID,
+  lyricsPath
 ) {
   console.log(sampleSongFullTitle);
   if (sampleSongFullTitle.length === 0) {
@@ -54,6 +55,7 @@ async function fetchYoutubeData(
   <h1 id="titleOfSong">${songTitle}</h1>
   <h1 id="songArtist">${songArtist}</h1>
   <iframe class="appleMusic" allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="60" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://genius.com/songs/${originalSongID}/apple_music_player"></iframe>
+  <a href="https://genius.com${lyricsPath}"><img id="geniusLogo" src="http://images.rapgenius.com/b857207c5de745512bc377284199d781.1000x313x1.png" alt="genius-logo"/></a>
   </div>
   </div>
   <div class="break"></div>
@@ -131,6 +133,7 @@ async function fetchGeniusIDData(geniusSongID) {
       originalSongRD: idPath.release_date_for_display,
       originalSongArt: idPath.song_art_image_url,
       originalSongID: idPath.id,
+      lyricsPath: idPath.path,
       sample: samples,
       sampleCheck: idPath.song_relationships[0].songs[0],
     };
@@ -139,6 +142,7 @@ async function fetchGeniusIDData(geniusSongID) {
     const originalSongRD = geniusIDSampleData.originalSongRD;
     const originalSongArt = geniusIDSampleData.originalSongArt;
     const originalSongID = geniusIDSampleData.originalSongID;
+    const lyricsPath = geniusIDSampleData.lyricsPath;
     const sampleSong = geniusIDSampleData.sample;
     fetchYoutubeData(
       sampleSong,
@@ -146,7 +150,8 @@ async function fetchGeniusIDData(geniusSongID) {
       originalSongTitle,
       originalSongArtist,
       originalSongRD,
-      originalSongID
+      originalSongID,
+      lyricsPath
     );
   } catch (err) {
     noSampleModal();
