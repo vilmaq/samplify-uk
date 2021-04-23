@@ -61,16 +61,6 @@ header ul li a:hover {
   margin-top: 0.2rem;
 }
 
-/* body {
-  margin: 0;
-  /* height: 100vh;
-  background-image: url("https://source.unsplash.com/7LNatQYMzm4/1600x900"); */
-/* background-position: center;
-  background-repeat: repeat;
-  background-size: cover;
-  height: 100vh; */
-/* } */
-
 p {
   font-size: 1rem;
   color: grey;
@@ -128,60 +118,6 @@ p {
   visibility: visible;
 }
 
-/* input {
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  width: 600px;
-  height: 80px;
-  border-style: solid;
-  border-width: 5px;
-  border-color: #15c0e0;
-  border-radius: 20px;
-  padding: 20px;
-  background-color: #cc4778;
-  opacity: 0.8;
-  outline: none;
-  transition-duration: 500ms;
-  cursor: pointer;
-  background-image: url("./assets/images/headphones-on-background-dark-opacity.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-position-x: 5%;
-  font-size: 20px;
-  font-weight: bolder;
-  color: transparent;
-  overflow: hidden;
-}
-input:focus {
-  width: 600px;
-  height: 80px;
-  cursor: text;
-  padding: 20px;
-  background-image: url("https://unsplash.com/photos/eICUFSeirc0/1600x900");
-  border-color: #4cc9f0;
-  color: #ffffff;
-}
-input:hover,
-input:focus {
-  background-image: url("https://unsplash.com/photos/eICUFSeirc0/1600x900");
-  width: 600px;
-  height: 80px;
-  border-style: solid;
-  border-width: 5px;
-  border-color: #5a189a;
-  color: #ffffff;
-}
-.div1 {
-  position: absolute;
-  left: 0px;
-  top: 40px;
-  width: 50px;
-  height: 5px;
-} */
-
-/* search card css */
-
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -232,7 +168,6 @@ input:focus {
 
 .card-image {
   grid-area: image;
-  /* background: url(https://images.unsplash.com/photo-1530051315435-58046fbc2649?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80); */
   background-size: cover;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -451,6 +386,7 @@ input:focus {
   }
 }
 
+/*510px Breakpoint*/
 @media screen and (max-width: 510px) {
   .card {
     grid-template-columns: 400px;
@@ -464,6 +400,7 @@ input:focus {
   }
 }
 
+/*500px Breakpoint*/
 @media screen and (max-width: 500px) {
   .iframe-container-M {
     display: none;
