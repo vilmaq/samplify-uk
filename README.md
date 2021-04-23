@@ -50,6 +50,11 @@ After clicking the artwork for a song, you will be given the below screen with t
 
 ## Code Example
 
+The below is an example of an API call we used for Genius. As it was via Rapid API, we had to use header objects that we declared in a variable and then used in the fetch response.
+
+![Code Example](./assets/images/headerobject.png "Example of Code")
+![Code Example](./assets/images/fetchGenius.png "Example of Code")
+
 ## API's
 
 For this project we used the Genius API and the Youtube API.
