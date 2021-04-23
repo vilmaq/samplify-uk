@@ -26,6 +26,12 @@ The landing page features a slider on the bottom of the page that allows you to 
 When searching for a song, you are presented with the top 6 matches from Genius. Here, you can click on the artwork to view the samples or use the 'Add to favorites' button. You can also click the 'X' to delete the card from the page. If all cards are deleted, you are presented with the original slider.
 ![Search Results](./assets/images/results.png "Search Results")
 
+**Sample Viewer:**
+
+After clicking the artwork for a song, you will be given the below screen with the release date of the song, song name, artist, apple music preview for the song, and the samples that were used in the song with an embedded YouTube player:
+![Samples](./assets/images/poundcakesample.png "Example of Samples")
+![Samples](./assets/images/touchtheskysample.png "Example of Samples")
+
 ## Tech/framework used
 
 <b>Built with</b>
