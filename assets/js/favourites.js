@@ -18,6 +18,7 @@ function swapApiKey() {
   fetchKey(youtubeApiKey2);
 }
 
+// set the Header settings necessary for the Genius API
 const geniusHeaderObject = {
   method: "GET",
   headers: {
@@ -26,13 +27,11 @@ const geniusHeaderObject = {
   },
 };
 
+// get the data added to the Local Storage from the main page and render the cards based on it
 const getDataFromLS = () => {
   const favCards =
     JSON.parse(localStorage.getItem("localStorageFavData")) || [];
 
-  // console.log(favCards);
-
-  // favCards.slice(1, 6).
   favCards.forEach(renderFavoriteCards);
 };
 
@@ -45,7 +44,6 @@ async function fetchYoutubeData(
   originalSongID,
   lyricsPath
 ) {
-  console.log(sampleSongFullTitle);
   if (sampleSongFullTitle.length === 0) {
     noSampleModal(originalSongID);
   } else {
@@ -91,6 +89,7 @@ async function fetchYoutubeData(
   }
 }
 
+// noSampleModal will render a card with the message " Sorry, there were no samples found for this song! However, here is a snippet of your selected song: Song_ID"
 const noSampleModal = (originalSongID) => {
   container.append(`<div class="modal is-active">
   <div class="modal-background"></div>
@@ -159,6 +158,7 @@ async function fetchGeniusIDData(geniusSongID) {
   }
 }
 
+// function to dynamically render the cards in Favourites
 const renderFavoriteCards = (favCard) => {
   // container.empty();
 
@@ -185,16 +185,18 @@ const renderFavoriteCards = (favCard) => {
   container.append(card);
 };
 
+// onDelete -> 1. Delete a card container and remove the song from the LS
 const onDelete = (click) => {
   const clickedTarget = click.target;
   const cardContainer = clickedTarget.closest(".searchCardContainer");
-  event.stopPropagation();
+  click.stopPropagation();
 
   const favCards =
     JSON.parse(localStorage.getItem("localStorageFavData")) || [];
 
   let songTitle = $(clickedTarget).attr("data-fTitle");
 
+  //remove the clicked song by filtering it out from the LocalStorage
   let newFavCards = favCards.filter((song) => song.favTitle != songTitle);
 
   localStorage.setItem("localStorageFavData", JSON.stringify(newFavCards));
@@ -211,7 +213,3 @@ $(document).ready(function () {
   });
   $(".deleteCard").on("click", onDelete);
 });
-
-// delete button that deletes the card
-
-//limit clicks by assigning  odd/ even clicks
