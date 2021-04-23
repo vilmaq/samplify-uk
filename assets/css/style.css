@@ -307,6 +307,7 @@ input:focus {
 
 #geniusLogo {
   height: 3rem;
+  margin-top: 0.5rem;
 }
 
 .tile {
@@ -361,7 +362,7 @@ input:focus {
 /*Devices over 1200px*/
 @media screen and (min-width: 1201px) {
   #h1-span {
-    margin-top: 6rem;
+    margin-top: 2rem;
   }
 }
 
@@ -372,7 +373,7 @@ input:focus {
   }
 
   #h1-span {
-    margin-top: 6rem;
+    margin-top: 3rem;
   }
 
   .album-artwork-img {
@@ -388,7 +389,7 @@ input:focus {
   }
 
   #h1-span {
-    margin-top: 6rem;
+    margin-top: 3.5rem;
   }
 
   .album-artwork-img {
@@ -400,7 +401,7 @@ input:focus {
 /*Medium Breakpoint*/
 @media screen and (max-width: 768px) {
   #h1-span {
-    margin-top: 6rem;
+    margin-top: 3.5rem;
   }
   .album-artwork-img {
     max-width: 190px;
@@ -423,7 +424,7 @@ input:focus {
 /*Small Breakpoint*/
 @media screen and (max-width: 576px) {
   #h1-span {
-    margin-top: 12.5rem;
+    margin-top: 10rem;
   }
   .navbar {
     flex-direction: column;
