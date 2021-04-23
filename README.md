@@ -44,6 +44,7 @@ After clicking the artwork for a song, you will be given the below screen with t
 - Search for a song by artist, song name, or lyric.
 - View the song artwork, artist, artist image, and add the song to your favourites.
 - Click the artwork and view the samples used in that song along with release date, Apple Music player, and embedded Youtube players for the samples.
+- Click the Genius logo to view the lyrics on Genius.
 - If no samples are found in that song, listen to the song via an Apple Music player modal.
 - View favourited songs and click on them to view samples.
 - Click on one of the randomly generated songs on the homepage to view recommended samples.
