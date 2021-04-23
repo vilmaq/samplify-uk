@@ -3,6 +3,7 @@ const container = $(".cards-container");
 let geniusRequestedData;
 let youtubeRequestedData;
 
+//The fetchKey function will check to see if the YouTube API is full. It does this by checking if the response has a value of 'error' and will switch API key if so.
 async function fetchKey(youtubeApiKey2) {
   const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=theweeknd&key=${youtubeApiKey}`;
   const response = await fetch(youtubeUrl);
@@ -18,6 +19,7 @@ function swapApiKey() {
   fetchKey(youtubeApiKey2);
 }
 
+//This header object is used as we are accessing the Genius API via Rapid API
 const geniusHeaderObject = {
   method: "GET",
   headers: {
@@ -26,7 +28,7 @@ const geniusHeaderObject = {
   },
 };
 
-// Fetch Youtube Data Async Function
+// This async function will retrieve data from the Youtube API whilst also generating the results for samples using parameters with the fetchGeniusIDData function.
 async function fetchYoutubeData(
   sampleSongFullTitle,
   songImage,
@@ -37,6 +39,7 @@ async function fetchYoutubeData(
   lyricsPath
 ) {
   if (sampleSongFullTitle.length === 0) {
+    // If no samples are found, a modal will pop up.
     noSampleModal(originalSongID);
   } else {
     container.empty();
@@ -46,12 +49,13 @@ async function fetchYoutubeData(
   <h1 id="titleOfSong">${songTitle}</h1>
   <h1 id="songArtist">${songArtist}</h1>
   <iframe class="appleMusic" allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="60" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://genius.com/songs/${originalSongID}/apple_music_player"></iframe>
-  <a href="https://genius.com${lyricsPath}"><img id="geniusLogo" src="http://images.rapgenius.com/b857207c5de745512bc377284199d781.1000x313x1.png" alt="genius-logo"/></a>
+  <a href="https://genius.com${lyricsPath}" target="_blank"><img id="geniusLogo" src="http://images.rapgenius.com/b857207c5de745512bc377284199d781.1000x313x1.png" alt="genius-logo"/></a>
   </div>
   </div>
   <div class="break"></div>
 `);
     sampleSongFullTitle.forEach(async (sample) => {
+      //This for each is looking at the samples object inside of the fetchGeniusIDData API.
       const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey}`;
       const response = await fetch(youtubeUrl);
       const data = await response.json();
@@ -85,6 +89,7 @@ async function fetchYoutubeData(
   }
 }
 
+//This function shows a 'no sample' modal on the screen.
 const noSampleModal = (originalSongID) => {
   container.append(`<div class="modal is-active">
   <div class="modal-background"></div>
@@ -109,6 +114,7 @@ const noSampleModal = (originalSongID) => {
   $(".deleteModal").on("click", deleteModal);
 };
 
+// fetchGeniusData is what we use for the initial search results amd for the data attributes such as ID.
 async function fetchGeniusData(userInput) {
   const geniusSearchURL = `https://genius.p.rapidapi.com/search?q=${userInput}`;
   const geniusSearchResponse = await fetch(geniusSearchURL, geniusHeaderObject);
@@ -119,17 +125,18 @@ async function fetchGeniusData(userInput) {
   });
 }
 
+//fetchGeniusIDData will be used to find the sample, release date, apple music player, and more. This is because when using the ID with the API instead of song name, a lot more details are returned.
 async function fetchGeniusIDData(geniusSongID) {
   let samples = [];
   const geniusIDURL = `https://genius.p.rapidapi.com/songs/${geniusSongID}`;
   try {
-    const geniusIDResponse = await fetch(geniusIDURL, geniusHeaderObject);
+    const geniusIDResponse = await fetch(geniusIDURL, geniusHeaderObject); // Header object is also passed in as it is via Rapid API
     const geniusIDData = await geniusIDResponse.json();
     const idPath = geniusIDData.response.song;
     const samplePath = idPath.song_relationships[0].songs;
 
     for (let i = 0; i < samplePath.length; i++) {
-      samples.push(samplePath[i]);
+      samples.push(samplePath[i]); // This is pushing all of the samples into an array as it will allow us to display all samples if a song has more than 1.
     }
     const geniusIDSampleData = {
       originalSongTitle: idPath.title,
@@ -141,6 +148,7 @@ async function fetchGeniusIDData(geniusSongID) {
       sample: samples,
       sampleCheck: idPath.song_relationships[0].songs[0],
     };
+    //These will be used to append the sample data via the fetch youtube function.
     const originalSongTitle = geniusIDSampleData.originalSongTitle;
     const originalSongArtist = geniusIDSampleData.originalSongArtist;
     const originalSongRD = geniusIDSampleData.originalSongRD;
@@ -240,8 +248,8 @@ const getLocalStorageData = () => {
   } else return localStorageData;
 };
 
+//This function will allow search result cards to be deleted and will bring back the genre slider when all have been removed.
 const onDelete = (eachGenre) => {
-  // container.empty();
   event.stopPropagation();
   const swipeCard = `<div class="swiper-container">
     <div class="swiper-wrapper">
@@ -270,15 +278,11 @@ const onDelete = (eachGenre) => {
   if (numberOfCards === 0) {
     const showSwiperContainer = $(".swiper-container").show();
     cardsContainer.append(showSwiperContainer);
-    // swiperContainer.append(swipeCard);
-    // homePageSliders();
-    // .show();
-    // container.show(swipeCard);
-    // homePageSliders();
     return cardsContainer;
   }
 };
 
+//The renderMainCard function looks at the results of the fetchGeniusData function to populate the first 6 search results and append them onto the page.
 const renderMainCard = () => {
   container.empty();
   let results = geniusRequestedData.hits;
@@ -313,23 +317,12 @@ const renderMainCard = () => {
   container.append(cards);
 };
 
-// const checkLocalStorage = () => {
-//   const localStorageCheck = localStorage.getItem("localStorageFavData");
-//   if (localStorageCheck == 0) {
-//     const favoriteTextContent = document.getElementById("addFavorite");
-//     favoriteTextContent.textContent = "Remove from Favourites";
-//   } else {
-//     favoriteTextContent.textContent = "Add to Favourites";
-//   }
-// };
-
 const onSubmit = async (event) => {
   event.preventDefault();
   let userInput = $("#search-input").val();
   const geniusDataObject = await fetchGeniusData(userInput);
   const swiperContainer = $(".swiper-container").hide();
   renderMainCard(geniusDataObject);
-  // checkLocalStorage();
   $(".deleteCard").on("click", onDelete);
   $(".artworkClick").click(function () {
     const geniusSongID = $(this).data("geniusid");
@@ -340,7 +333,6 @@ const onSubmit = async (event) => {
 $("#search").on("submit", onSubmit);
 
 $(document).ready(function () {
-  // fetchYoutubeData();
   swapApiKey();
   renderSliderCards();
   homePageSliders();
