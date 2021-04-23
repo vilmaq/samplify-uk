@@ -46,7 +46,7 @@ async function fetchYoutubeData(
   <h1 id="titleOfSong">${songTitle}</h1>
   <h1 id="songArtist">${songArtist}</h1>
   <iframe class="appleMusic" allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="60" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://genius.com/songs/${originalSongID}/apple_music_player"></iframe>
-  <a href="https://genius.com${lyricsPath}"><img id="geniusLogo" src="../images/geniuslogo.png" alt="genius-logo"/></a>
+  <a href="https://genius.com${lyricsPath}"><img id="geniusLogo" src="http://images.rapgenius.com/b857207c5de745512bc377284199d781.1000x313x1.png" alt="genius-logo"/></a>
   </div>
   </div>
   <div class="break"></div>
