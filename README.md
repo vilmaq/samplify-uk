@@ -29,8 +29,8 @@ When searching for a song, you are presented with the top 6 matches from Genius.
 **Sample Viewer:**
 
 After clicking the artwork for a song, you will be given the below screen with the release date of the song, song name, artist, apple music preview for the song, and the samples that were used in the song with an embedded YouTube player:
-![Samples](./assets/images/poundcakesample.png "Example of Samples")
-![Samples](./assets/images/touchtheskysample.png "Example of Samples")
+![Samples](./assets/images/poundcakesample.png "Example of Sample")
+![Samples](./assets/images/touchtheskysample.png "Example of Sample")
 
 ## Tech/framework used
 
