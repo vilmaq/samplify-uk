@@ -68,4 +68,7 @@ The Genius API, via Rapid API, was used as a catalog for when the user searches 
 
 When the artwork is clicked, the next Genius fetch function will be called that will get again the artwork, title, artist, release date, and list of samples in that song. If the samples object is entry, a modal will pop up. If samples are available, we then got the sample objects and put them inside of the Youtube API fetch function. Here, we searched Youtube for the top result depending on the sample name and created a div with an embedded player for that song. We used a forEach in case there were multiple samples.
 
-## Tests
+## Mobile View
+
+(screen capture tool distorts the background image)
+![Mobile Example](./assets/images/mobileviewsamples.png "Mobile View")
