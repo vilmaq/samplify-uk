@@ -455,6 +455,13 @@ input:focus {
   .card {
     grid-template-columns: 400px;
   }
+
+  #search {
+    position: relative;
+  }
+  #search-icon {
+    margin-left: 20px;
+  }
 }
 
 @media screen and (max-width: 500px) {
