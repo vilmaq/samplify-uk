@@ -30,7 +30,7 @@ const geniusHeaderObject = {
 
 // This async function will retrieve data from the Youtube API whilst also generating the results for samples using parameters with the fetchGeniusIDData function.
 async function fetchYoutubeData(
-  sampleSongFullTitle,
+  sampleSong,
   songImage,
   songTitle,
   songArtist,
@@ -38,7 +38,7 @@ async function fetchYoutubeData(
   originalSongID,
   lyricsPath
 ) {
-  if (sampleSongFullTitle.length === 0) {
+  if (sampleSong.length === 0) {
     // If no samples are found, a modal will pop up.
     noSampleModal(originalSongID);
   } else {
@@ -54,7 +54,7 @@ async function fetchYoutubeData(
   </div>
   <div class="break"></div>
 `);
-    sampleSongFullTitle.forEach(async (sample) => {
+    sampleSong.forEach(async (sample) => {
       //This for each is looking at the samples object inside of the fetchGeniusIDData API.
       const youtubeUrl = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${sample.full_title}&key=${youtubeApiKey}`;
       const response = await fetch(youtubeUrl);

@@ -14,6 +14,10 @@ No sample found? Sadly, not all songs make use of samples, but you should instea
 
 You can test some samples by clicking on of the randomly generated songs on the home page!
 
+## Initial Diagram
+
+![Homepage Diagram](./assets/images/homepageDiagram.png "Homepage Diagram")
+
 ## Screenshots
 
 **Landing page:**
